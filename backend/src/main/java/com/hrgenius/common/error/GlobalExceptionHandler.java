@@ -2,6 +2,7 @@ package com.hrgenius.common.error;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.mapping.PropertyReferenceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -55,6 +56,16 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MaxUploadSizeExceededException.class)
     public ResponseEntity<ApiError> handleTooLarge(MaxUploadSizeExceededException ex, HttpServletRequest req) {
         return build(HttpStatus.PAYLOAD_TOO_LARGE, "File is too large (max 10 MB)", req, null);
+    }
+
+    /** Unique/FK constraint hit that service-level checks didn't catch (e.g. code of a deleted record). */
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ApiError> handleIntegrity(DataIntegrityViolationException ex, HttpServletRequest req) {
+        log.warn("Data integrity violation on {} {}: {}", req.getMethod(), req.getRequestURI(),
+                ex.getMostSpecificCause().getMessage());
+        return build(HttpStatus.CONFLICT,
+                "This change conflicts with existing data (a duplicate code or email, possibly on a deleted record)",
+                req, null);
     }
 
     @ExceptionHandler(NoResourceFoundException.class)

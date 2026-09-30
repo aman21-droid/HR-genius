@@ -71,6 +71,8 @@ public class SecurityConfig {
         config.setAllowedOrigins(List.of("http://localhost:4200", "http://localhost"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
+        // Lets the SPA read the suggested filename of file downloads (exports, documents).
+        config.setExposedHeaders(List.of("Content-Disposition"));
         config.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);

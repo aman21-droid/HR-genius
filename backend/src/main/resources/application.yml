@@ -36,6 +36,12 @@ spring:
       max-file-size: 10MB
       max-request-size: 12MB
 
+  mvc:
+    format:
+      # ISO dates for query/form parameters (Spring's default is locale-dependent).
+      date: iso
+      date-time: iso
+
   data:
     web:
       pageable:
