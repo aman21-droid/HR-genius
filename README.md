@@ -63,10 +63,10 @@ Run only Oracle + MailHog in Docker, and the apps on your host:
 docker compose up oracle mailhog
 ```
 
-**Backend** (needs Maven 3.9+ and JDK 21):
+**Backend** (needs JDK 21+; Maven is downloaded automatically by the wrapper):
 ```bash
 cd backend
-mvn spring-boot:run
+./mvnw spring-boot:run        # Windows: mvnw.cmd spring-boot:run
 ```
 
 **Frontend** (needs Node 20+):
@@ -117,11 +117,11 @@ hcl/
 
 ## Build & test notes
 
-- The backend compiles and tests run via Maven: `cd backend && mvn test`. Unit tests
-  (e.g. `AuthServiceTest`) use Mockito and need no database; integration tests use
-  Testcontainers (Oracle) and require Docker.
+- Backend tests: `cd backend && ./mvnw test` (Windows: `mvnw.cmd test`). The Maven wrapper
+  pins Maven 3.9.9, so no global Maven install is needed. Unit tests (e.g. `AuthServiceTest`)
+  use Mockito and need no database; integration tests use Testcontainers (Oracle) and need Docker.
 - The Docker image build (`docker compose build backend`) compiles the backend inside a
-  Maven container, so a local Maven install is not required for the containerized path.
+  Maven container.
 - Frontend production build: `cd frontend && npm install && npm run build`.
 
 ---

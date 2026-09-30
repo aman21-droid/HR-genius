@@ -5,7 +5,7 @@
 backend/target/
 *.class
 *.jar
-!.mvn/wrapper/maven-wrapper.jar
+!**/.mvn/wrapper/maven-wrapper.jar
 
 # ---- Node / Angular ----
 frontend/node_modules/
