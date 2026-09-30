@@ -26,6 +26,7 @@ export class StatusChipComponent {
       case 'HIRED':
       case 'COMPLETED':
       case 'DONE':
+      case 'PAID':
         return 'success';
       case 'PROBATION':
       case 'ASSIGNED':
@@ -36,6 +37,7 @@ export class StatusChipComponent {
       case 'SCREENING':
       case 'INTERVIEW':
       case 'IN_PROGRESS':
+      case 'CALCULATED':
         return 'info';
       case 'ON_NOTICE':
       case 'IN_REPAIR':

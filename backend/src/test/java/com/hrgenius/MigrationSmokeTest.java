@@ -106,4 +106,18 @@ class MigrationSmokeTest {
                 + "JOIN permissions p ON p.id = rp.permission_id "
                 + "WHERE r.code = 'HR_ADMIN' AND p.code IN ('RECRUITMENT_APPROVE','ONBOARDING_MANAGE')")).isEqualTo(2);
     }
+
+    @Test
+    void phase5SeedIsPresent() {
+        assertThat(count("SELECT COUNT(*) FROM salary_components WHERE active = 1")).isEqualTo(4);
+        assertThat(count("SELECT COUNT(*) FROM payroll_runs WHERE period = '2026-08' AND status = 'PAID'")).isEqualTo(1);
+        assertThat(count("SELECT COUNT(*) FROM payroll_runs WHERE period = '2026-09' AND status = 'APPROVED'")).isEqualTo(1);
+        // Every seeded payslip has lines, and run totals match the sum of their payslips.
+        assertThat(count("SELECT COUNT(*) FROM payslips p WHERE NOT EXISTS "
+                + "(SELECT 1 FROM payslip_lines l WHERE l.payslip_id = p.id)")).isZero();
+        assertThat(count("SELECT COUNT(*) FROM payroll_runs r WHERE r.total_net <> "
+                + "(SELECT SUM(p.net_pay) FROM payslips p WHERE p.run_id = r.id)")).isZero();
+        assertThat(count("SELECT COUNT(*) FROM payroll_runs r WHERE r.employee_count <> "
+                + "(SELECT COUNT(*) FROM payslips p WHERE p.run_id = r.id)")).isZero();
+    }
 }

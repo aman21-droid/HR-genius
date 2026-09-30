@@ -105,6 +105,22 @@ export const routes: Routes = [
         loadComponent: () => import('./features/recruitment/application-detail.component').then((m) => m.ApplicationDetailComponent)
       },
       {
+        path: 'payroll',
+        canActivate: [permissionGuard],
+        data: { permissions: ['PAYROLL_RUN'] },
+        loadComponent: () => import('./features/payroll/payroll.component').then((m) => m.PayrollComponent)
+      },
+      {
+        path: 'payroll/runs/:id',
+        canActivate: [permissionGuard],
+        data: { permissions: ['PAYROLL_RUN'] },
+        loadComponent: () => import('./features/payroll/run-detail.component').then((m) => m.RunDetailComponent)
+      },
+      {
+        path: 'payslips',
+        loadComponent: () => import('./features/payroll/my-payslips.component').then((m) => m.MyPayslipsComponent)
+      },
+      {
         path: 'interviews',
         loadComponent: () => import('./features/interviews/my-interviews.component').then((m) => m.MyInterviewsComponent)
       },

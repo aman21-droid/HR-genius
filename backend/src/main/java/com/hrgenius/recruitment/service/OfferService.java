@@ -8,6 +8,7 @@ import com.hrgenius.approval.service.ApproverResolver;
 import com.hrgenius.common.error.BadRequestException;
 import com.hrgenius.common.error.BusinessException;
 import com.hrgenius.common.error.ResourceNotFoundException;
+import com.hrgenius.common.util.MoneyFormat;
 import com.hrgenius.org.dto.OrgDtos.CompanyDto;
 import com.hrgenius.org.repository.DepartmentRepository;
 import com.hrgenius.org.repository.DesignationRepository;
@@ -29,7 +30,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -309,30 +309,9 @@ public class OfferService implements ApprovalOutcomeHandler {
         o.setNotes(req.notes() == null || req.notes().isBlank() ? null : req.notes().trim());
     }
 
-    /**
-     * Indian-grouped rupee amount, e.g. "INR 30,00,000". Done by hand because java.text's
-     * DecimalFormat only supports uniform grouping and would print 3,000,000.
-     */
+    /** "INR 30,00,000", or "—" for null. */
     static String inr(BigDecimal amount) {
-        if (amount == null) {
-            return "—";
-        }
-        String digits = amount.setScale(0, RoundingMode.HALF_UP).abs().toPlainString();
-        StringBuilder sb = new StringBuilder();
-        int n = digits.length();
-        if (n <= 3) {
-            sb.append(digits);
-        } else {
-            String head = digits.substring(0, n - 3);
-            for (int i = 0; i < head.length(); i++) {
-                if (i > 0 && (head.length() - i) % 2 == 0) {
-                    sb.append(',');
-                }
-                sb.append(head.charAt(i));
-            }
-            sb.append(',').append(digits, n - 3, n);
-        }
-        return "INR " + (amount.signum() < 0 ? "-" : "") + sb;
+        return amount == null ? "—" : "INR " + MoneyFormat.grouped(amount);
     }
 
     public record OfferLetter(byte[] content, String fileName) {

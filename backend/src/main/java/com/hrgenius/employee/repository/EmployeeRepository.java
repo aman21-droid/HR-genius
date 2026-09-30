@@ -9,8 +9,10 @@ import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.lang.NonNull;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,6 +47,15 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>, JpaSp
     /** Next value of the employee-code sequence (Oracle; also valid in H2's Oracle mode). */
     @Query(value = "SELECT employee_code_seq.NEXTVAL FROM dual", nativeQuery = true)
     Long nextEmployeeCodeNumber();
+
+    /** Employees on payroll for a period: joined by its end, not exited before its start, with a CTC. */
+    @Query("""
+            select e from Employee e
+            where e.dateOfJoining <= :end and (e.exitDate is null or e.exitDate >= :start)
+              and e.annualCtc is not null and e.annualCtc > 0
+            order by e.employeeCode asc
+            """)
+    List<Employee> findPayrollEligible(@Param("start") LocalDate start, @Param("end") LocalDate end);
 
     /** (id, managerId) pairs for current employees, used to walk reporting trees in memory. */
     @Query("select e.id as id, m.id as managerId from Employee e left join e.manager m where e.status <> :exited")
