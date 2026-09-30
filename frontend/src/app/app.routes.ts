@@ -129,6 +129,24 @@ export const routes: Routes = [
         loadComponent: () => import('./features/performance/review.component').then((m) => m.ReviewComponent)
       },
       {
+        path: 'analytics',
+        canActivate: [permissionGuard],
+        data: { permissions: ['ANALYTICS_VIEW'] },
+        loadComponent: () => import('./features/analytics/analytics.component').then((m) => m.AnalyticsComponent)
+      },
+      {
+        path: 'helpdesk',
+        loadComponent: () => import('./features/helpdesk/helpdesk.component').then((m) => m.HelpdeskComponent)
+      },
+      {
+        path: 'helpdesk/tickets/:id',
+        loadComponent: () => import('./features/helpdesk/ticket.component').then((m) => m.TicketComponent)
+      },
+      {
+        path: 'policies',
+        loadComponent: () => import('./features/policies/policies.component').then((m) => m.PoliciesComponent)
+      },
+      {
         path: 'interviews',
         loadComponent: () => import('./features/interviews/my-interviews.component').then((m) => m.MyInterviewsComponent)
       },

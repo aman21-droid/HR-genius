@@ -64,8 +64,9 @@ export class ShellComponent {
     { label: 'My payslips', icon: 'receipt_long', route: '/payslips' },
     { label: 'Payroll', icon: 'payments', route: '/payroll', permission: 'PAYROLL_RUN' },
     { label: 'Performance', icon: 'trending_up', route: '/performance' },
-    { label: 'Analytics', icon: 'insights', route: '/analytics', roles: ['SUPER_ADMIN', 'HR_ADMIN', 'HR_MANAGER', 'PAYROLL_ADMIN'], soon: true },
-    { label: 'Helpdesk', icon: 'support_agent', route: '/helpdesk', soon: true },
+    { label: 'Analytics', icon: 'insights', route: '/analytics', permission: 'ANALYTICS_VIEW' },
+    { label: 'Helpdesk', icon: 'support_agent', route: '/helpdesk' },
+    { label: 'Policies', icon: 'policy', route: '/policies' },
     // ---- admin ----
     { label: 'Org setup', icon: 'corporate_fare', route: '/org/setup', permission: 'ORG_MANAGE', section: 'admin' },
     { label: 'Leave config', icon: 'beach_access', route: '/leave/config', permission: 'LEAVE_CONFIG', section: 'admin' },

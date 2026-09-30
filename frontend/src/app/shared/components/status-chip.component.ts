@@ -29,6 +29,8 @@ export class StatusChipComponent {
       case 'PAID':
       case 'ACKNOWLEDGED':
       case 'ON_TRACK':
+      case 'RESOLVED':
+      case 'PUBLISHED':
         return 'success';
       case 'PROBATION':
       case 'ASSIGNED':
