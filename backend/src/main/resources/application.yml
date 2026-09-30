@@ -93,10 +93,12 @@ hrgenius:
     root: ${STORAGE_ROOT:./data/files}
     allowed-content-types: application/pdf,image/png,image/jpeg,application/vnd.openxmlformats-officedocument.wordprocessingml.document
   alerts:
-    document-expiry-days: 30                 # warn this many days before a document expires
-    document-expiry-cron: "0 0 8 * * *"      # daily at 08:00
     hr-email: ${HR_ALERT_EMAIL:hr@hrgenius.com}
     from-email: ${MAIL_FROM:no-reply@hrgenius.com}
+    document-expiry-days: 30                 # warn this many days before a document expires
+    document-expiry-cron: "0 0 8 * * *"      # daily at 08:00
+  leave:
+    accrual-cron: "0 30 0 1 * *"             # 00:30 on the 1st of every month
 
 logging:
   level:

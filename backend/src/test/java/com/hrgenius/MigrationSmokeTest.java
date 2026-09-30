@@ -60,4 +60,22 @@ class MigrationSmokeTest {
         assertThat(s.getPan()).matches("[A-Z]{3}P[A-Z][0-9]{4}[A-Z]");
         assertThat(s.getAadhaar()).matches("[2-9][0-9]{11}");
     }
+
+    @Test
+    void phase3SeedIsPresent() {
+        // Five leave types, all active.
+        assertThat(count("SELECT COUNT(*) FROM leave_types")).isEqualTo(5);
+        assertThat(count("SELECT COUNT(*) FROM leave_types WHERE active = 1")).isEqualTo(5);
+
+        // 2026 holiday calendar: 8 mandatory + 2 optional.
+        assertThat(count("SELECT COUNT(*) FROM holidays WHERE year_no = 2026")).isEqualTo(10);
+        assertThat(count("SELECT COUNT(*) FROM holidays WHERE optional_holiday = 1")).isEqualTo(2);
+
+        // Opening balances: every current (non-exited) employee gets CL, SL, EL for 2026.
+        int activeEmployees = count("SELECT COUNT(*) FROM employees WHERE deleted = 0 AND status <> 'EXITED'");
+        assertThat(count("SELECT COUNT(*) FROM leave_balances WHERE year_no = 2026")).isEqualTo(activeEmployees * 3);
+        // Earned Leave was seeded at its 15-day annual entitlement.
+        assertThat(count("SELECT COUNT(*) FROM leave_balances b JOIN leave_types t ON t.id = b.leave_type_id "
+                + "WHERE t.code = 'EL' AND b.accrued = 15")).isEqualTo(activeEmployees);
+    }
 }
