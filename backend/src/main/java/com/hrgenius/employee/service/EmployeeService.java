@@ -33,6 +33,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import static com.hrgenius.common.util.SearchPredicates.containsIgnoreCase;
+
 import java.math.BigDecimal;
 import java.security.SecureRandom;
 import java.time.LocalDate;
@@ -132,13 +134,13 @@ public class EmployeeService {
         Specification<Employee> spec = (root, query, cb) -> {
             List<Predicate> p = new ArrayList<>();
             if (f.search() != null && !f.search().isBlank()) {
-                String like = "%" + f.search().trim().toLowerCase() + "%";
+                String q = f.search();
                 p.add(cb.or(
-                        cb.like(cb.lower(root.get("firstName")), like),
-                        cb.like(cb.lower(root.get("lastName")), like),
-                        cb.like(cb.lower(cb.concat(cb.concat(root.get("firstName"), " "), root.get("lastName"))), like),
-                        cb.like(cb.lower(root.get("workEmail")), like),
-                        cb.like(cb.lower(root.get("employeeCode")), like)));
+                        containsIgnoreCase(cb, root.get("firstName"), q),
+                        containsIgnoreCase(cb, root.get("lastName"), q),
+                        containsIgnoreCase(cb, cb.concat(cb.concat(root.get("firstName"), " "), root.get("lastName")), q),
+                        containsIgnoreCase(cb, root.get("workEmail"), q),
+                        containsIgnoreCase(cb, root.get("employeeCode"), q)));
             }
             if (f.departmentId() != null) p.add(cb.equal(root.get("department").get("id"), f.departmentId()));
             if (f.designationId() != null) p.add(cb.equal(root.get("designation").get("id"), f.designationId()));

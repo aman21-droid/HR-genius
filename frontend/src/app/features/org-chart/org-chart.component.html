@@ -1,0 +1,70 @@
+<div class="hg-page">
+  <hg-page-header title="Org chart" [subtitle]="nodes().length + ' people'"
+                  [breadcrumbs]="[{ label: 'Home', link: '/dashboard' }, { label: 'Org chart' }]" />
+
+  <div class="toolbar hg-card">
+    <mat-form-field appearance="outline" class="search">
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput placeholder="Find a person" [ngModel]="query()" (ngModelChange)="query.set($event)"
+             [matAutocomplete]="auto" aria-label="Find a person in the org chart" />
+      <mat-autocomplete #auto (optionSelected)="focus($event.option.value)" [displayWith]="displayNode">
+        @for (m of matches(); track m.id) {
+          <mat-option [value]="m">{{ m.name }} <small class="muted">· {{ m.designation }}</small></mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+    <span class="spacer"></span>
+    <button mat-button (click)="expandAll()"><mat-icon>unfold_more</mat-icon> Expand all</button>
+    <button mat-button (click)="collapseAll()"><mat-icon>unfold_less</mat-icon> Collapse</button>
+    <div class="zoom" role="group" aria-label="Zoom">
+      <button mat-icon-button (click)="zoomBy(-0.1)" matTooltip="Zoom out" aria-label="Zoom out"><mat-icon>zoom_out</mat-icon></button>
+      <span class="pct" aria-live="polite">{{ (zoom() * 100).toFixed(0) }}%</span>
+      <button mat-icon-button (click)="zoomBy(0.1)" matTooltip="Zoom in" aria-label="Zoom in"><mat-icon>zoom_in</mat-icon></button>
+      <button mat-icon-button (click)="zoom.set(0.9)" matTooltip="Reset zoom" aria-label="Reset zoom"><mat-icon>fit_screen</mat-icon></button>
+    </div>
+  </div>
+
+  <div class="viewport hg-card" #canvas (wheel)="onWheel($event)">
+    @if (loading()) {
+      <div class="hg-skeleton" style="height: 300px"></div>
+    } @else {
+      <div class="tree" [style.transform]="'scale(' + zoom() + ')'">
+        <ul>
+          @for (t of roots(); track t.node.id) {
+            <ng-container *ngTemplateOutlet="branch; context: { $implicit: t }" />
+          }
+        </ul>
+      </div>
+    }
+  </div>
+  <p class="muted hint">Tip: hold Ctrl and scroll to zoom. Click a card to open the profile.</p>
+</div>
+
+<ng-template #branch let-t>
+  <li>
+    <div class="node" [id]="'node-' + t.node.id" [class.hit]="highlighted() === t.node.id" tabindex="0" role="button"
+         [attr.aria-label]="t.node.name + ', ' + (t.node.designation ?? '')"
+         (click)="open(t.node.id)" (keydown.enter)="open(t.node.id)">
+      <span class="hg-avatar" aria-hidden="true">{{ t.node.name | initials }}</span>
+      <div class="meta">
+        <strong>{{ t.node.name }}</strong>
+        <small>{{ t.node.designation }}</small>
+        <small class="dept">{{ t.node.department }}</small>
+      </div>
+      @if (t.children.length) {
+        <button class="count" (click)="toggle(t.node.id, $event)"
+                [attr.aria-expanded]="expanded().has(t.node.id)"
+                [attr.aria-label]="(expanded().has(t.node.id) ? 'Collapse ' : 'Expand ') + t.children.length + ' reports'">
+          {{ expanded().has(t.node.id) ? '−' : '+' }}{{ t.children.length }}
+        </button>
+      }
+    </div>
+    @if (t.children.length && expanded().has(t.node.id)) {
+      <ul>
+        @for (c of t.children; track c.node.id) {
+          <ng-container *ngTemplateOutlet="branch; context: { $implicit: c }" />
+        }
+      </ul>
+    }
+  </li>
+</ng-template>

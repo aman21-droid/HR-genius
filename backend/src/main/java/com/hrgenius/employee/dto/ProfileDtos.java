@@ -97,7 +97,8 @@ public final class ProfileDtos {
     }
 
     public record AssetAssignmentDto(Long id, Long assetId, String assetTag, String assetName, String category,
-                                     String serialNumber, Long employeeId, LocalDate assignedOn,
+                                     String serialNumber, Long employeeId, String employeeName,
+                                     String employeeCode, LocalDate assignedOn,
                                      LocalDate returnedOn, String assignNotes, String returnCondition,
                                      String returnNotes) {
     }

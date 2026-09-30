@@ -1,0 +1,140 @@
+<div class="hg-page">
+  <hg-page-header title="Employees" subtitle="Everyone at the company. Search, filter, and open a profile."
+                  [breadcrumbs]="[{ label: 'Home', link: '/dashboard' }, { label: 'Employees' }]">
+    <button mat-stroked-button (click)="export()" [disabled]="exporting()">
+      <mat-icon>download</mat-icon> {{ exporting() ? 'Exporting…' : 'Export' }}
+    </button>
+    @if (canEdit) {
+      <button mat-stroked-button (click)="openImport()"><mat-icon>upload_file</mat-icon> Import</button>
+      <a mat-flat-button color="primary" routerLink="/employees/new"><mat-icon>person_add</mat-icon> Add employee</a>
+    }
+  </hg-page-header>
+
+  <div class="hg-filters" role="search">
+    <mat-form-field appearance="outline" class="search">
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput placeholder="Search name, email or code" [ngModel]="search()" (ngModelChange)="search.set($event)"
+             aria-label="Search employees" />
+      @if (search()) {
+        <button mat-icon-button matSuffix (click)="search.set('')" aria-label="Clear search"><mat-icon>close</mat-icon></button>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-select placeholder="Department" [ngModel]="filter().departmentId ?? null"
+                  (ngModelChange)="setFilter({ departmentId: $event })" aria-label="Department">
+        <mat-option [value]="null">All departments</mat-option>
+        @for (d of lookups()?.departments ?? []; track d.id) { <mat-option [value]="d.id">{{ d.name }}</mat-option> }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-select placeholder="Location" [ngModel]="filter().locationId ?? null"
+                  (ngModelChange)="setFilter({ locationId: $event })" aria-label="Location">
+        <mat-option [value]="null">All locations</mat-option>
+        @for (l of lookups()?.locations ?? []; track l.id) { <mat-option [value]="l.id">{{ l.name }}</mat-option> }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-select placeholder="Designation" [ngModel]="filter().designationId ?? null"
+                  (ngModelChange)="setFilter({ designationId: $event })" aria-label="Designation">
+        <mat-option [value]="null">All designations</mat-option>
+        @for (d of lookups()?.designations ?? []; track d.id) { <mat-option [value]="d.id">{{ d.name }}</mat-option> }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-select placeholder="Status" [ngModel]="filter().status ?? null" (ngModelChange)="setFilter({ status: $event })"
+                  aria-label="Status">
+        <mat-option [value]="null">Any status</mat-option>
+        @for (s of statuses; track s) {
+          @if (s !== 'EXITED' || fullAccess) { <mat-option [value]="s">{{ s | humanize }}</mat-option> }
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-select placeholder="Type" [ngModel]="filter().employmentType ?? null"
+                  (ngModelChange)="setFilter({ employmentType: $event })" aria-label="Employment type">
+        <mat-option [value]="null">Any type</mat-option>
+        @for (t of types; track t) { <mat-option [value]="t">{{ t | humanize }}</mat-option> }
+      </mat-select>
+    </mat-form-field>
+
+    @if (isManager) {
+      <mat-slide-toggle [ngModel]="!!filter().teamOnly" (ngModelChange)="setFilter({ teamOnly: $event })">My team</mat-slide-toggle>
+    }
+    @if (fullAccess) {
+      <mat-slide-toggle [ngModel]="!!filter().includeExited" (ngModelChange)="setFilter({ includeExited: $event })">
+        Include leavers
+      </mat-slide-toggle>
+    }
+    @if (activeFilterCount() || search()) {
+      <button mat-button (click)="clearFilters()"><mat-icon>filter_alt_off</mat-icon> Clear</button>
+    }
+    <span class="spacer"></span>
+    <mat-button-toggle-group [value]="view()" (change)="view.set($event.value)" aria-label="View">
+      <mat-button-toggle value="table" matTooltip="Table view" aria-label="Table view"><mat-icon>table_rows</mat-icon></mat-button-toggle>
+      <mat-button-toggle value="cards" matTooltip="Card view" aria-label="Card view"><mat-icon>grid_view</mat-icon></mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  @if (view() === 'table') {
+    <hg-data-table [columns]="columns" [rows]="result().content" [total]="result().totalElements"
+                   [pageIndex]="pageIndex()" [pageSize]="pageSize()" [loading]="loading()"
+                   [sortActive]="sortActive()" [sortDirection]="sortDirection()" storageKey="employees"
+                   [clickable]="true" emptyIcon="person_search" emptyTitle="No employees match"
+                   emptyMessage="Try a different search or clear the filters."
+                   (pageChange)="onPage($event)" (sortChange)="onSort($event)" (rowClick)="open($event)">
+      <ng-template hgCell="name" let-row>
+        <div class="hg-person">
+          <span class="hg-avatar" aria-hidden="true">{{ row.fullName | initials }}</span>
+          <span class="meta"><strong>{{ row.fullName }}</strong><small>{{ row.workEmail }}</small></span>
+        </div>
+      </ng-template>
+      <ng-template hgCell="status" let-row><hg-status [value]="row.status" /></ng-template>
+      <button empty mat-stroked-button (click)="clearFilters()">Clear filters</button>
+    </hg-data-table>
+  } @else {
+    @if (loading() && !result().content.length) {
+      <div class="card-grid">@for (i of [1,2,3,4,5,6,7,8]; track i) { <div class="hg-skeleton" style="height:150px"></div> }</div>
+    } @else if (!result().content.length) {
+      <div class="hg-card">
+        <hg-empty-state icon="person_search" title="No employees match" message="Try a different search or clear the filters.">
+          <button mat-stroked-button (click)="clearFilters()">Clear filters</button>
+        </hg-empty-state>
+      </div>
+    } @else {
+      <div class="card-grid">
+        @for (e of result().content; track e.id) {
+          <div class="hg-card person-card" tabindex="0" role="link" [attr.aria-label]="'Open ' + e.fullName"
+               (click)="open(e)" (keydown.enter)="open(e)">
+            <span class="hg-avatar lg" aria-hidden="true">{{ e.fullName | initials }}</span>
+            <strong>{{ e.fullName }}</strong>
+            <span class="muted">{{ e.designationName }}</span>
+            <small class="muted">{{ e.departmentName }} · {{ e.locationName }}</small>
+            <div class="quick">
+              <a mat-icon-button [href]="'mailto:' + e.workEmail" (click)="$event.stopPropagation()"
+                 [matTooltip]="e.workEmail" [attr.aria-label]="'Email ' + e.fullName"><mat-icon>mail</mat-icon></a>
+              @if (e.phone) {
+                <a mat-icon-button [href]="'tel:' + e.phone" (click)="$event.stopPropagation()"
+                   [matTooltip]="e.phone" [attr.aria-label]="'Call ' + e.fullName"><mat-icon>call</mat-icon></a>
+              }
+            </div>
+          </div>
+        }
+      </div>
+      <mat-paginator [length]="result().totalElements" [pageIndex]="pageIndex()" [pageSize]="pageSize()"
+                     [pageSizeOptions]="[12, 20, 48, 96]" (page)="onPage($event)" aria-label="Select page" />
+    }
+  }
+</div>
+
+<style>
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-bottom: 12px; }
+  .person-card { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px; cursor: pointer; }
+  .person-card:hover, .person-card:focus-visible { border-color: var(--hg-primary); outline: none; }
+  .person-card .hg-avatar { margin-bottom: 6px; }
+  .quick { display: flex; gap: 4px; margin-top: 6px; }
+</style>

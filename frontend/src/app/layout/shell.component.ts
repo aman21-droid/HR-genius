@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -16,14 +16,17 @@ interface NavItem {
   label: string;
   icon: string;
   route: string;
-  roles?: string[]; // if set, item shows only for these roles
+  roles?: string[];        // if set, item shows only for these roles
+  permission?: string;     // if set, item shows only with this permission
+  soon?: boolean;          // module arrives in a later phase: shown, not clickable
+  section?: 'main' | 'admin';
 }
 
 @Component({
   selector: 'app-shell',
   standalone: true,
   imports: [
-    CommonModule, RouterOutlet, RouterLink, RouterLinkActive,
+    CommonModule, NgTemplateOutlet, RouterOutlet, RouterLink, RouterLinkActive,
     MatSidenavModule, MatToolbarModule, MatListModule, MatIconModule,
     MatButtonModule, MatMenuModule, MatTooltipModule, MatBadgeModule
   ],
@@ -37,22 +40,40 @@ export class ShellComponent {
   collapsed = signal(false);
   user = this.auth.user;
 
-  // Full nav map. Later phases wire up the real routes; disabled items are visible
-  // but not yet routable so the information architecture is clear from day one.
+  // Full nav map. Modules from later phases are listed (marked "Soon") so the information
+  // architecture is visible from day one, but they are not clickable yet.
   navItems: NavItem[] = [
     { label: 'Dashboard', icon: 'dashboard', route: '/dashboard' },
-    { label: 'Employees', icon: 'people', route: '/employees', roles: ['SUPER_ADMIN', 'HR_ADMIN', 'HR_MANAGER', 'MANAGER'] },
-    { label: 'Recruitment', icon: 'work', route: '/recruitment', roles: ['SUPER_ADMIN', 'HR_ADMIN', 'RECRUITER'] },
-    { label: 'Attendance', icon: 'schedule', route: '/attendance' },
-    { label: 'Leave', icon: 'beach_access', route: '/leave' },
-    { label: 'Payroll', icon: 'payments', route: '/payroll', roles: ['SUPER_ADMIN', 'PAYROLL_ADMIN'] },
-    { label: 'Performance', icon: 'trending_up', route: '/performance' },
-    { label: 'Analytics', icon: 'insights', route: '/analytics', roles: ['SUPER_ADMIN', 'HR_ADMIN', 'HR_MANAGER', 'PAYROLL_ADMIN'] },
-    { label: 'Helpdesk', icon: 'support_agent', route: '/helpdesk' }
+    { label: 'Employees', icon: 'people', route: '/employees' },
+    { label: 'Org chart', icon: 'account_tree', route: '/org-chart' },
+    { label: 'Recruitment', icon: 'work', route: '/recruitment', roles: ['SUPER_ADMIN', 'HR_ADMIN', 'RECRUITER'], soon: true },
+    { label: 'Attendance', icon: 'schedule', route: '/attendance', soon: true },
+    { label: 'Leave', icon: 'beach_access', route: '/leave', soon: true },
+    { label: 'Payroll', icon: 'payments', route: '/payroll', roles: ['SUPER_ADMIN', 'PAYROLL_ADMIN'], soon: true },
+    { label: 'Performance', icon: 'trending_up', route: '/performance', soon: true },
+    { label: 'Analytics', icon: 'insights', route: '/analytics', roles: ['SUPER_ADMIN', 'HR_ADMIN', 'HR_MANAGER', 'PAYROLL_ADMIN'], soon: true },
+    { label: 'Helpdesk', icon: 'support_agent', route: '/helpdesk', soon: true },
+    // ---- admin ----
+    { label: 'Org setup', icon: 'corporate_fare', route: '/org/setup', permission: 'ORG_MANAGE', section: 'admin' },
+    { label: 'Assets', icon: 'devices_other', route: '/assets', permission: 'ASSET_MANAGE', section: 'admin' },
+    { label: 'Expiring documents', icon: 'event_busy', route: '/documents/expiring', roles: ['SUPER_ADMIN', 'HR_ADMIN', 'HR_MANAGER'], section: 'admin' },
+    { label: 'Audit trail', icon: 'history', route: '/admin/audit-log', permission: 'AUDIT_VIEW', section: 'admin' }
   ];
 
-  get visibleNav(): NavItem[] {
-    return this.navItems.filter((i) => !i.roles || this.auth.hasAnyRole(i.roles));
+  private allowed(i: NavItem): boolean {
+    return (!i.roles || this.auth.hasAnyRole(i.roles)) && (!i.permission || this.auth.hasPermission(i.permission));
+  }
+
+  get mainNav(): NavItem[] {
+    return this.navItems.filter((i) => i.section !== 'admin' && this.allowed(i));
+  }
+
+  get adminNav(): NavItem[] {
+    return this.navItems.filter((i) => i.section === 'admin' && this.allowed(i));
+  }
+
+  get hasEmployeeProfile(): boolean {
+    return this.user()?.employeeId != null;
   }
 
   get initials(): string {

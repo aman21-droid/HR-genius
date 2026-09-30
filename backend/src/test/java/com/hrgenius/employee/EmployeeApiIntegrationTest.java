@@ -155,6 +155,21 @@ class EmployeeApiIntegrationTest {
     }
 
     @Test
+    void directorySearchMatchesNameEmailAndCode() throws Exception {
+        String t = token("employee@hrgenius.com");
+        for (String q : List.of("emma", "LOPEZ", "emma lopez", "employee@hrgenius", "emp0011")) {
+            call(get("/api/v1/employees").param("search", q), t)
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$.content[*].workEmail", hasItem("employee@hrgenius.com")));
+        }
+        call(get("/api/v1/employees").param("search", "no-such-person"), t)
+                .andExpect(jsonPath("$.totalElements").value(0));
+        // Same search helper backs the org masters.
+        call(get("/api/v1/org/departments").param("search", "eng"), t)
+                .andExpect(jsonPath("$.content[*].code", hasItem("ENG")));
+    }
+
+    @Test
     void managerSeesTheirTeamButNotSensitiveData() throws Exception {
         String t = token("manager@hrgenius.com");
         long report = employeeId("employee@hrgenius.com");

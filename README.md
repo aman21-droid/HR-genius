@@ -4,9 +4,10 @@ A production-quality HRMS covering employee data, recruitment & onboarding, atte
 leave, payroll, performance, HR analytics, and compliance. Built with **Java 21 / Spring Boot 3**,
 **Oracle**, and **Angular 18**.
 
-> **Status:** Phase 1 (Foundation) complete — project scaffolding, Docker Compose, Oracle +
-> Flyway, JWT auth with refresh tokens & RBAC, and the Angular shell (layout, dark mode,
-> routing, HTTP interceptors, login). Later phases add the feature modules.
+> **Status:** Phases 1–2 complete. Foundation (Docker, Oracle + Flyway, JWT/refresh/RBAC,
+> Angular shell) and **Core HR**: org masters, employee directory & profiles, add/edit wizard,
+> interactive org chart, document vault with expiry alerts, assets, Excel import/export, and
+> the audit trail. Later phases add attendance, leave, recruitment, payroll and more.
 
 ---
 
@@ -54,6 +55,20 @@ This builds and starts everything. First run pulls the Oracle image and initiali
 | employee@hrgenius.com    | EMPLOYEE      |
 
 ---
+
+## Quick demo without Docker or Oracle
+
+Runs the real backend against an in-memory H2 database (Oracle mode) with all migrations and
+demo data. Data resets on every restart.
+
+```bash
+cd backend
+./mvnw spring-boot:test-run -Dspring-boot.run.main-class=com.hrgenius.DevH2Application
+# in another terminal
+cd frontend && npm install && npm start
+```
+Open http://localhost:4200 and use a demo login below. If port 8080 is taken on your machine,
+add `-Dspring-boot.run.arguments=--server.port=8081` and point `proxy.conf.json` at 8081.
 
 ## Local development (without full Docker)
 
@@ -129,7 +144,7 @@ hcl/
 ## Roadmap (phases)
 
 1. ✅ **Foundation** — scaffolding, Docker, Oracle/Flyway, JWT/RBAC, Angular shell, login.
-2. Core HR — org masters, employee CRUD, profile tabs, directory, org chart, documents, import/export, audit log.
+2. ✅ **Core HR** — org masters, employee CRUD, profile tabs, directory, org chart, documents, import/export, audit log.
 3. Attendance & Leave + generic approval engine + notifications.
 4. Recruitment & Onboarding/Offboarding.
 5. Payroll — structures, run wizard, payslips, statutory calc, tax declarations, expenses.

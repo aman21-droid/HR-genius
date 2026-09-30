@@ -1,0 +1,163 @@
+<div class="hg-page">
+  @if (notFound()) {
+    <hg-page-header title="Employee not found" [breadcrumbs]="[{ label: 'Employees', link: '/employees' }, { label: 'Not found' }]" />
+    <div class="hg-card"><p>This employee doesn't exist, or you don't have access to their profile.</p>
+      <a mat-stroked-button routerLink="/employees">Back to employees</a></div>
+  } @else {
+  @if (employee(); as e) {
+    <hg-page-header [title]="isSelf() ? 'My profile' : e.fullName"
+                    [breadcrumbs]="[{ label: 'Employees', link: '/employees' }, { label: e.fullName }]">
+      @if (e.canEdit) {
+        <a mat-flat-button color="primary" [routerLink]="['/employees', e.id, 'edit']"><mat-icon>edit</mat-icon> Edit</a>
+      }
+      @if (canDelete && !isSelf()) {
+        <button mat-icon-button [matMenuTriggerFor]="more" aria-label="More actions"><mat-icon>more_vert</mat-icon></button>
+        <mat-menu #more="matMenu">
+          <button mat-menu-item (click)="delete()"><mat-icon color="warn">delete</mat-icon><span>Delete record</span></button>
+        </mat-menu>
+      }
+    </hg-page-header>
+
+    <!-- ===== Header card ===== -->
+    <div class="hg-card profile-head">
+      <span class="hg-avatar lg" aria-hidden="true">{{ e.fullName | initials }}</span>
+      <div class="who">
+        <h2>{{ e.fullName }} <hg-status [value]="e.status" /></h2>
+        <p class="muted">{{ e.designationName }} · {{ e.departmentName }} · {{ e.locationName }}</p>
+        <div class="facts">
+          <span><mat-icon inline>badge</mat-icon> {{ e.employeeCode }}</span>
+          <span><mat-icon inline>event</mat-icon> Joined {{ e.dateOfJoining | date: 'mediumDate' }} ({{ tenure(e) }})</span>
+          @if (e.managerId) {
+            <span><mat-icon inline>supervisor_account</mat-icon> Reports to
+              <a [routerLink]="['/employees', e.managerId]">{{ e.managerName }}</a></span>
+          }
+        </div>
+      </div>
+      <div class="contact">
+        <a mat-stroked-button [href]="'mailto:' + e.workEmail"><mat-icon>mail</mat-icon> Email</a>
+        @if (e.phone) { <a mat-stroked-button [href]="'tel:' + e.phone"><mat-icon>call</mat-icon> Call</a> }
+      </div>
+    </div>
+
+    @if (e.limitedView) {
+      <p class="muted limited"><mat-icon inline>visibility_off</mat-icon>
+        You're seeing the directory card. Full profiles are visible to HR, the employee, and their managers.</p>
+    }
+
+    <mat-tab-group animationDuration="150ms" class="profile-tabs" mat-stretch-tabs="false">
+      <!-- ===== Overview ===== -->
+      <mat-tab label="Overview">
+        <div class="tab-body two-col">
+          <section class="hg-card">
+            <h3 class="hg-section-title">Contact & personal</h3>
+            <dl class="hg-detail-grid">
+              <div><dt>Work email</dt><dd>{{ e.workEmail }}</dd></div>
+              <div><dt>Phone</dt><dd>{{ e.phone || '—' }}</dd></div>
+              @if (!e.limitedView) {
+                <div><dt>Personal email</dt><dd>{{ e.personalEmail || '—' }}</dd></div>
+                <div><dt>Date of birth</dt><dd>{{ (e.dateOfBirth | date: 'mediumDate') || '—' }}</dd></div>
+                <div><dt>Gender</dt><dd>{{ (e.gender | humanize) || '—' }}</dd></div>
+                <div><dt>Marital status</dt><dd>{{ (e.maritalStatus | humanize) || '—' }}</dd></div>
+                <div><dt>Blood group</dt><dd>{{ e.bloodGroup || '—' }}</dd></div>
+                <div><dt>Nationality</dt><dd>{{ e.nationality || '—' }}</dd></div>
+                <div class="wide"><dt>Current address</dt><dd>{{ e.currentAddress || '—' }}</dd></div>
+                <div class="wide"><dt>Permanent address</dt><dd>{{ e.permanentAddress || '—' }}</dd></div>
+              }
+            </dl>
+          </section>
+          <section class="hg-card">
+            <h3 class="hg-section-title">Direct reports ({{ e.directReports }})</h3>
+            @for (r of reports(); track r.id) {
+              <a class="hg-person report" [routerLink]="['/employees', r.id]">
+                <span class="hg-avatar" aria-hidden="true">{{ r.fullName | initials }}</span>
+                <span class="meta"><strong>{{ r.fullName }}</strong><small>{{ r.designationName }}</small></span>
+              </a>
+            } @empty {
+              <p class="muted">No direct reports.</p>
+            }
+          </section>
+        </div>
+      </mat-tab>
+
+      <!-- ===== Job & pay ===== -->
+      <mat-tab label="Job & pay">
+        <div class="tab-body">
+          <section class="hg-card">
+            <h3 class="hg-section-title">Job</h3>
+            <dl class="hg-detail-grid">
+              <div><dt>Designation</dt><dd>{{ e.designationName || '—' }}</dd></div>
+              <div><dt>Department</dt><dd>{{ e.departmentName || '—' }}</dd></div>
+              <div><dt>Grade</dt><dd>{{ e.gradeName || '—' }}</dd></div>
+              <div><dt>Location</dt><dd>{{ e.locationName || '—' }}</dd></div>
+              <div><dt>Business unit</dt><dd>{{ e.businessUnitName || '—' }}</dd></div>
+              <div><dt>Cost center</dt><dd>{{ e.costCenterName || '—' }}</dd></div>
+              <div><dt>Employment type</dt><dd>{{ e.employmentType | humanize }}</dd></div>
+              <div><dt>Date of joining</dt><dd>{{ e.dateOfJoining | date: 'mediumDate' }}</dd></div>
+              @if (!e.limitedView) {
+                <div><dt>Probation ends</dt><dd>{{ (e.probationEndDate | date: 'mediumDate') || '—' }}</dd></div>
+                <div><dt>Confirmed on</dt><dd>{{ (e.confirmationDate | date: 'mediumDate') || '—' }}</dd></div>
+                <div><dt>Notice period</dt><dd>{{ e.noticePeriodDays != null ? e.noticePeriodDays + ' days' : '—' }}</dd></div>
+              }
+              @if (e.exitDate) { <div><dt>Exit date</dt><dd>{{ e.exitDate | date: 'mediumDate' }}</dd></div> }
+              <div><dt>Login</dt><dd>{{ e.hasLogin ? 'Has a login' : 'No login' }}</dd></div>
+            </dl>
+          </section>
+          @if (e.canViewCompensation) {
+            <section class="hg-card">
+              <h3 class="hg-section-title">Compensation</h3>
+              <dl class="hg-detail-grid">
+                <div><dt>Annual CTC</dt><dd>{{ e.annualCtc != null ? (e.annualCtc | number: '1.0-0') : 'Not set' }}</dd></div>
+                <div><dt>Monthly (approx.)</dt><dd>{{ e.annualCtc != null ? ((e.annualCtc / 12) | number: '1.0-0') : '—' }}</dd></div>
+              </dl>
+              <p class="muted small">Salary structures, components and payslips arrive with the Payroll module.</p>
+            </section>
+          }
+        </div>
+      </mat-tab>
+
+      @if (!e.limitedView) {
+        <mat-tab label="Documents">
+          <ng-template matTabContent><div class="tab-body"><app-profile-documents [employee]="e" /></div></ng-template>
+        </mat-tab>
+        <mat-tab label="Assets">
+          <ng-template matTabContent><div class="tab-body"><app-profile-assets [employeeId]="e.id" /></div></ng-template>
+        </mat-tab>
+        <mat-tab label="Timeline">
+          <ng-template matTabContent><div class="tab-body"><app-profile-timeline [employeeId]="e.id" /></div></ng-template>
+        </mat-tab>
+        <mat-tab label="Emergency contacts">
+          <ng-template matTabContent>
+            <div class="tab-body"><app-profile-contacts [employeeId]="e.id" [editable]="e.canEdit || isSelf()" /></div>
+          </ng-template>
+        </mat-tab>
+      }
+      @if (e.canViewSensitive) {
+        <mat-tab label="Bank & statutory">
+          <ng-template matTabContent><div class="tab-body"><app-profile-statutory [employeeId]="e.id" /></div></ng-template>
+        </mat-tab>
+      }
+    </mat-tab-group>
+  } @else {
+    <div class="hg-skeleton" style="height: 140px; margin-bottom: 16px"></div>
+    <div class="hg-skeleton" style="height: 320px"></div>
+  }
+  }
+</div>
+
+<style>
+  .profile-head { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 12px; }
+  .profile-head .who { flex: 1 1 320px; }
+  .profile-head h2 { margin: 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 22px; }
+  .profile-head p { margin: 4px 0 8px; }
+  .facts { display: flex; gap: 18px; flex-wrap: wrap; font-size: 13px; color: var(--hg-muted); }
+  .facts a { color: var(--hg-primary); }
+  .contact { display: flex; gap: 8px; }
+  .limited { display: flex; align-items: center; gap: 6px; }
+  .tab-body { padding: 16px 0; display: grid; gap: 16px; }
+  .two-col { grid-template-columns: 2fr 1fr; }
+  .wide { grid-column: 1 / -1; }
+  .report { padding: 6px 4px; border-radius: 8px; text-decoration: none; color: inherit; }
+  .report:hover { background: color-mix(in srgb, var(--hg-primary) 7%, transparent); }
+  .small { font-size: 12px; }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+</style>

@@ -5,15 +5,34 @@
       @if (!collapsed()) { <span class="brand-name">HRGenius</span> }
     </div>
 
-    <mat-nav-list class="nav-list">
-      @for (item of visibleNav; track item.route) {
+    <mat-nav-list class="nav-list" aria-label="Main navigation">
+      @for (item of mainNav; track item.route) {
+        <ng-container *ngTemplateOutlet="navLink; context: { $implicit: item }" />
+      }
+      @if (adminNav.length) {
+        @if (!collapsed()) { <div class="nav-section">Administration</div> } @else { <div class="nav-divider"></div> }
+        @for (item of adminNav; track item.route) {
+          <ng-container *ngTemplateOutlet="navLink; context: { $implicit: item }" />
+        }
+      }
+    </mat-nav-list>
+
+    <ng-template #navLink let-item>
+      @if (item.soon) {
+        <div mat-list-item class="soon" [matTooltip]="(collapsed() ? item.label + ' · ' : '') + 'Coming in a later release'"
+             matTooltipPosition="right" aria-disabled="true">
+          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+          @if (!collapsed()) { <span matListItemTitle>{{ item.label }} <span class="soon-tag">Soon</span></span> }
+        </div>
+      } @else {
         <a mat-list-item [routerLink]="item.route" routerLinkActive="active-link"
+           [routerLinkActiveOptions]="{ exact: item.route === '/dashboard' }"
            [matTooltip]="collapsed() ? item.label : ''" matTooltipPosition="right">
           <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
           @if (!collapsed()) { <span matListItemTitle>{{ item.label }}</span> }
         </a>
       }
-    </mat-nav-list>
+    </ng-template>
   </mat-sidenav>
 
   <mat-sidenav-content class="content">
@@ -47,7 +66,7 @@
         <mat-icon>arrow_drop_down</mat-icon>
       </button>
       <mat-menu #userMenu="matMenu">
-        <button mat-menu-item disabled><mat-icon>person</mat-icon><span>My Profile</span></button>
+        <a mat-menu-item routerLink="/profile" [disabled]="!hasEmployeeProfile"><mat-icon>person</mat-icon><span>My profile</span></a>
         <button mat-menu-item disabled><mat-icon>settings</mat-icon><span>Settings</span></button>
         <button mat-menu-item (click)="logout()"><mat-icon>logout</mat-icon><span>Sign out</span></button>
       </mat-menu>

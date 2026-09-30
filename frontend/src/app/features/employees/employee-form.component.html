@@ -1,0 +1,230 @@
+<div class="hg-page">
+  <hg-page-header [title]="isEdit ? 'Edit ' + (existing()?.fullName ?? 'employee') : 'Add employee'"
+                  [subtitle]="isEdit ? (existing()?.employeeCode ?? '') : 'Three quick steps. The employee code is generated automatically.'"
+                  [breadcrumbs]="isEdit
+                    ? [{ label: 'Employees', link: '/employees' }, { label: existing()?.fullName ?? '…', link: ['/employees', id()] }, { label: 'Edit' }]
+                    : [{ label: 'Employees', link: '/employees' }, { label: 'Add employee' }]" />
+
+  @if (loading() || saving()) { <mat-progress-bar mode="indeterminate" /> }
+
+  @if (created(); as c) {
+    <div class="hg-card created" role="status">
+      <mat-icon class="big">check_circle</mat-icon>
+      <h2>{{ c.employee.fullName }} added as {{ c.employee.employeeCode }}</h2>
+      <p class="muted">A login was created. Share these details securely. The password is shown only once and
+        they should change it after signing in.</p>
+      <dl class="hg-detail-grid creds">
+        <div><dt>Login email</dt><dd class="mono">{{ c.loginEmail }}</dd></div>
+        <div><dt>Temporary password</dt><dd class="mono">{{ c.temporaryPassword }}</dd></div>
+      </dl>
+      <div class="row-actions">
+        <button mat-stroked-button (click)="copyPassword()"><mat-icon>content_copy</mat-icon> Copy details</button>
+        <button mat-stroked-button (click)="addAnother()"><mat-icon>person_add</mat-icon> Add another</button>
+        <a mat-flat-button color="primary" [routerLink]="['/employees', c.employee.id]">Open profile</a>
+      </div>
+    </div>
+  } @else {
+    <div class="hg-card">
+      <mat-stepper [linear]="!isEdit" #stepper>
+        <!-- ================= Step 1: personal ================= -->
+        <mat-step [stepControl]="personal" label="Personal">
+          <form [formGroup]="personal" class="hg-form-grid step-body">
+            <mat-form-field appearance="outline">
+              <mat-label>First name</mat-label>
+              <input matInput formControlName="firstName" autocomplete="off" required />
+              @if (personal.controls.firstName.hasError('required')) { <mat-error>First name is required</mat-error> }
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Middle name</mat-label>
+              <input matInput formControlName="middleName" autocomplete="off" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Last name</mat-label>
+              <input matInput formControlName="lastName" autocomplete="off" required />
+              @if (personal.controls.lastName.hasError('required')) { <mat-error>Last name is required</mat-error> }
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Work email</mat-label>
+              <input matInput type="email" formControlName="workEmail" autocomplete="off" required />
+              @if (personal.controls.workEmail.hasError('required')) { <mat-error>Work email is required</mat-error> }
+              @else if (personal.controls.workEmail.hasError('email')) { <mat-error>Enter a valid email</mat-error> }
+              @else if (personal.controls.workEmail.hasError('server')) { <mat-error>{{ personal.controls.workEmail.getError('server') }}</mat-error> }
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Personal email</mat-label>
+              <input matInput type="email" formControlName="personalEmail" autocomplete="off" />
+              @if (personal.controls.personalEmail.hasError('email')) { <mat-error>Enter a valid email</mat-error> }
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Phone</mat-label>
+              <input matInput type="tel" formControlName="phone" placeholder="+91 98765 43210" autocomplete="off" />
+              @if (personal.controls.phone.hasError('pattern')) { <mat-error>Use digits, spaces, +, - or ()</mat-error> }
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Gender</mat-label>
+              <mat-select formControlName="gender">
+                <mat-option [value]="null">—</mat-option>
+                @for (g of genders; track g) { <mat-option [value]="g">{{ g | humanize }}</mat-option> }
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Date of birth</mat-label>
+              <input matInput [matDatepicker]="dob" formControlName="dateOfBirth" [max]="today" />
+              <mat-datepicker-toggle matIconSuffix [for]="dob" />
+              <mat-datepicker #dob startView="multi-year" />
+              @if (personal.controls.dateOfBirth.hasError('future')) { <mat-error>Cannot be in the future</mat-error> }
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Marital status</mat-label>
+              <mat-select formControlName="maritalStatus">
+                <mat-option [value]="null">—</mat-option>
+                @for (m of maritalStatuses; track m) { <mat-option [value]="m">{{ m | humanize }}</mat-option> }
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Blood group</mat-label>
+              <mat-select formControlName="bloodGroup">
+                <mat-option [value]="null">—</mat-option>
+                @for (b of bloodGroups; track b) { <mat-option [value]="b">{{ b }}</mat-option> }
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Nationality</mat-label>
+              <input matInput formControlName="nationality" />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="full">
+              <mat-label>Current address</mat-label>
+              <textarea matInput rows="2" formControlName="currentAddress"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="full">
+              <mat-label>Permanent address</mat-label>
+              <textarea matInput rows="2" formControlName="permanentAddress"></textarea>
+            </mat-form-field>
+          </form>
+          <div class="step-actions">
+            <a mat-button [routerLink]="isEdit ? ['/employees', id()] : '/employees'">Cancel</a>
+            <button mat-flat-button color="primary" matStepperNext>Next: Job</button>
+          </div>
+        </mat-step>
+
+        <!-- ================= Step 2: job ================= -->
+        <mat-step [stepControl]="job" label="Job">
+          <form [formGroup]="job" class="hg-form-grid step-body">
+            <mat-form-field appearance="outline">
+              <mat-label>Department</mat-label>
+              <mat-select formControlName="departmentId" required>
+                @for (d of lookups()?.departments ?? []; track d.id) { <mat-option [value]="d.id">{{ d.name }}</mat-option> }
+              </mat-select>
+              @if (job.controls.departmentId.hasError('required')) { <mat-error>Choose a department</mat-error> }
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Designation</mat-label>
+              <mat-select formControlName="designationId" required>
+                @for (d of lookups()?.designations ?? []; track d.id) { <mat-option [value]="d.id">{{ d.name }}</mat-option> }
+              </mat-select>
+              @if (job.controls.designationId.hasError('required')) { <mat-error>Choose a designation</mat-error> }
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Grade</mat-label>
+              <mat-select formControlName="gradeId">
+                <mat-option [value]="null">—</mat-option>
+                @for (g of lookups()?.grades ?? []; track g.id) { <mat-option [value]="g.id">{{ g.code }} · {{ g.name }}</mat-option> }
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Location</mat-label>
+              <mat-select formControlName="locationId" required>
+                @for (l of lookups()?.locations ?? []; track l.id) { <mat-option [value]="l.id">{{ l.name }}</mat-option> }
+              </mat-select>
+              @if (job.controls.locationId.hasError('required')) { <mat-error>Choose a location</mat-error> }
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Reporting manager</mat-label>
+              <input matInput formControlName="manager" [matAutocomplete]="mgr" placeholder="Type 2+ letters to search" />
+              <mat-autocomplete #mgr [displayWith]="displayManager">
+                @for (m of managerOptions(); track m.id) {
+                  <mat-option [value]="m">{{ m.fullName }} <small class="muted">· {{ m.employeeCode }} · {{ m.designation }}</small></mat-option>
+                }
+              </mat-autocomplete>
+              @if (job.controls.manager.hasError('pick')) { <mat-error>Pick a person from the list</mat-error> }
+              @else if (job.controls.manager.hasError('server')) { <mat-error>{{ job.controls.manager.getError('server') }}</mat-error> }
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Employment type</mat-label>
+              <mat-select formControlName="employmentType" required>
+                @for (t of types; track t) { <mat-option [value]="t">{{ t | humanize }}</mat-option> }
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Date of joining</mat-label>
+              <input matInput [matDatepicker]="doj" formControlName="dateOfJoining" required />
+              <mat-datepicker-toggle matIconSuffix [for]="doj" />
+              <mat-datepicker #doj />
+              @if (job.controls.dateOfJoining.hasError('required')) { <mat-error>Date of joining is required</mat-error> }
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Probation ends</mat-label>
+              <input matInput [matDatepicker]="pe" formControlName="probationEndDate" placeholder="Default: 6 months" />
+              <mat-datepicker-toggle matIconSuffix [for]="pe" />
+              <mat-datepicker #pe />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Notice period (days)</mat-label>
+              <input matInput type="number" min="0" max="365" formControlName="noticePeriodDays" />
+              @if (job.controls.noticePeriodDays.invalid) { <mat-error>0 to 365 days</mat-error> }
+            </mat-form-field>
+            @if (isEdit) {
+              <mat-form-field appearance="outline">
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="status">
+                  @for (s of editableStatuses; track s) { <mat-option [value]="s">{{ s | humanize }}</mat-option> }
+                </mat-select>
+                <mat-hint>Exits go through offboarding</mat-hint>
+              </mat-form-field>
+            }
+          </form>
+          <div class="step-actions">
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-flat-button color="primary" matStepperNext>Next: Pay &amp; access</button>
+          </div>
+        </mat-step>
+
+        <!-- ================= Step 3: pay & access ================= -->
+        <mat-step [stepControl]="pay" label="Pay & access">
+          <form [formGroup]="pay" class="hg-form-grid step-body">
+            @if (showCtc()) {
+              <mat-form-field appearance="outline">
+                <mat-label>Annual CTC</mat-label>
+                <input matInput type="number" min="0" formControlName="annualCtc" />
+                <mat-hint>Full salary structures arrive with Payroll</mat-hint>
+                @if (pay.controls.annualCtc.invalid) { <mat-error>Must be zero or more</mat-error> }
+              </mat-form-field>
+            } @else {
+              <p class="muted full"><mat-icon inline>lock</mat-icon> Compensation is managed by HR Admin / Payroll.</p>
+            }
+            @if (!isEdit) {
+              <mat-checkbox formControlName="createLogin" class="full">
+                Create a login for this employee (EMPLOYEE role, temporary password shown once)
+              </mat-checkbox>
+            }
+          </form>
+          <div class="step-actions">
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-flat-button color="primary" (click)="submit()" [disabled]="saving()">
+              {{ saving() ? 'Saving…' : isEdit ? 'Save changes' : 'Add employee' }}
+            </button>
+          </div>
+        </mat-step>
+      </mat-stepper>
+    </div>
+  }
+</div>
+
+<style>
+  .step-body { padding-top: 16px; }
+  .step-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px; }
+  .created { text-align: center; }
+  .created .big { font-size: 48px; width: 48px; height: 48px; color: #16a34a; }
+  .created .creds { max-width: 520px; margin: 16px auto; text-align: left; }
+  .row-actions { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+</style>

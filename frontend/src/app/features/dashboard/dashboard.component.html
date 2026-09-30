@@ -1,53 +1,62 @@
 <div class="hg-page dashboard">
   <header class="dash-header">
     <div>
-      <h1>{{ greeting() }} 👋</h1>
-      <p class="subtitle">Here's what's happening across your organization today.</p>
+      <h1>{{ greeting() }}</h1>
+      <p class="subtitle">Here's what's happening at your organization.</p>
     </div>
-    <button mat-flat-button color="primary">
-      <mat-icon>bolt</mat-icon> Quick actions
-    </button>
+    <div class="quick">
+      <a mat-stroked-button routerLink="/profile"><mat-icon>person</mat-icon> My profile</a>
+      @if (canAddEmployee) {
+        <a mat-flat-button color="primary" routerLink="/employees/new"><mat-icon>person_add</mat-icon> Add employee</a>
+      }
+    </div>
   </header>
 
   <section class="stat-grid">
-    @for (s of stats; track s.label) {
-      <mat-card class="stat-card">
-        <div class="stat-icon"><mat-icon>{{ s.icon }}</mat-icon></div>
-        <div class="stat-body">
-          <span class="stat-value">{{ s.value }}</span>
-          <span class="stat-label">{{ s.label }}</span>
-          <span class="stat-hint">{{ s.hint }}</span>
+    @for (s of stats(); track s.label) {
+      @if (s.link) {
+        <a class="hg-card stat-card" [routerLink]="s.link">
+          <div class="stat-icon"><mat-icon>{{ s.icon }}</mat-icon></div>
+          <div class="stat-body"><span class="stat-value">{{ s.value }}</span><span class="stat-label">{{ s.label }}</span></div>
+        </a>
+      } @else {
+        <div class="hg-card stat-card">
+          <div class="stat-icon"><mat-icon>{{ s.icon }}</mat-icon></div>
+          <div class="stat-body"><span class="stat-value">{{ s.value }}</span><span class="stat-label">{{ s.label }}</span></div>
         </div>
-      </mat-card>
+      }
     }
   </section>
 
   <section class="panels">
-    <mat-card class="panel">
-      <h2>Phase 1 foundation is live</h2>
-      <p class="muted">
-        You're signed in as <strong>{{ user()?.email }}</strong>
-        with role<strong> {{ user()?.roles?.join(', ') }}</strong>.
-        Authentication, RBAC, theming and the app shell are in place. The modules in the
-        sidebar are scaffolded and will light up as later phases are built.
-      </p>
-      <ul class="checklist">
-        <li><mat-icon>check_circle</mat-icon> JWT access + refresh token auth</li>
-        <li><mat-icon>check_circle</mat-icon> Role-based navigation &amp; route guards</li>
-        <li><mat-icon>check_circle</mat-icon> Light / dark mode (persisted)</li>
-        <li><mat-icon>check_circle</mat-icon> Oracle + Flyway schema &amp; seed users</li>
-      </ul>
-    </mat-card>
-
-    <mat-card class="panel">
-      <h2>Your permissions</h2>
-      <div class="chips">
-        @for (p of user()?.permissions; track p) {
-          <span class="perm-chip">{{ p }}</span>
-        } @empty {
-          <span class="muted">No fine-grained permissions assigned.</span>
+    <div class="hg-card panel">
+      <h2>Quick links</h2>
+      <div class="links">
+        <a routerLink="/employees"><mat-icon>people</mat-icon><span>Employee directory</span></a>
+        <a routerLink="/org-chart"><mat-icon>account_tree</mat-icon><span>Org chart</span></a>
+        <a routerLink="/profile"><mat-icon>badge</mat-icon><span>My documents &amp; contacts</span></a>
+        @if (isHr) {
+          <a routerLink="/documents/expiring"><mat-icon>event_busy</mat-icon><span>Expiring documents</span></a>
         }
       </div>
-    </mat-card>
+      <p class="muted note">Leave, attendance, payroll and performance widgets appear here as those modules go live.</p>
+    </div>
+
+    @if (isHr) {
+      <div class="hg-card panel">
+        <h2>Documents expiring soon</h2>
+        @for (d of expiring().slice(0, 5); track d.documentId) {
+          <a class="doc" [routerLink]="['/employees', d.employeeId]">
+            <strong>{{ d.employeeName }}</strong>
+            <span class="muted">{{ d.title }}</span>
+            <span class="hg-chip" [class]="d.daysToExpiry < 0 ? 'hg-chip hg-chip-danger' : 'hg-chip hg-chip-warn'">
+              {{ d.daysToExpiry < 0 ? 'Expired' : 'in ' + d.daysToExpiry + 'd' }}</span>
+          </a>
+        } @empty {
+          <p class="muted">Nothing expires in the next 30 days.</p>
+        }
+        @if (expiring().length > 5) { <a mat-button routerLink="/documents/expiring">View all {{ expiring().length }}</a> }
+      </div>
+    }
   </section>
 </div>

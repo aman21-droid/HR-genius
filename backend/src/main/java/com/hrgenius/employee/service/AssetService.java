@@ -4,6 +4,7 @@ import com.hrgenius.common.dto.PageResponse;
 import com.hrgenius.common.error.BadRequestException;
 import com.hrgenius.common.error.BusinessException;
 import com.hrgenius.common.error.ResourceNotFoundException;
+import com.hrgenius.common.util.SearchPredicates;
 import com.hrgenius.employee.dto.ProfileDtos.*;
 import com.hrgenius.employee.entity.Asset;
 import com.hrgenius.employee.entity.Asset.AssetCategory;
@@ -53,10 +54,9 @@ public class AssetService {
         Specification<Asset> spec = (root, query, cb) -> {
             List<Predicate> p = new ArrayList<>();
             if (search != null && !search.isBlank()) {
-                String like = "%" + search.trim().toLowerCase() + "%";
-                p.add(cb.or(cb.like(cb.lower(root.get("assetTag")), like),
-                        cb.like(cb.lower(root.get("name")), like),
-                        cb.like(cb.lower(root.get("serialNumber")), like)));
+                p.add(cb.or(SearchPredicates.containsIgnoreCase(cb, root.get("assetTag"), search),
+                        SearchPredicates.containsIgnoreCase(cb, root.get("name"), search),
+                        SearchPredicates.containsIgnoreCase(cb, root.get("serialNumber"), search)));
             }
             if (category != null) p.add(cb.equal(root.get("category"), category));
             if (status != null) p.add(cb.equal(root.get("status"), status));
@@ -174,8 +174,12 @@ public class AssetService {
     @Transactional(readOnly = true)
     public List<AssetAssignmentDto> history(Long assetId) {
         find(assetId);
-        return assignments.findByAsset_IdOrderByAssignedOnDescIdDesc(assetId).stream()
-                .map(AssetService::toAssignmentDto).toList();
+        List<AssetAssignment> list = assignments.findByAsset_IdOrderByAssignedOnDescIdDesc(assetId);
+        // Resolve holder names in one query rather than one per row.
+        Map<Long, Employee> people = employees.findAllById(
+                        list.stream().map(AssetAssignment::getEmployeeId).collect(Collectors.toSet())).stream()
+                .collect(Collectors.toMap(Employee::getId, Function.identity()));
+        return list.stream().map(x -> toAssignmentDto(x, people.get(x.getEmployeeId()))).toList();
     }
 
     /** An employee's current and past assets (profile "Assets" tab). */
@@ -184,7 +188,7 @@ public class AssetService {
         employeeService.find(employeeId);
         access.requireFullProfile(employeeId);
         return assignments.findByEmployeeIdOrderByAssignedOnDescIdDesc(employeeId).stream()
-                .map(AssetService::toAssignmentDto).toList();
+                .map(x -> toAssignmentDto(x, null)).toList();   // the holder is the profile owner
     }
 
     private Asset find(Long id) {
@@ -213,10 +217,11 @@ public class AssetService {
                 holder == null ? null : holder.getEmployeeCode());
     }
 
-    private static AssetAssignmentDto toAssignmentDto(AssetAssignment x) {
+    private static AssetAssignmentDto toAssignmentDto(AssetAssignment x, Employee holder) {
         Asset a = x.getAsset();
         return new AssetAssignmentDto(x.getId(), a.getId(), a.getAssetTag(), a.getName(), a.getCategory().name(),
-                a.getSerialNumber(), x.getEmployeeId(), x.getAssignedOn(), x.getReturnedOn(), x.getAssignNotes(),
+                a.getSerialNumber(), x.getEmployeeId(), holder == null ? null : holder.getFullName(),
+                holder == null ? null : holder.getEmployeeCode(), x.getAssignedOn(), x.getReturnedOn(), x.getAssignNotes(),
                 x.getReturnCondition(), x.getReturnNotes());
     }
 }

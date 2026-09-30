@@ -5,6 +5,7 @@ import com.hrgenius.common.dto.PageResponse;
 import com.hrgenius.common.error.BadRequestException;
 import com.hrgenius.common.error.BusinessException;
 import com.hrgenius.common.error.ResourceNotFoundException;
+import com.hrgenius.common.util.SearchPredicates;
 import com.hrgenius.employee.entity.Employee;
 import com.hrgenius.employee.entity.EmployeeEnums.EmployeeStatus;
 import com.hrgenius.employee.repository.EmployeeRepository;
@@ -67,9 +68,8 @@ public class OrgMasterService {
         Specification<MasterEntity> spec = (root, query, cb) -> {
             var predicates = new ArrayList<jakarta.persistence.criteria.Predicate>();
             if (search != null && !search.isBlank()) {
-                String like = "%" + search.trim().toLowerCase() + "%";
-                predicates.add(cb.or(cb.like(cb.lower(root.get("code")), like),
-                        cb.like(cb.lower(root.get("name")), like)));
+                predicates.add(cb.or(SearchPredicates.containsIgnoreCase(cb, root.get("code"), search),
+                        SearchPredicates.containsIgnoreCase(cb, root.get("name"), search)));
             }
             if (active != null) {
                 predicates.add(cb.equal(root.get("active"), active));

@@ -2,6 +2,7 @@ package com.hrgenius.compliance.service;
 
 import com.hrgenius.common.dto.PageResponse;
 import com.hrgenius.common.security.CurrentUserService;
+import com.hrgenius.common.util.SearchPredicates;
 import com.hrgenius.compliance.dto.AuditLogDto;
 import com.hrgenius.compliance.entity.AuditLog;
 import com.hrgenius.compliance.entity.AuditLog.AuditAction;
@@ -63,7 +64,7 @@ public class AuditService {
                 p.add(cb.equal(root.get("entityId"), entityId));
             }
             if (actor != null && !actor.isBlank()) {
-                p.add(cb.like(cb.lower(root.get("actor")), "%" + actor.toLowerCase() + "%"));
+                p.add(SearchPredicates.containsIgnoreCase(cb, root.get("actor"), actor));
             }
             if (action != null) {
                 p.add(cb.equal(root.get("action"), action));
