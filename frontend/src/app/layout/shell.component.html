@@ -28,8 +28,15 @@
         <a mat-list-item [routerLink]="item.route" routerLinkActive="active-link"
            [routerLinkActiveOptions]="{ exact: item.route === '/dashboard' }"
            [matTooltip]="collapsed() ? item.label : ''" matTooltipPosition="right">
-          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
-          @if (!collapsed()) { <span matListItemTitle>{{ item.label }}</span> }
+          <mat-icon matListItemIcon
+                    [matBadge]="approvalCount()"
+                    [matBadgeHidden]="item.badge !== 'approvals' || approvalCount() === 0"
+                    matBadgeColor="warn" matBadgeSize="small">{{ item.icon }}</mat-icon>
+          @if (!collapsed()) {
+            <span matListItemTitle>{{ item.label }}
+              @if (item.badge === 'approvals' && approvalCount()) { <span class="nav-count">{{ approvalCount() }}</span> }
+            </span>
+          }
         </a>
       }
     </ng-template>
@@ -53,8 +60,9 @@
         <mat-icon>{{ theme.theme() === 'dark' ? 'light_mode' : 'dark_mode' }}</mat-icon>
       </button>
 
-      <button mat-icon-button matTooltip="Notifications" aria-label="Notifications">
-        <mat-icon [matBadge]="3" matBadgeColor="warn" matBadgeSize="small">notifications</mat-icon>
+      <button mat-icon-button routerLink="/approvals" matTooltip="Approvals awaiting you" aria-label="Approvals">
+        <mat-icon [matBadge]="approvalCount()" [matBadgeHidden]="approvalCount() === 0"
+                  matBadgeColor="warn" matBadgeSize="small">fact_check</mat-icon>
       </button>
 
       <button mat-button [matMenuTriggerFor]="userMenu" class="user-btn">

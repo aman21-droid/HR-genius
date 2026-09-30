@@ -11,6 +11,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
 import { AuthService } from '../core/services/auth.service';
 import { ThemeService } from '../core/services/theme.service';
+import { ApprovalService } from '../core/services/approval.service';
 
 interface NavItem {
   label: string;
@@ -20,6 +21,7 @@ interface NavItem {
   permission?: string;     // if set, item shows only with this permission
   soon?: boolean;          // module arrives in a later phase: shown, not clickable
   section?: 'main' | 'admin';
+  badge?: 'approvals';     // if set, item shows a live count badge
 }
 
 @Component({
@@ -35,10 +37,17 @@ interface NavItem {
 })
 export class ShellComponent {
   private auth = inject(AuthService);
+  private approvals = inject(ApprovalService);
   theme = inject(ThemeService);
 
   collapsed = signal(false);
   user = this.auth.user;
+  approvalCount = this.approvals.pendingCount;
+
+  constructor() {
+    // Seed the Approvals badge once the shell (i.e. an authenticated session) mounts.
+    this.approvals.refreshCount();
+  }
 
   // Full nav map. Modules from later phases are listed (marked "Soon") so the information
   // architecture is visible from day one, but they are not clickable yet.
@@ -46,15 +55,17 @@ export class ShellComponent {
     { label: 'Dashboard', icon: 'dashboard', route: '/dashboard' },
     { label: 'Employees', icon: 'people', route: '/employees' },
     { label: 'Org chart', icon: 'account_tree', route: '/org-chart' },
+    { label: 'Attendance', icon: 'schedule', route: '/attendance' },
+    { label: 'Leave', icon: 'beach_access', route: '/leave' },
+    { label: 'Approvals', icon: 'fact_check', route: '/approvals', badge: 'approvals' },
     { label: 'Recruitment', icon: 'work', route: '/recruitment', roles: ['SUPER_ADMIN', 'HR_ADMIN', 'RECRUITER'], soon: true },
-    { label: 'Attendance', icon: 'schedule', route: '/attendance', soon: true },
-    { label: 'Leave', icon: 'beach_access', route: '/leave', soon: true },
     { label: 'Payroll', icon: 'payments', route: '/payroll', roles: ['SUPER_ADMIN', 'PAYROLL_ADMIN'], soon: true },
     { label: 'Performance', icon: 'trending_up', route: '/performance', soon: true },
     { label: 'Analytics', icon: 'insights', route: '/analytics', roles: ['SUPER_ADMIN', 'HR_ADMIN', 'HR_MANAGER', 'PAYROLL_ADMIN'], soon: true },
     { label: 'Helpdesk', icon: 'support_agent', route: '/helpdesk', soon: true },
     // ---- admin ----
     { label: 'Org setup', icon: 'corporate_fare', route: '/org/setup', permission: 'ORG_MANAGE', section: 'admin' },
+    { label: 'Leave config', icon: 'beach_access', route: '/leave/config', permission: 'LEAVE_CONFIG', section: 'admin' },
     { label: 'Assets', icon: 'devices_other', route: '/assets', permission: 'ASSET_MANAGE', section: 'admin' },
     { label: 'Expiring documents', icon: 'event_busy', route: '/documents/expiring', roles: ['SUPER_ADMIN', 'HR_ADMIN', 'HR_MANAGER'], section: 'admin' },
     { label: 'Audit trail', icon: 'history', route: '/admin/audit-log', permission: 'AUDIT_VIEW', section: 'admin' }

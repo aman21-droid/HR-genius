@@ -144,3 +144,18 @@
   .global-search { display: none; }
   .user-btn .user-meta { display: none; }
 }
+
+// Live count pill next to a nav label (e.g. Approvals inbox)
+.nav-count {
+  display: inline-block;
+  min-width: 18px;
+  padding: 0 6px;
+  margin-left: 4px;
+  border-radius: 999px;
+  background: var(--mat-sys-error, #c62828);
+  color: #fff;
+  font-size: 11px;
+  line-height: 18px;
+  text-align: center;
+  vertical-align: middle;
+}

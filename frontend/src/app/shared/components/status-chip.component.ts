@@ -18,19 +18,28 @@ export class StatusChipComponent {
       case 'ACTIVE':
       case 'AVAILABLE':
       case 'VERIFIED':
+      case 'APPROVED':
+      case 'PRESENT':
+      case 'REGULARIZED':
         return 'success';
       case 'PROBATION':
       case 'ASSIGNED':
+      case 'ON_LEAVE':
+      case 'HOLIDAY':
         return 'info';
       case 'ON_NOTICE':
       case 'IN_REPAIR':
       case 'PENDING':
+      case 'HALF_DAY':
         return 'warn';
       case 'EXITED':
       case 'RETIRED':
       case 'EXPIRED':
+      case 'REJECTED':
+      case 'ABSENT':
         return 'danger';
       default:
+        // CANCELLED, WEEKEND, NOT_MARKED and anything unmapped
         return 'neutral';
     }
   });

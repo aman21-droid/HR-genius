@@ -49,6 +49,24 @@ export const routes: Routes = [
         loadComponent: () => import('./features/org-chart/org-chart.component').then((m) => m.OrgChartComponent)
       },
       {
+        path: 'attendance',
+        loadComponent: () => import('./features/attendance/attendance.component').then((m) => m.AttendanceComponent)
+      },
+      {
+        path: 'leave',
+        loadComponent: () => import('./features/leave/leave.component').then((m) => m.LeaveComponent)
+      },
+      {
+        path: 'leave/config',
+        canActivate: [permissionGuard],
+        data: { permissions: ['LEAVE_CONFIG'] },
+        loadComponent: () => import('./features/leave/leave-config.component').then((m) => m.LeaveConfigComponent)
+      },
+      {
+        path: 'approvals',
+        loadComponent: () => import('./features/approvals/approvals.component').then((m) => m.ApprovalsComponent)
+      },
+      {
         path: 'org/setup',
         canActivate: [permissionGuard],
         data: { permissions: ['ORG_MANAGE'] },
