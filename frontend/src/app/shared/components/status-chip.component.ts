@@ -21,25 +21,40 @@ export class StatusChipComponent {
       case 'APPROVED':
       case 'PRESENT':
       case 'REGULARIZED':
+      case 'OPEN':
+      case 'ACCEPTED':
+      case 'HIRED':
+      case 'COMPLETED':
+      case 'DONE':
         return 'success';
       case 'PROBATION':
       case 'ASSIGNED':
       case 'ON_LEAVE':
       case 'HOLIDAY':
+      case 'SENT':
+      case 'SCHEDULED':
+      case 'SCREENING':
+      case 'INTERVIEW':
+      case 'IN_PROGRESS':
         return 'info';
       case 'ON_NOTICE':
       case 'IN_REPAIR':
       case 'PENDING':
       case 'HALF_DAY':
+      case 'PENDING_APPROVAL':
+      case 'ON_HOLD':
+      case 'OFFER':
         return 'warn';
       case 'EXITED':
       case 'RETIRED':
       case 'EXPIRED':
       case 'REJECTED':
       case 'ABSENT':
+      case 'DECLINED':
+      case 'NO_SHOW':
         return 'danger';
       default:
-        // CANCELLED, WEEKEND, NOT_MARKED and anything unmapped
+        // CANCELLED, WEEKEND, NOT_MARKED, DRAFT, CLOSED, WITHDRAWN, APPLIED, SKIPPED and anything unmapped
         return 'neutral';
     }
   });

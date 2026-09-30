@@ -44,6 +44,8 @@ public class SecurityConfig {
                                 "/api/v1/auth/login",
                                 "/api/v1/auth/refresh",
                                 "/api/v1/auth/logout").permitAll()
+                        // Public careers page: list open jobs and apply (rate-limited in the service).
+                        .requestMatchers("/api/v1/public/careers/**").permitAll()
                         .requestMatchers(
                                 "/swagger-ui.html",
                                 "/swagger-ui/**",

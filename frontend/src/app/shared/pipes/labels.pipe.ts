@@ -39,3 +39,14 @@ export class FileSizePipe implements PipeTransform {
     return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
   }
 }
+
+/** 3000000 -> '₹30,00,000' (Indian digit grouping via Intl; no Angular locale data needed). */
+@Pipe({ name: 'inr', standalone: true })
+export class InrPipe implements PipeTransform {
+  transform(amount: number | null | undefined): string {
+    if (amount == null) {
+      return '—';
+    }
+    return '₹' + Math.round(amount).toLocaleString('en-IN');
+  }
+}

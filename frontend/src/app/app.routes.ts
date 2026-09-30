@@ -10,6 +10,15 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () => import('./features/auth/login.component').then((m) => m.LoginComponent)
   },
+  // Public careers site: no login, outside the app shell.
+  {
+    path: 'careers',
+    loadComponent: () => import('./features/careers/careers.component').then((m) => m.CareersComponent)
+  },
+  {
+    path: 'careers/:code',
+    loadComponent: () => import('./features/careers/careers.component').then((m) => m.CareerJobComponent)
+  },
   {
     path: '',
     canActivate: [authGuard],
@@ -65,6 +74,47 @@ export const routes: Routes = [
       {
         path: 'approvals',
         loadComponent: () => import('./features/approvals/approvals.component').then((m) => m.ApprovalsComponent)
+      },
+      {
+        path: 'recruitment',
+        canActivate: [permissionGuard],
+        data: { permissions: ['RECRUITMENT_MANAGE'] },
+        loadComponent: () => import('./features/recruitment/recruitment-shell.component').then((m) => m.RecruitmentShellComponent),
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            loadComponent: () => import('./features/recruitment/requisition-list.component').then((m) => m.RequisitionListComponent)
+          },
+          {
+            path: 'candidates',
+            loadComponent: () => import('./features/recruitment/candidate-list.component').then((m) => m.CandidateListComponent)
+          }
+        ]
+      },
+      {
+        path: 'recruitment/requisitions/:id',
+        canActivate: [permissionGuard],
+        data: { permissions: ['RECRUITMENT_MANAGE'] },
+        loadComponent: () => import('./features/recruitment/pipeline.component').then((m) => m.PipelineComponent)
+      },
+      {
+        path: 'recruitment/applications/:id',
+        canActivate: [permissionGuard],
+        data: { permissions: ['RECRUITMENT_MANAGE'] },
+        loadComponent: () => import('./features/recruitment/application-detail.component').then((m) => m.ApplicationDetailComponent)
+      },
+      {
+        path: 'interviews',
+        loadComponent: () => import('./features/interviews/my-interviews.component').then((m) => m.MyInterviewsComponent)
+      },
+      {
+        path: 'onboarding',
+        loadComponent: () => import('./features/onboarding/onboarding.component').then((m) => m.OnboardingComponent)
+      },
+      {
+        path: 'onboarding/plans/:id',
+        loadComponent: () => import('./features/onboarding/plan-detail.component').then((m) => m.PlanDetailComponent)
       },
       {
         path: 'org/setup',

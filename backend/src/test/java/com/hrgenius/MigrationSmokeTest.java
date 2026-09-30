@@ -78,4 +78,32 @@ class MigrationSmokeTest {
         assertThat(count("SELECT COUNT(*) FROM leave_balances b JOIN leave_types t ON t.id = b.leave_type_id "
                 + "WHERE t.code = 'EL' AND b.accrued = 15")).isEqualTo(activeEmployees);
     }
+
+    @Test
+    void phase4SeedIsPresent() {
+        // Three open requisitions plus one draft, with sequential codes.
+        assertThat(count("SELECT COUNT(*) FROM job_requisitions WHERE status = 'OPEN'")).isEqualTo(3);
+        assertThat(count("SELECT COUNT(*) FROM job_requisitions WHERE status = 'DRAFT'")).isEqualTo(1);
+        assertThat(count("SELECT COUNT(*) FROM job_requisitions WHERE req_code = 'REQ-0001'")).isEqualTo(1);
+
+        // Nine candidates, each with exactly one application.
+        assertThat(count("SELECT COUNT(*) FROM candidates")).isEqualTo(9);
+        assertThat(count("SELECT COUNT(*) FROM job_applications")).isEqualTo(9);
+        // Every application has an "applied" event; the 6 not in APPLIED have a stage-move event too;
+        // plus one INTERVIEW_SCHEDULED per interview (3).
+        assertThat(count("SELECT COUNT(*) FROM application_events")).isEqualTo(9 + 6 + 3);
+
+        // Panel seats: 2 on Arjun's round, 1 on Meera's (submitted), 1 on Isha's.
+        assertThat(count("SELECT COUNT(*) FROM interview_feedback")).isEqualTo(4);
+        assertThat(count("SELECT COUNT(*) FROM interview_feedback WHERE submitted_at IS NOT NULL")).isEqualTo(1);
+
+        // Default onboarding template with 11 tasks.
+        assertThat(count("SELECT COUNT(*) FROM onboarding_templates WHERE is_default = 1")).isEqualTo(1);
+        assertThat(count("SELECT COUNT(*) FROM onboarding_template_tasks")).isEqualTo(11);
+
+        // HR_ADMIN received the two new permissions.
+        assertThat(count("SELECT COUNT(*) FROM role_permissions rp JOIN roles r ON r.id = rp.role_id "
+                + "JOIN permissions p ON p.id = rp.permission_id "
+                + "WHERE r.code = 'HR_ADMIN' AND p.code IN ('RECRUITMENT_APPROVE','ONBOARDING_MANAGE')")).isEqualTo(2);
+    }
 }
