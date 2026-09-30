@@ -1,0 +1,20 @@
+# Test profile: in-memory H2 in Oracle compatibility mode.
+# Runs the real Flyway migrations, so SQL and JPA queries are exercised. Hibernate schema
+# validation is off here because H2 reports column types differently from Oracle; exact
+# Oracle type checking happens when the app starts against the real DB (ddl-auto=validate).
+spring:
+  datasource:
+    url: jdbc:h2:mem:hrgenius;MODE=Oracle;DB_CLOSE_DELAY=-1;DEFAULT_NULL_ORDERING=HIGH
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+
+hrgenius:
+  storage:
+    root: target/test-storage

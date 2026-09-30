@@ -27,13 +27,19 @@ public class CryptoConverter implements AttributeConverter<String, String> {
     private static final int IV_LENGTH = 12;
     private static final int TAG_BITS = 128;
 
-    private static SecretKeySpec keySpec;
+    private static final SecureRandom RANDOM = new SecureRandom();
 
+    private final SecretKeySpec keySpec;
+
+    /**
+     * Spring Boot registers Spring's bean container with Hibernate, so JPA uses this
+     * Spring-managed instance (with the injected key) rather than instantiating it reflectively.
+     */
     public CryptoConverter(@Value("${hrgenius.security.encryption-key}") String key) {
         byte[] raw = key.getBytes(StandardCharsets.UTF_8);
         // Normalise to 32 bytes (AES-256).
         byte[] normalized = Arrays.copyOf(raw, 32);
-        keySpec = new SecretKeySpec(normalized, ALGO);
+        this.keySpec = new SecretKeySpec(normalized, ALGO);
     }
 
     @Override
@@ -43,7 +49,7 @@ public class CryptoConverter implements AttributeConverter<String, String> {
         }
         try {
             byte[] iv = new byte[IV_LENGTH];
-            new SecureRandom().nextBytes(iv);
+            RANDOM.nextBytes(iv);
             Cipher cipher = Cipher.getInstance(TRANSFORM);
             cipher.init(Cipher.ENCRYPT_MODE, keySpec, new GCMParameterSpec(TAG_BITS, iv));
             byte[] cipherText = cipher.doFinal(attribute.getBytes(StandardCharsets.UTF_8));
