@@ -121,6 +121,14 @@ export const routes: Routes = [
         loadComponent: () => import('./features/payroll/my-payslips.component').then((m) => m.MyPayslipsComponent)
       },
       {
+        path: 'performance',
+        loadComponent: () => import('./features/performance/performance.component').then((m) => m.PerformanceComponent)
+      },
+      {
+        path: 'performance/reviews/:id',
+        loadComponent: () => import('./features/performance/review.component').then((m) => m.ReviewComponent)
+      },
+      {
         path: 'interviews',
         loadComponent: () => import('./features/interviews/my-interviews.component').then((m) => m.MyInterviewsComponent)
       },

@@ -27,6 +27,8 @@ export class StatusChipComponent {
       case 'COMPLETED':
       case 'DONE':
       case 'PAID':
+      case 'ACKNOWLEDGED':
+      case 'ON_TRACK':
         return 'success';
       case 'PROBATION':
       case 'ASSIGNED':
@@ -38,6 +40,8 @@ export class StatusChipComponent {
       case 'INTERVIEW':
       case 'IN_PROGRESS':
       case 'CALCULATED':
+      case 'SELF_SUBMITTED':
+      case 'MANAGER_SUBMITTED':
         return 'info';
       case 'ON_NOTICE':
       case 'IN_REPAIR':
@@ -46,6 +50,7 @@ export class StatusChipComponent {
       case 'PENDING_APPROVAL':
       case 'ON_HOLD':
       case 'OFFER':
+      case 'AT_RISK':
         return 'warn';
       case 'EXITED':
       case 'RETIRED':
@@ -54,6 +59,7 @@ export class StatusChipComponent {
       case 'ABSENT':
       case 'DECLINED':
       case 'NO_SHOW':
+      case 'OFF_TRACK':
         return 'danger';
       default:
         // CANCELLED, WEEKEND, NOT_MARKED, DRAFT, CLOSED, WITHDRAWN, APPLIED, SKIPPED and anything unmapped

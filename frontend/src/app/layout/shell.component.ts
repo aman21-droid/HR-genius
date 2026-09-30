@@ -63,7 +63,7 @@ export class ShellComponent {
     { label: 'Onboarding', icon: 'how_to_reg', route: '/onboarding' },
     { label: 'My payslips', icon: 'receipt_long', route: '/payslips' },
     { label: 'Payroll', icon: 'payments', route: '/payroll', permission: 'PAYROLL_RUN' },
-    { label: 'Performance', icon: 'trending_up', route: '/performance', soon: true },
+    { label: 'Performance', icon: 'trending_up', route: '/performance' },
     { label: 'Analytics', icon: 'insights', route: '/analytics', roles: ['SUPER_ADMIN', 'HR_ADMIN', 'HR_MANAGER', 'PAYROLL_ADMIN'], soon: true },
     { label: 'Helpdesk', icon: 'support_agent', route: '/helpdesk', soon: true },
     // ---- admin ----
