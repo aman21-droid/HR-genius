@@ -1,0 +1,60 @@
+<mat-sidenav-container class="shell">
+  <mat-sidenav mode="side" opened [class.collapsed]="collapsed()" class="sidebar">
+    <div class="sidebar-brand">
+      <mat-icon class="brand-icon">groups</mat-icon>
+      @if (!collapsed()) { <span class="brand-name">HRGenius</span> }
+    </div>
+
+    <mat-nav-list class="nav-list">
+      @for (item of visibleNav; track item.route) {
+        <a mat-list-item [routerLink]="item.route" routerLinkActive="active-link"
+           [matTooltip]="collapsed() ? item.label : ''" matTooltipPosition="right">
+          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+          @if (!collapsed()) { <span matListItemTitle>{{ item.label }}</span> }
+        </a>
+      }
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content">
+    <mat-toolbar class="topbar">
+      <button mat-icon-button (click)="toggleSidebar()" aria-label="Toggle navigation">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <div class="global-search">
+        <mat-icon>search</mat-icon>
+        <input type="text" placeholder="Search employees, pages, actions… (Ctrl+K)" aria-label="Global search" />
+      </div>
+
+      <span class="spacer"></span>
+
+      <button mat-icon-button [matTooltip]="theme.theme() === 'dark' ? 'Light mode' : 'Dark mode'"
+              (click)="theme.toggle()" aria-label="Toggle theme">
+        <mat-icon>{{ theme.theme() === 'dark' ? 'light_mode' : 'dark_mode' }}</mat-icon>
+      </button>
+
+      <button mat-icon-button matTooltip="Notifications" aria-label="Notifications">
+        <mat-icon [matBadge]="3" matBadgeColor="warn" matBadgeSize="small">notifications</mat-icon>
+      </button>
+
+      <button mat-button [matMenuTriggerFor]="userMenu" class="user-btn">
+        <span class="avatar">{{ initials }}</span>
+        <span class="user-meta">
+          <span class="user-name">{{ user()?.fullName || user()?.email }}</span>
+          <span class="user-role">{{ primaryRole }}</span>
+        </span>
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      <mat-menu #userMenu="matMenu">
+        <button mat-menu-item disabled><mat-icon>person</mat-icon><span>My Profile</span></button>
+        <button mat-menu-item disabled><mat-icon>settings</mat-icon><span>Settings</span></button>
+        <button mat-menu-item (click)="logout()"><mat-icon>logout</mat-icon><span>Sign out</span></button>
+      </mat-menu>
+    </mat-toolbar>
+
+    <main class="page-outlet">
+      <router-outlet />
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,135 @@
+.shell {
+  height: 100vh;
+}
+
+.sidebar {
+  width: 248px;
+  background: var(--hg-sidebar-bg);
+  color: var(--hg-sidebar-text);
+  border-right: none;
+  transition: width 0.2s ease;
+
+  &.collapsed {
+    width: 72px;
+  }
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 64px;
+  padding: 0 20px;
+  color: #fff;
+
+  .brand-icon {
+    color: var(--hg-primary);
+  }
+
+  .brand-name {
+    font-size: 20px;
+    font-weight: 700;
+  }
+}
+
+.nav-list {
+  padding-top: 8px;
+
+  a {
+    color: var(--hg-sidebar-text);
+    margin: 2px 8px;
+    border-radius: 8px;
+
+    mat-icon {
+      color: var(--hg-sidebar-text);
+    }
+
+    &.active-link {
+      background: var(--hg-sidebar-active);
+      color: #fff;
+
+      mat-icon { color: var(--hg-primary); }
+    }
+
+    &:hover {
+      background: var(--hg-sidebar-active);
+    }
+  }
+}
+
+.content {
+  background: var(--hg-bg);
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--hg-surface);
+  color: var(--hg-text);
+  border-bottom: 1px solid var(--hg-border);
+  gap: 8px;
+}
+
+.global-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--hg-bg);
+  border: 1px solid var(--hg-border);
+  border-radius: 20px;
+  padding: 4px 14px;
+  margin-left: 8px;
+  width: 360px;
+  max-width: 40vw;
+
+  input {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--hg-text);
+    width: 100%;
+    font-size: 14px;
+  }
+
+  mat-icon { color: var(--hg-muted); }
+}
+
+.user-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+
+  .avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--hg-primary);
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  .user-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.1;
+
+    .user-name { font-size: 13px; font-weight: 500; }
+    .user-role { font-size: 11px; color: var(--hg-muted); }
+  }
+}
+
+.page-outlet {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .global-search { display: none; }
+  .user-btn .user-meta { display: none; }
+}

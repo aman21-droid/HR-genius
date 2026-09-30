@@ -1,0 +1,59 @@
+services:
+  # ---- Oracle Database (free edition) ----
+  oracle:
+    image: gvenzl/oracle-free:23-slim
+    container_name: hrgenius-oracle
+    environment:
+      ORACLE_PASSWORD: ${ORACLE_SYS_PASSWORD:-oracle}
+      APP_USER: ${DB_USERNAME:-hrgenius}
+      APP_USER_PASSWORD: ${DB_PASSWORD:-hrgenius}
+    ports:
+      - "1521:1521"
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 15s
+      timeout: 10s
+      retries: 20
+      start_period: 60s
+
+  # ---- MailHog (dev SMTP + web UI) ----
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: hrgenius-mailhog
+    ports:
+      - "1025:1025"   # SMTP
+      - "8025:8025"   # Web UI
+
+  # ---- Spring Boot backend ----
+  backend:
+    build:
+      context: ./backend
+    container_name: hrgenius-backend
+    depends_on:
+      oracle:
+        condition: service_healthy
+    environment:
+      DB_URL: jdbc:oracle:thin:@//oracle:1521/FREEPDB1
+      DB_USERNAME: ${DB_USERNAME:-hrgenius}
+      DB_PASSWORD: ${DB_PASSWORD:-hrgenius}
+      MAIL_HOST: mailhog
+      MAIL_PORT: 1025
+      JWT_SECRET: ${JWT_SECRET:-change-me-in-prod-this-must-be-at-least-32-bytes-long-secret}
+      FIELD_ENCRYPTION_KEY: ${FIELD_ENCRYPTION_KEY:-dev-only-256-bit-field-encryption-key-01}
+    ports:
+      - "8080:8080"
+
+  # ---- Angular frontend (nginx) ----
+  frontend:
+    build:
+      context: ./frontend
+    container_name: hrgenius-frontend
+    depends_on:
+      - backend
+    ports:
+      - "4200:80"
+
+volumes:
+  oracle-data:

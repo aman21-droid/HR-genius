@@ -1,0 +1,53 @@
+<div class="hg-page dashboard">
+  <header class="dash-header">
+    <div>
+      <h1>{{ greeting() }} 👋</h1>
+      <p class="subtitle">Here's what's happening across your organization today.</p>
+    </div>
+    <button mat-flat-button color="primary">
+      <mat-icon>bolt</mat-icon> Quick actions
+    </button>
+  </header>
+
+  <section class="stat-grid">
+    @for (s of stats; track s.label) {
+      <mat-card class="stat-card">
+        <div class="stat-icon"><mat-icon>{{ s.icon }}</mat-icon></div>
+        <div class="stat-body">
+          <span class="stat-value">{{ s.value }}</span>
+          <span class="stat-label">{{ s.label }}</span>
+          <span class="stat-hint">{{ s.hint }}</span>
+        </div>
+      </mat-card>
+    }
+  </section>
+
+  <section class="panels">
+    <mat-card class="panel">
+      <h2>Phase 1 foundation is live</h2>
+      <p class="muted">
+        You're signed in as <strong>{{ user()?.email }}</strong>
+        with role<strong> {{ user()?.roles?.join(', ') }}</strong>.
+        Authentication, RBAC, theming and the app shell are in place. The modules in the
+        sidebar are scaffolded and will light up as later phases are built.
+      </p>
+      <ul class="checklist">
+        <li><mat-icon>check_circle</mat-icon> JWT access + refresh token auth</li>
+        <li><mat-icon>check_circle</mat-icon> Role-based navigation &amp; route guards</li>
+        <li><mat-icon>check_circle</mat-icon> Light / dark mode (persisted)</li>
+        <li><mat-icon>check_circle</mat-icon> Oracle + Flyway schema &amp; seed users</li>
+      </ul>
+    </mat-card>
+
+    <mat-card class="panel">
+      <h2>Your permissions</h2>
+      <div class="chips">
+        @for (p of user()?.permissions; track p) {
+          <span class="perm-chip">{{ p }}</span>
+        } @empty {
+          <span class="muted">No fine-grained permissions assigned.</span>
+        }
+      </div>
+    </mat-card>
+  </section>
+</div>

@@ -1,0 +1,45 @@
+/* Global styles + light/dark theming tokens */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+:root {
+  --hg-bg: #f5f7fa;
+  --hg-surface: #ffffff;
+  --hg-text: #1f2430;
+  --hg-muted: #6b7280;
+  --hg-border: #e5e7eb;
+  --hg-primary: #2563eb;
+  --hg-sidebar-bg: #0f172a;
+  --hg-sidebar-text: #cbd5e1;
+  --hg-sidebar-active: #1e293b;
+}
+
+/* Dark mode: toggled by adding .dark-theme on <body> (ThemeService) */
+body.dark-theme {
+  --hg-bg: #0b1220;
+  --hg-surface: #151c2c;
+  --hg-text: #e5e7eb;
+  --hg-muted: #94a3b8;
+  --hg-border: #24304a;
+  --hg-primary: #60a5fa;
+  --hg-sidebar-bg: #060a14;
+  --hg-sidebar-text: #cbd5e1;
+  --hg-sidebar-active: #1e293b;
+  color-scheme: dark;
+}
+
+body {
+  background: var(--hg-bg);
+  color: var(--hg-text);
+}
+
+* { box-sizing: border-box; }
+
+.hg-page {
+  padding: 24px;
+}
+
+.spacer { flex: 1 1 auto; }

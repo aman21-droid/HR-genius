@@ -1,0 +1,30 @@
+# ---- Secrets / env ----
+.env
+
+# ---- Java / Maven ----
+backend/target/
+*.class
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+
+# ---- Node / Angular ----
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/out-tsc/
+npm-debug.log*
+
+# ---- IDE ----
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# ---- OS ----
+.DS_Store
+Thumbs.db
+
+# ---- Logs ----
+*.log
