@@ -1,9 +1,9 @@
-# Single-service image for hosted demos (Render): the Angular app is bundled into the Spring Boot
+﻿# Single-service image for hosted demos (Render): the Angular app is bundled into the Spring Boot
 # jar and served from the same origin as the API. docker-compose.yml keeps the separate
 # backend/frontend/Oracle setup for full local runs.
 
 # ---- Frontend build ----
-FROM node:20-alpine AS web
+FROM node:24-alpine AS web
 WORKDIR /web
 COPY frontend/package*.json ./
 RUN npm ci
