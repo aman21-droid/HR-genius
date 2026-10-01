@@ -1,0 +1,26 @@
+# Demo profile for hosted previews (e.g. Render free tier): in-memory H2 in Oracle mode with the
+# full Flyway migrations and seed data. Data resets on every restart or redeploy.
+spring:
+  datasource:
+    url: jdbc:h2:mem:hrgenius;MODE=Oracle;DB_CLOSE_DELAY=-1;DEFAULT_NULL_ORDERING=HIGH
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+    hikari:
+      maximum-pool-size: 5
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+
+# No SMTP server on the demo host: keep the health check (used by the platform) about the app itself.
+management:
+  health:
+    mail:
+      enabled: false
+
+hrgenius:
+  storage:
+    root: ${STORAGE_ROOT:/tmp/hrgenius-files}

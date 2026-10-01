@@ -1,0 +1,9 @@
+**/node_modules
+**/dist
+**/.angular
+**/target
+backend/data
+reports
+.git
+.idea
+.vscode

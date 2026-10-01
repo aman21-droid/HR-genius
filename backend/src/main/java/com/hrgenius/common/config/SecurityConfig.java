@@ -59,7 +59,10 @@ public class SecurityConfig {
                                 "/v3/api-docs/**",
                                 "/actuator/health").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        .anyRequest().authenticated())
+                        // Everything else under the API (and any other actuator endpoint) needs a token.
+                        .requestMatchers("/api/**", "/actuator/**").authenticated()
+                        // The bundled Angular app (index.html, JS, CSS, assets, client routes) is public.
+                        .anyRequest().permitAll())
                 // A missing, expired or tampered token is 401 (not Spring's default 403) so the SPA
                 // knows to refresh the session; 403 stays reserved for "signed in but not allowed".
                 .exceptionHandling(ex -> ex.authenticationEntryPoint((req, res, e) -> {
