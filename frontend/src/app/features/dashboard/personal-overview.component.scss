@@ -1,0 +1,20 @@
+.panel-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 22px; h2 { margin: 0; font-size: 16px; font-weight: 700; letter-spacing: -.3px; } > mat-icon { color: var(--hg-muted); } }
+.panels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
+.panel { min-width: 0; h2 { margin: 0 0 16px; font-size: 16px; } h3 { font-size: 12px; margin: 22px 0 12px; } }
+.todo { display: flex; align-items: center; gap: 12px; padding: 14px 8px; border-radius: 10px; color: inherit; text-decoration: none;
+  &:hover { background: var(--hg-tint); }
+  > mat-icon { color: var(--hg-primary); flex: none; }
+  .grow { flex: 1; display: flex; flex-direction: column; min-width: 0; font-size: 12px; gap: 3px; }
+  small { font-size: 11px; } .chev { color: var(--hg-muted); }
+}
+.done { display: flex; align-items: center; gap: 12px; padding: 18px 0; font-size: 12px; }
+.balances { display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 10px; }
+.bal { border: 1px solid var(--hg-border); border-top: 3px solid var(--accent); border-radius: 12px; padding: 16px 12px; display: flex; flex-direction: column; gap: 6px; background: var(--hg-bg); strong { font-size: 26px; line-height: 1; font-weight: 600; } span { font-size: 11px; color: var(--hg-muted); } }
+.holiday { font-size: 12px; padding: 10px 0; border-bottom: 1px solid var(--hg-border); .date { display: inline-block; min-width: 110px; font-weight: 600; } }
+.doc { display: flex; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--hg-border); color: inherit; text-decoration: none; flex-wrap: wrap; font-size: 12px; .muted { flex: 1; } &:hover strong { text-decoration: underline; } }
+.kudos { padding: 12px 0; border-bottom: 1px solid var(--hg-border); font-size: 12px; p { margin: 0 0 6px; } }
+.small { font-size: 11px; }
+.documents-panel { grid-column: 1 / -1; }
+
+
+@media (max-width: 600px) { .panels { grid-template-columns: 1fr; } .panel-heading { flex-wrap: wrap; } .hg-card { padding: 20px; } }

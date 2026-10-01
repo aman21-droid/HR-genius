@@ -25,7 +25,7 @@ import { HumanizePipe } from '../../shared/pipes/labels.pipe';
         <li [class.done]="t.status !== 'PENDING'" [class.overdue]="t.overdue">
           <mat-checkbox [checked]="t.status === 'DONE'" [indeterminate]="t.status === 'SKIPPED'"
                         [disabled]="!canWork()(t)" (change)="statusChange.emit({ task: t, status: $event.checked ? 'DONE' : 'PENDING' })"
-                        [attr.aria-label]="'Mark ' + t.title + ' done'" />
+                        [aria-label]="'Mark ' + t.title + ' done'" />
           <div class="body">
             <div class="title">{{ t.title }}</div>
             @if (t.description) { <div class="desc">{{ t.description }}</div> }

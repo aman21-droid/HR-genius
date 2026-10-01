@@ -66,11 +66,13 @@ public class MeController {
     private final PerformanceService performance;
     private final FeedbackService feedback;
     private final HolidayService holidays;
+    private final DashboardService dashboardService;
 
     public MeController(CurrentUserService currentUser, ApprovalService approvals, LeaveService leave,
                         OnboardingService onboarding, InterviewService interviews, PolicyService policies,
                         HelpdeskService helpdesk, PayslipService payslips, PerformanceService performance,
-                        FeedbackService feedback, HolidayService holidays) {
+                        FeedbackService feedback, HolidayService holidays, DashboardService dashboardService) {
+        this.dashboardService = dashboardService;
         this.currentUser = currentUser;
         this.approvals = approvals;
         this.leave = leave;
@@ -82,6 +84,14 @@ public class MeController {
         this.performance = performance;
         this.feedback = feedback;
         this.holidays = holidays;
+    }
+
+    @Operation(summary = "Role-specific dashboard blocks: hiring for recruiters/HR, team priorities for managers")
+    @GetMapping("/dashboard")
+    public DashboardService.Dashboard dashboard() {
+        Long me = currentUser.employeeId()
+                .orElseThrow(() -> new BadRequestException("Your login is not linked to an employee profile"));
+        return dashboardService.forEmployee(me);
     }
 
     @Operation(summary = "My to-dos and personal highlights for the dashboard")

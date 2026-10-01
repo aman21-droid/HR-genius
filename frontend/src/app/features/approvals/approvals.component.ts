@@ -170,7 +170,7 @@ export class DecisionDialogComponent {
     .approval-card .step { font-size: 0.8rem; white-space: nowrap; opacity: 0.7; }
     .approval-card .acts { display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 0.75rem; }
     .tab-badge { display: inline-block; min-width: 1.25rem; padding: 0 0.35rem; margin-left: 0.4rem;
-      border-radius: 999px; background: var(--mat-sys-primary, #1565c0); color: #fff; font-size: 0.72rem; line-height: 1.25rem; text-align: center; }
+      border-radius: 999px; background: var(--hg-primary); color: var(--hg-on-primary); font-size: 0.72rem; line-height: 1.25rem; text-align: center; }
     .mine { display: grid; gap: 0.5rem; padding-top: 1rem; }
     .mine mat-panel-description { gap: 0.6rem; align-items: center; }
     .trail { list-style: none; margin: 0; padding: 0.25rem 0 0; display: grid; gap: 0.6rem; }

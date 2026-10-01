@@ -42,6 +42,35 @@ class MeApiIntegrationTest {
     }
 
     @Test
+    void missingOrInvalidTokenIs401SoTheClientRefreshes() throws Exception {
+        mvc.perform(get("/api/v1/me/summary")).andExpect(status().isUnauthorized());
+        String body = mvc.perform(get("/api/v1/payroll/runs").header("Authorization", "Bearer expired.or.tampered"))
+                .andExpect(status().isUnauthorized()).andReturn().getResponse().getContentAsString();
+        assertThat(JsonPath.<String>read(body, "$.message")).contains("session has expired");
+        // Signed in but not entitled stays 403.
+        mvc.perform(get("/api/v1/payroll/runs").header("Authorization", "Bearer " + token("employee@hrgenius.com")))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
+    void dashboardBlocksFollowTheViewersRole() throws Exception {
+        String hr = mvc.perform(get("/api/v1/me/dashboard").header("Authorization", "Bearer " + token("hr@hrgenius.com")))
+                .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+        assertThat(JsonPath.<Integer>read(hr, "$.hiring.openRequisitions")).isPositive();
+        assertThat(JsonPath.<List<String>>read(hr, "$.hiring.pipeline[*].stage")).isNotEmpty();
+
+        String manager = mvc.perform(get("/api/v1/me/dashboard").header("Authorization", "Bearer " + token("manager@hrgenius.com")))
+                .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+        assertThat(JsonPath.<Object>read(manager, "$.hiring")).isNull();
+        assertThat(JsonPath.<Integer>read(manager, "$.team.size")).isPositive();
+
+        String employee = mvc.perform(get("/api/v1/me/dashboard").header("Authorization", "Bearer " + token("employee@hrgenius.com")))
+                .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+        assertThat(JsonPath.<Object>read(employee, "$.hiring")).isNull();
+        assertThat(JsonPath.<Object>read(employee, "$.team")).isNull();
+    }
+
+    @Test
     void summaryCollectsTodosFromEveryModule() throws Exception {
         String body = mvc.perform(get("/api/v1/me/summary").header("Authorization", "Bearer " + token("employee@hrgenius.com")))
                 .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();

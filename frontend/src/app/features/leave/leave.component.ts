@@ -152,6 +152,12 @@ export class ApplyLeaveDialogComponent {
             <article class="bal" [style.--accent]="b.color || '#607d8b'">
               <header><span class="code">{{ b.code }}</span><span class="name">{{ b.name }}</span></header>
               <div class="avail"><strong>{{ b.available | number: '1.0-1' }}</strong><span>available</span></div>
+              <div class="balance-meter" role="img" [attr.aria-label]="b.name + ': ' + b.used + ' days used, ' + b.pending + ' pending, ' + b.available + ' available'">
+                <span class="used" [style.flex-grow]="b.used > 0 ? b.used : 0" [title]="b.used + ' days used'"></span>
+                <span class="pending" [style.flex-grow]="b.pending > 0 ? b.pending : 0" [title]="b.pending + ' days pending'"></span>
+                <span class="available" [style.flex-grow]="b.available > 0 ? b.available : 0" [title]="b.available + ' days available'"></span>
+              </div>
+              <div class="meter-key"><span><i class="used"></i>Used</span><span><i class="pending"></i>Pending</span><span><i class="available"></i>Available</span></div>
               <dl class="break">
                 <div><dt>Entitlement</dt><dd>{{ b.annualEntitlement | number: '1.0-1' }}</dd></div>
                 <div><dt>Accrued</dt><dd>{{ b.accrued | number: '1.0-1' }}</dd></div>
@@ -196,19 +202,24 @@ export class ApplyLeaveDialogComponent {
     </div>
   `,
   styles: `
+    .balance-meter { height: 7px; border-radius: 6px; overflow: hidden; display: flex; background: var(--hg-bg); margin: 14px 0 8px; gap: 2px; }
+    .balance-meter span { flex-basis: 0; transition: flex-grow 220ms ease; }
+    .used { background: var(--hg-lavender); } .pending { background: var(--hg-warning); } .available { background: var(--hg-primary); }
+    .meter-key { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; font-size: 9px; color: var(--hg-muted); }
+    .meter-key i { display: inline-block; height: 5px; width: 5px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
     .section { font-size: 1.05rem; margin: 1.5rem 0 0.75rem; }
     .section:first-of-type { margin-top: 1rem; }
     .balances { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem; }
     .bal { border: 1px solid var(--hg-border, rgba(0,0,0,0.12)); border-left: 4px solid var(--accent); border-radius: 12px; padding: 0.9rem 1rem; }
     .bal header { display: flex; align-items: baseline; gap: 0.5rem; }
-    .bal .code { font-weight: 700; color: var(--accent); }
+    .bal .code { font-weight: 700; color: var(--hg-primary); }
     .bal .name { font-size: 0.85rem; opacity: 0.8; }
     .bal .avail { display: flex; align-items: baseline; gap: 0.4rem; margin: 0.4rem 0 0.6rem; }
     .bal .avail strong { font-size: 1.8rem; line-height: 1; }
     .bal .avail span { font-size: 0.78rem; opacity: 0.7; }
     .bal .break { display: grid; grid-template-columns: 1fr 1fr; gap: 0.2rem 0.75rem; margin: 0; }
     .bal .break div { display: flex; justify-content: space-between; font-size: 0.8rem; }
-    .bal dt { opacity: 0.65; margin: 0; } .bal dd { margin: 0; font-weight: 600; }
+    .bal dt { color: var(--hg-muted); margin: 0; } .bal dd { margin: 0; font-weight: 600; }
     .req-list { display: grid; gap: 0.5rem; }
     .req-row { display: flex; align-items: center; gap: 0.75rem; border: 1px solid var(--hg-border, rgba(0,0,0,0.12));
       border-radius: 10px; padding: 0.6rem 0.9rem; }

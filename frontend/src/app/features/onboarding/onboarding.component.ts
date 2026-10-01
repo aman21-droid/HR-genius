@@ -55,7 +55,7 @@ import { ReassignTaskDialogComponent, StartPlanDialogComponent, TemplateDialogCo
               <div class="welcome">
                 <h2>Welcome, {{ p.employeeName.split(' ')[0] }}!</h2>
                 <p class="muted">Your first day: {{ p.startDate | date: 'EEEE, MMM d, y' }}{{ p.managerName ? ' · Manager: ' + p.managerName : '' }}</p>
-                <mat-progress-bar mode="determinate" [value]="progress(p)" />
+                <mat-progress-bar aria-label="Onboarding completion" mode="determinate" [value]="progress(p)" />
                 <p class="muted small">{{ doneCount(p) }} of {{ p.tasks.length }} steps complete</p>
               </div>
               <app-task-list [tasks]="p.tasks" [canWork]="canWorkMine" (statusChange)="setStatus($event)" />
@@ -74,7 +74,7 @@ import { ReassignTaskDialogComponent, StartPlanDialogComponent, TemplateDialogCo
                   </div>
                   <div class="when small">Joins {{ p.startDate | date: 'MMM d, y' }}</div>
                   <div class="prog">
-                    <mat-progress-bar mode="determinate" [value]="100 * p.doneTasks / (p.totalTasks || 1)" />
+                    <mat-progress-bar aria-label="Onboarding completion" mode="determinate" [value]="100 * p.doneTasks / (p.totalTasks || 1)" />
                     <span class="small">{{ p.doneTasks }}/{{ p.totalTasks }}
                       @if (p.overdueTasks) { · <span class="late">{{ p.overdueTasks }} overdue</span> }</span>
                   </div>
@@ -124,7 +124,7 @@ import { ReassignTaskDialogComponent, StartPlanDialogComponent, TemplateDialogCo
   styles: `
     .pad { padding: 1rem 0.25rem; }
     .badge { margin-left: 0.4rem; min-width: 1.25rem; padding: 0 0.35rem; border-radius: 999px; font-size: 0.72rem; line-height: 1.25rem;
-      background: var(--mat-sys-primary, #1565c0); color: #fff; text-align: center; }
+      background: var(--hg-primary); color: var(--hg-on-primary); text-align: center; }
     .small { font-size: 0.8rem; }
     .welcome { margin-bottom: 1rem; max-width: 520px; }
     .welcome h2 { margin: 0 0 0.25rem; font-size: 1.2rem; }

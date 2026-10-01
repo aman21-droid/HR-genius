@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, computed, effect, inject, signal } from '@angular/core';
 import { takeUntilDestroyed, toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -50,6 +50,7 @@ export class EmployeeListComponent {
   private org = inject(OrgService);
   private auth = inject(AuthService);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
   private dialog = inject(MatDialog);
   private destroyRef = inject(DestroyRef);
 
@@ -165,6 +166,13 @@ export class EmployeeListComponent {
   }
 
   private readFilter(): EmployeeFilter {
+    // A drill-down link (e.g. a department bar on a chart) starts a fresh, focused filter.
+    const q = this.route.snapshot.queryParamMap;
+    const departmentId = Number(q.get('departmentId')) || null;
+    const locationId = Number(q.get('locationId')) || null;
+    if (departmentId || locationId) {
+      return { departmentId, locationId };
+    }
     try {
       const f = JSON.parse(localStorage.getItem(FILTER_KEY) ?? '{}') as EmployeeFilter;
       // Don't restore toggles the user may no longer be entitled to.

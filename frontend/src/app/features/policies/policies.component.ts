@@ -98,7 +98,7 @@ export class PolicyDialogComponent {
       <h2 mat-dialog-title>{{ c.title }} · v{{ c.versionNo }}</h2>
       <mat-dialog-content>
         <p><strong>{{ c.acknowledgedCount }}</strong> of {{ c.employeeCount }} current employees have acknowledged this version.</p>
-        <mat-progress-bar mode="determinate" [value]="c.employeeCount ? 100 * c.acknowledgedCount / c.employeeCount : 0" />
+        <mat-progress-bar aria-label="Policy acknowledgement progress" mode="determinate" [value]="c.employeeCount ? 100 * c.acknowledgedCount / c.employeeCount : 0" />
         <h3>Still pending ({{ c.pending.length }})</h3>
         <ul class="pending">
           @for (e of c.pending; track e.employeeId) { <li><strong>{{ e.employeeName }}</strong> <span class="muted">{{ e.employeeCode }} · {{ e.department }}</span></li> }
@@ -162,7 +162,7 @@ export class ComplianceDialogComponent {
             </header>
             @if (canManage && p.status === 'PUBLISHED' && p.requiresAck && p.employeeCount) {
               <div class="rate small">
-                <mat-progress-bar mode="determinate" [value]="100 * (p.acknowledgedCount ?? 0) / p.employeeCount" />
+                <mat-progress-bar aria-label="Policy acknowledgement progress" mode="determinate" [value]="100 * (p.acknowledgedCount ?? 0) / p.employeeCount" />
                 <span>{{ p.acknowledgedCount }}/{{ p.employeeCount }} acknowledged</span>
               </div>
             }
@@ -186,7 +186,7 @@ export class ComplianceDialogComponent {
     .policy header { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
     .grow { flex: 1; min-width: 220px; }
     .small { font-size: 0.8rem; }
-    .done { color: #15803d; font-size: 0.85rem; }
+    .done { color: var(--hg-primary); font-size: 0.85rem; }
     .rate { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.5rem; }
     .rate mat-progress-bar { max-width: 280px; }
     .body { white-space: pre-line; line-height: 1.6; margin: 0.75rem 0 0.5rem; padding: 0.75rem 1rem; border-radius: 10px;

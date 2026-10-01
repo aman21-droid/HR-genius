@@ -22,6 +22,23 @@ export interface MeSummary {
   openTickets: number;
 }
 
+/** Role-specific blocks: `hiring` only for recruitment managers/approvers, `team` only for people with reports. */
+export interface RoleDashboard {
+  approvalsPending: number;
+  hiring: {
+    openRequisitions: number; requisitionsAwaitingApproval: number; pipeline: { stage: string; count: number }[];
+    offersAwaitingApproval: number; offersOut: number; onboardingInProgress: number;
+    interviews: { title: string; detail: string; at: string; route: string }[];
+    joiners: { name: string; role: string | null; joiningDate: string }[];
+  } | null;
+  team: {
+    size: number; reviewsToComplete: number;
+    awayToday: TeamAway[]; awayThisWeek: TeamAway[];
+    pendingLeave: { employeeId: number; name: string; leaveType: string; from: string; to: string; days: number }[];
+  } | null;
+}
+export interface TeamAway { employeeId: number; name: string; leaveType: string; color: string | null; from: string; to: string; }
+
 /** The signed-in person's cross-module summary; the shell's to-do bell reads {@link todos}. */
 @Injectable({ providedIn: 'root' })
 export class MeService {
@@ -37,6 +54,10 @@ export class MeService {
   /** Fire-and-forget refresh for the bell (e.g. after navigation); failures just leave it empty. */
   refresh(): void {
     this.summary().subscribe({ error: () => this._todos.set([]) });
+  }
+
+  dashboard(): Observable<RoleDashboard> {
+    return this.http.get<RoleDashboard>(`${environment.apiBaseUrl}/me/dashboard`);
   }
 
   changePassword(currentPassword: string, newPassword: string): Observable<{ accessToken: string; refreshToken: string }> {

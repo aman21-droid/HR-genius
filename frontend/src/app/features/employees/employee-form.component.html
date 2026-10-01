@@ -5,7 +5,7 @@
                     ? [{ label: 'Employees', link: '/employees' }, { label: existing()?.fullName ?? '…', link: ['/employees', id()] }, { label: 'Edit' }]
                     : [{ label: 'Employees', link: '/employees' }, { label: 'Add employee' }]" />
 
-  @if (loading() || saving()) { <mat-progress-bar mode="indeterminate" /> }
+  @if (loading() || saving()) { <mat-progress-bar aria-label="Saving employee" mode="indeterminate" /> }
 
   @if (created(); as c) {
     <div class="hg-card created" role="status">

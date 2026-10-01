@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { AuthService } from '../../core/services/auth.service';
+import { ThemeService } from '../../core/services/theme.service';
 
 interface DemoLogin {
   label: string;
@@ -27,6 +28,7 @@ interface DemoLogin {
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+  theme = inject(ThemeService);
   private fb = inject(FormBuilder);
   private auth = inject(AuthService);
   private router = inject(Router);

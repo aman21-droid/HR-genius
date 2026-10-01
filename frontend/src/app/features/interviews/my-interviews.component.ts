@@ -169,7 +169,7 @@ export class ScorecardDialogComponent {
   `,
   styles: `
     .section { font-size: 1rem; margin: 1.5rem 0 0.6rem; display: flex; align-items: center; gap: 0.5rem; }
-    .section .count { font-size: 0.75rem; background: var(--mat-sys-error, #c62828); color: #fff; border-radius: 999px; padding: 0 0.5rem; }
+    .section .count { font-size: 0.75rem; background: var(--hg-error); color: var(--hg-bg); border-radius: 999px; padding: 0 0.5rem; }
     .list { display: grid; gap: 0.5rem; }
     .item { display: flex; gap: 1rem; align-items: center; border: 1px solid var(--hg-border, rgba(0,0,0,0.12));
       border-radius: 12px; padding: 0.75rem 1rem; flex-wrap: wrap; }

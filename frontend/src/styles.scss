@@ -5,57 +5,128 @@
 // ThemeService) so every Material component (cards, tables, fields, menus, dialogs) follows
 // the app's light/dark switch, not just our own custom elements.
 $hg-light: mat.define-theme((
-  color: (theme-type: light, primary: mat.$azure-palette, tertiary: mat.$blue-palette),
-  typography: (brand-family: 'Roboto', plain-family: 'Roboto'),
+  color: (theme-type: light, primary: mat.$green-palette, tertiary: mat.$violet-palette, use-system-variables: true),
+  typography: (brand-family: 'Manrope', plain-family: 'Manrope'),
   density: (scale: 0)
 ));
 $hg-dark: mat.define-theme((
-  color: (theme-type: dark, primary: mat.$azure-palette, tertiary: mat.$blue-palette)
+  color: (theme-type: dark, primary: mat.$green-palette, tertiary: mat.$violet-palette, use-system-variables: true)
 ));
 
 @include mat.core();
 
 html {
   @include mat.all-component-themes($hg-light);
+  @include mat.system-level-colors($hg-light);
   // Keeps color="primary" / color="warn" working on buttons etc. under Material 3.
   @include mat.color-variants-backwards-compatibility($hg-light);
 }
 
 body.dark-theme {
   @include mat.all-component-colors($hg-dark);
+  @include mat.system-level-colors($hg-dark);
   @include mat.color-variants-backwards-compatibility($hg-dark);
 }
 
 html, body {
   height: 100%;
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Manrope, "Segoe UI", sans-serif;
 }
 
 :root {
-  --hg-bg: #f5f7fa;
+  --hg-bg: #f7f7f2;
   --hg-surface: #ffffff;
-  --hg-text: #1f2430;
-  --hg-muted: #6b7280;
-  --hg-border: #e5e7eb;
-  --hg-primary: #2563eb;
-  --hg-sidebar-bg: #0f172a;
-  --hg-sidebar-text: #cbd5e1;
-  --hg-sidebar-active: #1e293b;
+  --hg-text: #2d3424;
+  --hg-muted: #626752;
+  --hg-border: #e3e5d8;
+  --hg-primary: #5c6936;
+  --hg-on-primary: #ffffff;
+  --hg-primary-hover: #465127;
+  --hg-tint: #ecefdc;
+  --hg-sidebar-bg: #293121;
+  --hg-sidebar-text: #d0d5c3;
+  --hg-sidebar-active: #eff1dc;
+  --hg-blue: #4d657e;
+  --hg-lavender: #806998;
+  --hg-error: #a73536;
+  --hg-error-bg: #fbe9e7;
+  --hg-warning: #815c1a;
+  --hg-warning-bg: #f5edd7;
+  --hg-shadow: 0 4px 24px -16px #25312c33;
+  color-scheme: light;
 }
 
 /* Dark mode: toggled by adding .dark-theme on <body> (ThemeService) */
 body.dark-theme {
-  --hg-bg: #0b1220;
-  --hg-surface: #151c2c;
-  --hg-text: #e5e7eb;
-  --hg-muted: #94a3b8;
-  --hg-border: #24304a;
-  --hg-primary: #60a5fa;
-  --hg-sidebar-bg: #060a14;
-  --hg-sidebar-text: #cbd5e1;
-  --hg-sidebar-active: #1e293b;
+  --hg-bg: #191d14;
+  --hg-surface: #252b1e;
+  --hg-text: #f0f2e8;
+  --hg-muted: #b6bda6;
+  --hg-border: #454d35;
+  --hg-primary: #ccd79e;
+  --hg-on-primary: #293316;
+  --hg-primary-hover: #dce5b9;
+  --hg-tint: #373e28;
+  --hg-sidebar-bg: #14190f;
+  --hg-sidebar-text: #d0d5c3;
+  --hg-sidebar-active: #eff1dc;
+  --hg-blue: #9fc5db;
+  --hg-lavender: #bdacd9;
+  --hg-error: #ffb4ab;
+  --hg-error-bg: #4b2b29;
+  --hg-warning: #e6c989;
+  --hg-warning-bg: #403722;
+  --hg-shadow: 0 4px 24px -16px #00000066;
   color-scheme: dark;
+}
+
+/* One semantic palette feeds Material controls AND custom components, including overlays. */
+:root, body.dark-theme {
+  --sys-primary: var(--hg-primary);
+  --sys-on-primary: var(--hg-on-primary);
+  --sys-primary-container: var(--hg-tint);
+  --sys-on-primary-container: var(--hg-text);
+  --sys-secondary: var(--hg-primary);
+  --sys-on-secondary: var(--hg-on-primary);
+  --sys-secondary-container: var(--hg-tint);
+  --sys-on-secondary-container: var(--hg-text);
+  --sys-tertiary: var(--hg-lavender);
+  --sys-on-tertiary: var(--hg-bg);
+  --sys-background: var(--hg-bg);
+  --sys-on-background: var(--hg-text);
+  --sys-surface: var(--hg-surface);
+  --sys-surface-bright: var(--hg-surface);
+  --sys-surface-dim: var(--hg-bg);
+  --sys-surface-container: var(--hg-surface);
+  --sys-surface-container-lowest: var(--hg-surface);
+  --sys-surface-container-low: var(--hg-surface);
+  --sys-surface-container-high: var(--hg-bg);
+  --sys-surface-container-highest: var(--hg-tint);
+  --sys-surface-variant: var(--hg-tint);
+  --sys-on-surface: var(--hg-text);
+  --sys-on-surface-variant: var(--hg-muted);
+  --sys-outline: var(--hg-muted);
+  --sys-outline-variant: var(--hg-border);
+  --sys-error: var(--hg-error);
+  --sys-on-error: var(--hg-bg);
+  --sys-error-container: var(--hg-error-bg);
+  --sys-on-error-container: var(--hg-error);
+  --sys-inverse-surface: var(--hg-text);
+  --sys-inverse-on-surface: var(--hg-bg);
+  --sys-inverse-primary: var(--hg-on-primary);
+  --sys-surface-tint: var(--hg-primary);
+  /* Existing feature components use these Material 3 aliases. */
+  --mat-sys-primary: var(--hg-primary);
+  --mat-sys-on-primary: var(--hg-on-primary);
+  --mat-sys-primary-container: var(--hg-tint);
+  --mat-sys-error: var(--hg-error);
+  --mat-sys-outline-variant: var(--hg-border);
+  --mat-sys-surface-container: var(--hg-surface);
+  --mat-sys-on-surface: var(--hg-text);
+  --mat-sys-surface: var(--hg-surface);
+  --mat-sys-surface-container-low: var(--hg-bg);
+  --mat-sys-tertiary: var(--hg-warning);
 }
 
 body {
@@ -66,7 +137,7 @@ body {
 * { box-sizing: border-box; }
 
 .hg-page {
-  padding: 24px;
+  padding: 32px;
 }
 
 .spacer { flex: 1 1 auto; }
@@ -79,7 +150,7 @@ body {
 .hg-page-header {
   display: flex; align-items: flex-end; justify-content: space-between; gap: 16px;
   flex-wrap: wrap; margin-bottom: 20px;
-  h1 { margin: 2px 0 0; font-size: 24px; font-weight: 600; }
+  h1 { margin: 4px 0 0; font-size: 28px; font-weight: 700; letter-spacing: -.8px; line-height: 1.3; }
   .subtitle { margin: 4px 0 0; color: var(--hg-muted); }
   .crumbs {
     display: flex; align-items: center; gap: 2px; font-size: 13px; color: var(--hg-muted);
@@ -91,7 +162,8 @@ body {
 }
 
 .hg-card {
-  background: var(--hg-surface); border: 1px solid var(--hg-border); border-radius: 12px; padding: 20px;
+  background: var(--hg-surface); border: 1px solid var(--hg-border); border-radius: 18px; padding: 24px;
+  box-shadow: var(--hg-shadow);
 }
 
 /* ---- tables ---- */
@@ -126,11 +198,11 @@ tr.mat-mdc-row.clickable:hover, tr.mat-mdc-row.clickable:focus-visible {
   display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 500;
   white-space: nowrap;
 }
-.hg-chip-success { background: #dcfce7; color: #166534; }
-.hg-chip-info    { background: #dbeafe; color: #1e40af; }
-.hg-chip-warn    { background: #fef3c7; color: #92400e; }
-.hg-chip-danger  { background: #fee2e2; color: #991b1b; }
-.hg-chip-neutral { background: #e5e7eb; color: #374151; }
+.hg-chip-success { background: var(--hg-tint); color: var(--hg-primary); }
+.hg-chip-info    { background: color-mix(in srgb, var(--hg-blue) 14%, var(--hg-surface)); color: var(--hg-blue); }
+.hg-chip-warn    { background: var(--hg-warning-bg); color: var(--hg-warning); }
+.hg-chip-danger  { background: var(--hg-error-bg); color: var(--hg-error); }
+.hg-chip-neutral { background: var(--hg-bg); color: var(--hg-muted); }
 
 /* ---- empty state ---- */
 .hg-empty {
@@ -176,6 +248,69 @@ tr.mat-mdc-row.clickable:hover, tr.mat-mdc-row.clickable:focus-visible {
 
 /* Snackbar error tone */
 .hg-snack-error { --mdc-snackbar-container-color: #991b1b; --mdc-snackbar-supporting-text-color: #fff; }
+
+/* Consistent surfaces and interaction states throughout all feature modules. */
+body { font-size: 14px; line-height: 1.55; }
+h1, h2, h3 { text-wrap: balance; }
+button, input, select, textarea { font: inherit; }
+button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
+a { color: var(--hg-primary); }
+::selection { background: var(--hg-tint); color: var(--hg-text); }
+:focus-visible { outline: 2px solid var(--hg-primary) !important; outline-offset: 4px; }
+.hg-eyebrow { display: block; color: var(--hg-muted); font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 8px; }
+.hg-card, .hg-table-card { transition: border-color 160ms ease, box-shadow 160ms ease; }
+a.hg-card:hover { border-color: var(--hg-primary); box-shadow: var(--hg-shadow); }
+.mat-mdc-button-base { letter-spacing: 0 !important; font-weight: 600; }
+.mat-mdc-unelevated-button, .mat-mdc-raised-button, .mat-mdc-outlined-button {
+  --mdc-filled-button-container-shape: 10px;
+  --mdc-protected-button-container-shape: 10px;
+  --mdc-outlined-button-container-shape: 10px;
+  --mdc-filled-button-container-height: 42px;
+  --mdc-outlined-button-container-height: 42px;
+  transition: box-shadow 160ms ease, background-color 160ms ease;
+}
+.mat-mdc-unelevated-button:not(:disabled):not(.mat-warn) {
+  --mdc-filled-button-container-color: var(--hg-primary);
+  --mdc-filled-button-label-text-color: var(--hg-on-primary);
+  &:hover { --mdc-filled-button-container-color: var(--hg-primary-hover); }
+}
+.mat-mdc-outlined-button:not(:disabled) { --mdc-outlined-button-outline-color: var(--hg-muted); }
+.mat-mdc-form-field { --mdc-outlined-text-field-container-shape: 10px; }
+.mat-mdc-header-row { background: var(--hg-bg); }
+.mat-mdc-header-cell { color: var(--hg-muted); font-size: 11px; letter-spacing: .04em; font-weight: 700; }
+.mat-mdc-cell { font-size: 13px; }
+.mat-mdc-row { transition: background-color 140ms ease; }
+.mat-mdc-dialog-surface { border: 1px solid var(--hg-border); }
+.mat-mdc-tab-header { margin-bottom: 16px; }
+.mat-mdc-menu-panel, .mat-mdc-select-panel { border: 1px solid var(--hg-border); }
+.mat-mdc-icon-button { --mdc-icon-button-icon-color: var(--hg-muted); }
+.hg-filters { padding: 16px; border: 1px solid var(--hg-border); border-radius: 14px; background: var(--hg-surface); gap: 14px; margin: 20px 0; }
+.hg-table-card { border-radius: 16px; box-shadow: var(--hg-shadow); }
+.hg-table-toolbar { min-height: 52px; }
+.hg-chip { font-weight: 600; font-size: 11px; padding: 3px 10px; }
+.hg-avatar { border-radius: 12px; background: var(--hg-tint); }
+.hg-empty { border-radius: 14px; background: var(--hg-bg); }
+.hg-form-grid { grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr)); }
+.hg-detail-grid { grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr)); }
+.page-outlet .card, .page-outlet .kpi { background: var(--hg-surface); box-shadow: var(--hg-shadow); }
+/* Module cards retain their individual layouts while sharing the workspace finish. */
+.page-outlet :is(.punch, .bal, .run, .slip, .plan, .review, .ticket, .req-row, .reg-row, .structure, .cycle, .tpl) {
+  background: var(--hg-surface); box-shadow: var(--hg-shadow);
+  transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+.page-outlet :is(a.run, button.slip, a.plan, a.review, a.ticket, .person-card):hover {
+  border-color: var(--hg-primary); box-shadow: 0 6px 18px -12px #29312166;
+}
+.page-outlet details { border: 1px solid var(--hg-border); border-radius: 12px; padding: 12px 16px; }
+.page-outlet summary { color: var(--hg-primary); font-weight: 600; padding: 4px; }
+.page-outlet .kpis > div { background: var(--hg-surface); }
+.page-outlet .hg-table { background: var(--hg-surface); }
+.page-outlet .hg-table tbody tr:hover { background: var(--hg-bg); }
+@keyframes hg-page-enter { from { opacity: .7; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+.page-outlet .hg-page { animation: hg-page-enter 200ms ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
 
 @media (max-width: 600px) {
   .hg-page { padding: 16px; }

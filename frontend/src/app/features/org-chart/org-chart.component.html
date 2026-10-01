@@ -42,15 +42,16 @@
 
 <ng-template #branch let-t>
   <li>
-    <div class="node" [id]="'node-' + t.node.id" [class.hit]="highlighted() === t.node.id" tabindex="0" role="button"
-         [attr.aria-label]="t.node.name + ', ' + (t.node.designation ?? '')"
-         (click)="open(t.node.id)" (keydown.enter)="open(t.node.id)">
+    <div class="node" [class.hit]="highlighted() === t.node.id">
+      <a class="node-profile" [id]="'node-' + t.node.id" [routerLink]="['/employees', t.node.id]"
+         [attr.aria-label]="t.node.name + ', ' + (t.node.designation ?? '')">
       <span class="hg-avatar" aria-hidden="true">{{ t.node.name | initials }}</span>
       <div class="meta">
         <strong>{{ t.node.name }}</strong>
         <small>{{ t.node.designation }}</small>
         <small class="dept">{{ t.node.department }}</small>
       </div>
+      </a>
       @if (t.children.length) {
         <button class="count" (click)="toggle(t.node.id, $event)"
                 [attr.aria-expanded]="expanded().has(t.node.id)"

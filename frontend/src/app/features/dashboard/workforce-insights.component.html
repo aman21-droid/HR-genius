@@ -1,0 +1,35 @@
+    <section class="insights-grid" aria-label="Workforce overview">
+      <div class="hg-card insight-panel">
+        <div class="panel-heading"><div><span class="hg-eyebrow">The bigger picture</span><h2>How your team is growing</h2></div>
+          <div class="chart-controls" aria-label="Chart period">
+            <button type="button" [class.selected]="period() === 6" [attr.aria-pressed]="period() === 6" (click)="period.set(6)">6 months</button>
+            <button type="button" [class.selected]="period() === 12" [attr.aria-pressed]="period() === 12" (click)="period.set(12)">12 months</button>
+          </div>
+        </div>
+        @if (overview(); as o) {
+          <div class="chart-summary"><strong>{{ o.kpis.headcount | number }}</strong><span>people in your organisation</span>
+            <button mat-button (click)="chartTable.set(!chartTable())" [attr.aria-pressed]="chartTable()"><mat-icon>{{ chartTable() ? 'show_chart' : 'table_rows' }}</mat-icon>{{ chartTable() ? 'Chart' : 'Data' }}</button>
+          </div>
+          @if (!movement().length) { <p class="muted">Your headcount history will appear here when available.</p> }
+          @else if (chartTable()) {
+            <div class="chart-data"><table><caption class="hg-eyebrow">Headcount history</caption><thead><tr><th>Month</th><th>People</th><th>Joined</th><th>Left</th></tr></thead><tbody>
+              @for (m of movement(); track m.month) { <tr><th scope="row">{{ monthLabel(m.month) }}</th><td>{{ m.headcount }}</td><td>{{ m.joins }}</td><td>{{ m.exits }}</td></tr> }
+            </tbody></table></div>
+          } @else { <hg-line-chart [labels]="movementLabels()" [values]="movementValues()" name="People" [short]="shortMonth" [height]="170" /> }
+          <div class="chart-footer"><span><i></i> Headcount over time</span><a routerLink="/analytics">Explore analytics <mat-icon>arrow_forward</mat-icon></a></div>
+        } @else if (analyticsError()) { <div class="hg-empty"><p>We couldn't load workforce insights.</p><button mat-stroked-button (click)="loadAnalytics()">Try again</button></div> }
+        @else { <div class="chart-loading" role="status"><div class="hg-skeleton"></div><div class="hg-skeleton"></div><p class="muted">Loading workforce insights…</p></div> }
+      </div>
+      <div class="hg-card insight-panel department-panel">
+        <div class="panel-heading"><div><span class="hg-eyebrow">Better together</span><h2>People by department</h2></div><mat-icon>diversity_3</mat-icon></div>
+        @if (overview()) { <hg-hbar-chart [data]="departments()" [clickable]="true" actionLabel="Open the people in this department" (selected)="drill.openDepartment($event.label)" /> }
+        @else { <p class="muted">{{ analyticsError() ? 'Department data is unavailable.' : 'Loading departments…' }}</p> }
+        @if (overview()?.kpis?.policyCompliance != null) {
+          <a class="compliance" routerLink="/policies" [attr.aria-label]="'Policy acknowledgements: ' + (overview()!.kpis.policyCompliance | number: '1.0-0') + ' percent. View policies.'">
+            <span class="compliance-ring" aria-hidden="true"><svg viewBox="0 0 56 56"><circle class="ring-track" cx="28" cy="28" r="23"/><circle class="ring-value" cx="28" cy="28" r="23" [attr.stroke-dasharray]="(overview()!.kpis.policyCompliance! * 1.44513) + ' 144.513'"/></svg><strong>{{ overview()!.kpis.policyCompliance | number: '1.0-0' }}<small>%</small></strong></span>
+            <span><strong>Keeping everyone in the loop</strong><small>Required policy acknowledgements</small></span><mat-icon>chevron_right</mat-icon>
+          </a>
+        }
+        <a class="department-link" routerLink="/org-chart">Meet the organisation <mat-icon>north_east</mat-icon></a>
+      </div>
+    </section>

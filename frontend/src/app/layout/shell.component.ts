@@ -1,4 +1,6 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, HostListener, computed, inject, signal } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -11,6 +13,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
 import { AuthService } from '../core/services/auth.service';
 import { ThemeService } from '../core/services/theme.service';
+import { WorkspaceSearchComponent } from './workspace-search.component';
 import { ApprovalService } from '../core/services/approval.service';
 
 interface NavItem {
@@ -30,7 +33,7 @@ interface NavItem {
   imports: [
     CommonModule, NgTemplateOutlet, RouterOutlet, RouterLink, RouterLinkActive,
     MatSidenavModule, MatToolbarModule, MatListModule, MatIconModule,
-    MatButtonModule, MatMenuModule, MatTooltipModule, MatBadgeModule
+    MatButtonModule, MatMenuModule, MatTooltipModule, MatBadgeModule, WorkspaceSearchComponent
   ],
   templateUrl: './shell.component.html',
   styleUrl: './shell.component.scss'
@@ -41,6 +44,10 @@ export class ShellComponent {
   theme = inject(ThemeService);
 
   collapsed = signal(false);
+  mobileOpen = signal(false);
+  private breakpoint = toSignal(inject(BreakpointObserver).observe('(max-width: 900px)'));
+  mobile = computed(() => this.breakpoint()?.matches ?? false);
+  get searchPages(): NavItem[] { return [...this.mainNav, ...this.adminNav]; }
   user = this.auth.user;
   approvalCount = this.approvals.pendingCount;
 
@@ -101,7 +108,15 @@ export class ShellComponent {
   }
 
   toggleSidebar(): void {
-    this.collapsed.set(!this.collapsed());
+    if (this.mobile()) { this.mobileOpen.update(open => !open); }
+    else { this.collapsed.update(value => !value); }
+  }
+
+  closeNavigation(): void { this.mobileOpen.set(false); }
+
+  @HostListener('document:keydown', ['$event'])
+  keyboard(event: KeyboardEvent): void {
+    if (event.key === 'Escape') { this.mobileOpen.set(false); }
   }
 
   logout(): void {

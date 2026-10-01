@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, computed, inject, signal, viewChild } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -29,7 +29,7 @@ const ZOOM_MAX = 1.6;
 @Component({
   selector: 'app-org-chart',
   standalone: true,
-  imports: [NgTemplateOutlet, FormsModule, MatButtonModule, MatIconModule, MatTooltipModule, MatFormFieldModule,
+  imports: [NgTemplateOutlet, RouterLink, FormsModule, MatButtonModule, MatIconModule, MatTooltipModule, MatFormFieldModule,
     MatInputModule, MatAutocompleteModule, PageHeaderComponent, InitialsPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './org-chart.component.html',

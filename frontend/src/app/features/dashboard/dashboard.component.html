@@ -1,7 +1,11 @@
 <div class="hg-page dashboard">
+  <div class="dashboard-heading"><span class="hg-eyebrow">Your workspace / Overview</span><span class="today"><mat-icon>calendar_today</mat-icon>{{ today | date: 'EEE, d MMM y' }}</span></div>
   <header class="dash-header">
+    <img class="greeting-art" src="assets/olive-workspace.png" alt="" width="1536" height="1024" fetchpriority="high">
     <div>
-      <h1>{{ greeting() }}</h1>
+      <span class="hero-kicker"><mat-icon>{{ today.getHours() < 18 ? 'wb_sunny' : 'dark_mode' }}</mat-icon> PEOPLE FIRST. EVERY DAY.</span>
+      <h1>{{ greeting() }}<span class="greeting-dot">.</span></h1>
+      <p class="greeting-message">Great people build great places to work.</p>
       <p class="subtitle">
         @if (summary(); as s) {
           @if (s.todos.length) { You have {{ s.todos.length }} thing{{ s.todos.length === 1 ? '' : 's' }} waiting on you. }
@@ -17,6 +21,7 @@
       }
     </div>
   </header>
+  @if (overviewError()) { <p class="overview-notice" role="status"><mat-icon>info_outline</mat-icon> Some overview figures are unavailable. Your workspace navigation is still available; refresh to try again.</p> }
 
   <section class="stat-grid">
     @for (s of stats(); track s.label) {
@@ -40,67 +45,13 @@
     }
   </section>
 
-  <section class="panels">
-    <div class="hg-card panel todo-panel">
-      <h2>To do</h2>
-      @if (summary(); as s) {
-        @for (t of s.todos; track $index) {
-          <a class="todo" [routerLink]="t.route">
-            <mat-icon>{{ icons[t.kind] }}</mat-icon>
-            <span class="grow"><strong>{{ t.title }}</strong><small class="muted">{{ t.detail }}</small></span>
-            @if (t.due) { <span class="muted small">{{ t.due | date: 'MMM d' }}</span> }
-            <mat-icon class="chev">chevron_right</mat-icon>
-          </a>
-        } @empty {
-          <p class="muted done"><mat-icon>task_alt</mat-icon> Nothing needs your attention right now.</p>
-        }
-      } @else {
-        <p class="muted">Loading…</p>
-      }
-    </div>
+  <hg-role-focus [data]="roleDashboard()" />
 
-    @if (summary(); as s) {
-      <div class="hg-card panel">
-        <h2>My leave</h2>
-        <div class="balances">
-          @for (b of s.leaveBalances; track b.code) {
-            <div class="bal" [style.--accent]="b.color || '#607d8b'">
-              <strong>{{ b.available | number: '1.0-1' }}</strong><span>{{ b.name }}</span>
-            </div>
-          } @empty { <p class="muted">No leave balances yet.</p> }
-        </div>
-        <h3>Upcoming holidays</h3>
-        @for (h of s.holidays; track h.date) {
-          <div class="holiday"><span class="date">{{ h.date | date: 'EEE, MMM d' }}</span> {{ h.name }}
-            @if (h.optional) { <span class="muted small">(optional)</span> }</div>
-        } @empty { <p class="muted small">No more holidays this year.</p> }
-      </div>
+  @if (canAnalytics) {
+    <hg-workforce-insights />
+  }
 
-      <div class="hg-card panel">
-        <h2>Kudos</h2>
-        @for (k of s.kudos; track $index) {
-          <div class="kudos"><p>🎉 {{ k.message }}</p><small class="muted">{{ k.fromName }} → {{ k.toName }} · {{ k.createdAt | date: 'MMM d' }}</small></div>
-        } @empty { <p class="muted">No kudos yet.</p> }
-        <a mat-button routerLink="/performance">Give kudos</a>
-      </div>
-    }
-
-    @if (isHr) {
-      <div class="hg-card panel">
-        <h2>Documents expiring soon</h2>
-        @for (d of expiring().slice(0, 5); track d.documentId) {
-          <a class="doc" [routerLink]="['/employees', d.employeeId]">
-            <strong>{{ d.employeeName }}</strong>
-            <span class="muted">{{ d.title }}</span>
-            <span class="hg-chip" [class]="d.daysToExpiry < 0 ? 'hg-chip hg-chip-danger' : 'hg-chip hg-chip-warn'">
-              {{ d.daysToExpiry < 0 ? 'Expired' : 'in ' + d.daysToExpiry + 'd' }}</span>
-          </a>
-        } @empty {
-          <p class="muted">Nothing expires in the next 30 days.</p>
-        }
-        @if (expiring().length > 5) { <a mat-button routerLink="/documents/expiring">View all {{ expiring().length }}</a> }
-        @if (canAnalytics) { <a mat-button routerLink="/analytics"><mat-icon>insights</mat-icon> Open analytics</a> }
-      </div>
-    }
-  </section>
+  <hg-personal-overview [summary]="summary()" [summaryError]="summaryError()" [hasProfile]="hasProfile"
+    [isHr]="isHr" [canAnalytics]="canAnalytics" [expiring]="expiring()" [documentError]="documentError()" [documentLoading]="documentLoading()" />
+  <hg-people-moments />
 </div>

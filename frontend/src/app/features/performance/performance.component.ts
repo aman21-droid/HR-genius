@@ -155,7 +155,7 @@ import { CycleDialogComponent, FeedbackDialogComponent } from './performance-dia
     .pad { padding: 1rem 0.25rem; }
     .small { font-size: 0.8rem; }
     .badge { margin-left: 0.4rem; min-width: 1.25rem; padding: 0 0.35rem; border-radius: 999px; font-size: 0.72rem; line-height: 1.25rem;
-      background: var(--mat-sys-primary, #1565c0); color: #fff; text-align: center; }
+      background: var(--hg-primary); color: var(--hg-on-primary); text-align: center; }
     .reviews { display: grid; gap: 0.5rem; }
     .review { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; border-radius: 12px; color: inherit; text-decoration: none;
       border: 1px solid var(--hg-border, rgba(0,0,0,0.12)); }

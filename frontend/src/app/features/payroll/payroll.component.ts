@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { DatePipe, DecimalPipe } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -15,12 +15,13 @@ import { EmptyStateComponent } from '../../shared/components/empty-state.compone
 import { ConfirmService } from '../../shared/components/confirm-dialog.component';
 import { HumanizePipe, InrPipe } from '../../shared/pipes/labels.pipe';
 import { ComponentDialogComponent, NewRunDialogComponent } from './payroll-dialogs.component';
+import { ColumnChartComponent } from '../analytics/charts.component';
 
 @Component({
   selector: 'app-payroll',
   standalone: true,
   imports: [DatePipe, DecimalPipe, RouterLink, MatTabsModule, MatButtonModule, MatIconModule, MatMenuModule,
-    PageHeaderComponent, StatusChipComponent, EmptyStateComponent, HumanizePipe, InrPipe],
+    PageHeaderComponent, StatusChipComponent, EmptyStateComponent, HumanizePipe, InrPipe, ColumnChartComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="hg-page">
@@ -39,6 +40,12 @@ import { ComponentDialogComponent, NewRunDialogComponent } from './payroll-dialo
                 <div><small>Net payout</small><strong>{{ l.totalNet | inr }}</strong></div>
                 <div><small>Cost to company</small><strong>{{ l.totalEmployerCost | inr }}</strong></div>
               </section>
+            }
+            @if (runs().length) {
+              <details class="payroll-comparison"><summary>Compare recent payroll runs</summary><p class="muted small">Gross and net totals for the latest {{ trend().length }} runs. Hover a month for exact amounts; select it to open that run.</p>
+                <hg-column-chart [labels]="trendLabels()" [series]="trendSeries()" [fmt]="chartMoney" [height]="170"
+                  [clickable]="true" actionLabel="Open this payroll run" (selected)="router.navigate(['/payroll/runs', trend()[$event].id])" />
+              </details>
             }
             <div class="runs">
               @for (r of runs(); track r.id) {
@@ -91,6 +98,7 @@ import { ComponentDialogComponent, NewRunDialogComponent } from './payroll-dialo
     </div>
   `,
   styles: `
+    .payroll-comparison { margin-bottom: 20px; background: var(--hg-surface); } .payroll-comparison hg-column-chart { margin: 24px 12px 16px; }
     .pad { padding: 1rem 0.25rem; }
     .small { font-size: 0.8rem; }
     .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem; margin-bottom: 1rem; }
@@ -102,21 +110,25 @@ import { ComponentDialogComponent, NewRunDialogComponent } from './payroll-dialo
       padding: 0.75rem 1rem; border: 1px solid var(--hg-border, rgba(0,0,0,0.12)); border-radius: 12px; color: inherit; text-decoration: none; }
     .run:hover { background: var(--mat-sys-surface-container-low, rgba(0,0,0,0.03)); }
     .run .m { display: grid; }
-    .num { font-variant-numeric: tabular-nums; } .num small { display: block; font-size: 0.7rem; opacity: 0.65; }
+    .num { font-variant-numeric: tabular-nums; } .num small { display: block; font-size: 0.7rem; color: var(--hg-muted); }
     @media (max-width: 760px) { .run { grid-template-columns: 1fr 1fr; } }
     .tpl-head { display: flex; justify-content: flex-end; margin: 0.5rem 0; }
     .hg-table { width: 100%; border-collapse: collapse; }
     .hg-table th, .hg-table td { text-align: left; padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--hg-border, rgba(0,0,0,0.08)); }
-    .hg-table th { font-size: 0.75rem; text-transform: uppercase; opacity: 0.6; }
+    .hg-table th { font-size: 0.75rem; text-transform: uppercase; color: var(--hg-muted); }
     .end { text-align: right; }
   `
 })
 export class PayrollComponent {
+  trend = computed(() => [...this.runs()].sort((a, b) => a.period.localeCompare(b.period)).slice(-6));
+  trendLabels = computed(() => this.trend().map(r => this.monthLabel(r.period)));
+  trendSeries = computed(() => [{ name: 'Gross', values: this.trend().map(r => Number(r.totalGross)) }, { name: 'Net', values: this.trend().map(r => Number(r.totalNet)) }]);
+  readonly chartMoney = (value: number) => '₹' + value.toLocaleString('en-IN', { maximumFractionDigits: 0 });
   private payroll = inject(PayrollService);
   private dialog = inject(MatDialog);
   private snack = inject(MatSnackBar);
   private confirm = inject(ConfirmService);
-  private router = inject(Router);
+  readonly router = inject(Router);
 
   runs = signal<PayrollRun[]>([]);
   components = signal<SalaryComponent[]>([]);

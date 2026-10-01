@@ -40,7 +40,7 @@ import { ReassignTaskDialogComponent } from './onboarding-dialogs.component';
           <div><small>Manager</small><strong>{{ p.managerName || '—' }}</strong></div>
           <div class="grow">
             <small>{{ done() }} of {{ p.tasks.length }} complete{{ overdue() ? ' · ' + overdue() + ' overdue' : '' }}</small>
-            <mat-progress-bar mode="determinate" [value]="p.tasks.length ? 100 * done() / p.tasks.length : 0" />
+            <mat-progress-bar aria-label="Onboarding completion" mode="determinate" [value]="p.tasks.length ? 100 * done() / p.tasks.length : 0" />
           </div>
         </section>
 

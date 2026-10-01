@@ -149,12 +149,14 @@ export class RegularizeDialogComponent {
             @for (d of weekdays; track d) { <span class="dow">{{ d }}</span> }
             @for (blank of leadingBlanks(); track $index) { <span class="cell blank"></span> }
             @for (c of cells(); track c.date) {
-              <span class="cell" [class.today]="c.date === todayIso"
+              <button type="button" class="cell" [class.today]="c.date === todayIso"
+                    [class.selected]="selectedDate() === c.date" [attr.aria-pressed]="selectedDate() === c.date"
+                    [attr.aria-label]="c.date + ': ' + (c.label || c.status)" (click)="selectedDate.set(c.date)"
                     [style.--tone]="toneColor(c.status)"
                     [matTooltip]="tip(c)">
                 <span class="dnum">{{ c.date | date: 'd' }}</span>
                 @if (c.checkIn) { <span class="ci">{{ c.checkIn | date: 'HH:mm' }}</span> }
-              </span>
+              </button>
             }
           </div>
           <div class="legend">
@@ -162,6 +164,14 @@ export class RegularizeDialogComponent {
               <span><i [style.background]="s.color"></i>{{ s.status | humanize }}</span>
             }
           </div>
+          @if (selectedDay(); as d) {
+            <section class="day-detail" aria-live="polite" aria-label="Selected day details">
+              <div><span class="hg-eyebrow">A closer look</span><strong>{{ d.date | date: 'EEEE, d MMMM' }}</strong><p>{{ d.label || (d.status | humanize) }}</p></div>
+              <div><small>Check in</small><strong>{{ d.checkIn ? (d.checkIn | date: 'HH:mm') : 'Not recorded' }}</strong></div>
+              <div><small>Check out</small><strong>{{ d.checkOut ? (d.checkOut | date: 'HH:mm') : 'Not recorded' }}</strong></div>
+              <div><small>Time worked</small><strong>{{ hoursOf(d.workedMinutes) }}</strong></div>
+            </section>
+          } @else { <p class="muted calendar-hint"><mat-icon>touch_app</mat-icon> Select a day to explore its attendance details.</p> }
         }
       </section>
 
@@ -194,18 +204,24 @@ export class RegularizeDialogComponent {
     </div>
   `,
   styles: `
+    button.cell { color: var(--hg-text); text-align: left; cursor: pointer; transition: border-color 160ms, box-shadow 160ms; }
+    button.cell:hover, button.cell.selected { border-color: var(--hg-primary); box-shadow: inset 0 0 0 1px var(--hg-primary); }
+    .day-detail { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; background: var(--hg-surface); border: 1px solid var(--hg-border); border-radius: 14px; padding: 20px; margin-top: 18px; }
+    .day-detail small { display: block; color: var(--hg-muted); font-size: 11px; margin-bottom: 5px; }
+    .day-detail strong { font-size: 13px; } .day-detail p { margin: 4px 0 0; font-size: 12px; color: var(--hg-primary); }
+    .calendar-hint { display: flex; align-items: center; gap: 6px; font-size: 11px; } .calendar-hint mat-icon { font-size: 16px; }
     h2 { font-size: 1.05rem; }
     .punch { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center;
       border: 1px solid var(--hg-border, rgba(0,0,0,0.12)); border-radius: 14px; padding: 1rem 1.25rem; margin: 1rem 0 1.5rem; }
     .punch .label { display: block; font-size: 0.85rem; opacity: 0.7; margin-bottom: 0.4rem; }
     .punch .times { display: flex; gap: 1.5rem; margin-bottom: 0.5rem; }
-    .punch .times small { display: block; font-size: 0.72rem; opacity: 0.65; }
+    .punch .times small { display: block; font-size: 0.72rem; color: var(--hg-muted); }
     .punch .times strong { font-size: 1.15rem; font-variant-numeric: tabular-nums; }
     .punch .done { display: inline-flex; align-items: center; gap: 0.4rem; opacity: 0.7; }
     .month header { display: flex; align-items: center; gap: 0.5rem; }
     .month header h2 { flex: 1; text-align: center; margin: 0; }
     .grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-top: 0.5rem; }
-    .dow { text-align: center; font-size: 0.72rem; opacity: 0.6; padding: 0.25rem 0; }
+    .dow { text-align: center; font-size: 0.72rem; color: var(--hg-muted); padding: 0.25rem 0; }
     .cell { position: relative; min-height: 54px; border-radius: 8px; padding: 4px 6px;
       background: color-mix(in srgb, var(--tone, transparent) 16%, transparent);
       border: 1px solid color-mix(in srgb, var(--tone, rgba(0,0,0,0.1)) 40%, transparent); }
@@ -245,6 +261,8 @@ export class AttendanceComponent {
 
   monthStart = signal(new Date(this.now.getFullYear(), this.now.getMonth(), 1));
   cells = signal<CalendarDay[]>([]);
+  selectedDate = signal<string | null>(null);
+  selectedDay = computed(() => this.cells().find(d => d.date === this.selectedDate()) ?? null);
   regs = signal<Regularization[]>([]);
   loadingCal = signal(true);
   loadingRegs = signal(true);
@@ -264,6 +282,7 @@ export class AttendanceComponent {
   }
 
   shiftMonth(delta: number): void {
+    this.selectedDate.set(null);
     const m = this.monthStart();
     this.monthStart.set(new Date(m.getFullYear(), m.getMonth() + delta, 1));
     this.loadCalendar();

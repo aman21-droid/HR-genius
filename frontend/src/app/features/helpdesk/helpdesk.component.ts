@@ -157,7 +157,7 @@ export class NewTicketDialogComponent {
     .pad { padding: 1rem 0.25rem; }
     .small { font-size: 0.8rem; }
     .badge { margin-left: 0.4rem; min-width: 1.25rem; padding: 0 0.35rem; border-radius: 999px; font-size: 0.72rem; line-height: 1.25rem;
-      background: var(--mat-sys-error, #c62828); color: #fff; text-align: center; }
+      background: var(--hg-error); color: var(--hg-bg); text-align: center; }
     .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.75rem; margin-bottom: 1rem; }
     .kpis > div { border: 1px solid var(--hg-border, rgba(0,0,0,0.12)); border-radius: 12px; padding: 0.6rem 0.9rem; }
     .kpis > div.alert { border-color: #fca5a5; background: #fef2f2; color: #991b1b; }

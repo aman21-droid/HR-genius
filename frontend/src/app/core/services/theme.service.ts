@@ -26,9 +26,10 @@ export class ThemeService {
 
   private read(): Theme {
     const stored = localStorage.getItem(THEME_KEY) as Theme | null;
-    if (stored) {
+    if (stored === 'light' || stored === 'dark') {
       return stored;
     }
-    return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    // Present the olive-and-white design on first visit; honour an explicit saved choice.
+    return 'light';
   }
 }

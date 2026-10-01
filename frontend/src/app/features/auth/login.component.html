@@ -1,12 +1,21 @@
 <div class="login-wrapper">
+  <section class="welcome-panel" aria-label="Welcome to HRGenius">
+    <a class="welcome-brand" routerLink="/login"><img src="assets/brand.svg" alt="" width="42" height="42">HRGenius</a>
+    <div class="welcome-copy"><span class="welcome-eyebrow">A LITTLE MORE HUMAN.</span><h2>Great work starts<br>with <em>your people.</em></h2><p>A thoughtful space for your team to connect, grow, and do their best work.</p>
+      <div class="welcome-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><span class="art-center"><mat-icon>diversity_3</mat-icon></span><span class="art-note"><mat-icon>spa</mat-icon> Room to grow</span></div>
+    </div>
+    <span class="welcome-footer">People. Purpose. Possibility.</span>
+  </section>
+  <div class="signin-panel">
+  <button mat-icon-button class="login-theme" (click)="theme.toggle()" [attr.aria-label]="theme.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"><mat-icon>{{ theme.theme() === 'dark' ? 'light_mode' : 'dark_mode' }}</mat-icon></button>
   <mat-card class="login-card">
     @if (loading()) {
-      <mat-progress-bar mode="indeterminate" class="login-progress" />
+      <mat-progress-bar aria-label="Signing in" mode="indeterminate" class="login-progress" />
     }
     <div class="brand">
-      <mat-icon class="brand-icon">groups</mat-icon>
-      <h1>HRGenius</h1>
-      <p class="tagline">Human Resource Management, simplified.</p>
+      <span class="hg-eyebrow">YOUR WORKSPACE AWAITS</span>
+      <h1>Welcome back.</h1>
+      <p class="tagline">Sign in and make today a good workday.</p>
     </div>
 
     <form [formGroup]="form" (ngSubmit)="submit()" class="login-form">
@@ -37,7 +46,7 @@
 
       <button mat-flat-button color="primary" type="submit" class="submit-btn"
               [disabled]="loading()">
-        Sign in
+        {{ loading() ? 'Signing in…' : 'Sign in to your workspace' }} <mat-icon>arrow_forward</mat-icon>
       </button>
     </form>
 
@@ -54,4 +63,6 @@
 
     <p class="careers-link">Looking for a job? <a routerLink="/careers">See open roles</a></p>
   </mat-card>
+  <span class="signin-footer"><mat-icon>lock_outline</mat-icon> Your people, in good hands.</span>
+  </div>
 </div>

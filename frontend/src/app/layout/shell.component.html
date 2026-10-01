@@ -1,16 +1,19 @@
-<mat-sidenav-container class="shell">
-  <mat-sidenav mode="side" opened [class.collapsed]="collapsed()" class="sidebar">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<mat-sidenav-container class="shell" [autosize]="true" (backdropClick)="mobileOpen.set(false)">
+  <mat-sidenav [mode]="mobile() ? 'over' : 'side'" [opened]="!mobile() || mobileOpen()"
+               (closedStart)="mobileOpen.set(false)" [class.collapsed]="collapsed() && !mobile()" class="sidebar">
     <div class="sidebar-brand">
-      <mat-icon class="brand-icon">groups</mat-icon>
-      @if (!collapsed()) { <span class="brand-name">HRGenius</span> }
+      <img class="brand-icon" src="assets/brand.svg" alt="" width="36" height="36">
+      @if (!collapsed() || mobile()) { <span class="brand-name">HRGenius<span class="brand-caption">A little more human.</span></span> }
     </div>
 
     <mat-nav-list class="nav-list" aria-label="Main navigation">
+      @if (!collapsed() || mobile()) { <div class="nav-section">Workspace</div> }
       @for (item of mainNav; track item.route) {
         <ng-container *ngTemplateOutlet="navLink; context: { $implicit: item }" />
       }
       @if (adminNav.length) {
-        @if (!collapsed()) { <div class="nav-section">Administration</div> } @else { <div class="nav-divider"></div> }
+        @if (!collapsed() || mobile()) { <div class="nav-section">Administration</div> } @else { <div class="nav-divider"></div> }
         @for (item of adminNav; track item.route) {
           <ng-container *ngTemplateOutlet="navLink; context: { $implicit: item }" />
         }
@@ -26,13 +29,14 @@
         </div>
       } @else {
         <a mat-list-item [routerLink]="item.route" routerLinkActive="active-link"
+           [attr.aria-label]="item.label" ariaCurrentWhenActive="page" (click)="closeNavigation()"
            [routerLinkActiveOptions]="{ exact: item.route === '/dashboard' }"
            [matTooltip]="collapsed() ? item.label : ''" matTooltipPosition="right">
           <mat-icon matListItemIcon
                     [matBadge]="approvalCount()"
                     [matBadgeHidden]="item.badge !== 'approvals' || approvalCount() === 0"
                     matBadgeColor="warn" matBadgeSize="small">{{ item.icon }}</mat-icon>
-          @if (!collapsed()) {
+          @if (!collapsed() || mobile()) {
             <span matListItemTitle>{{ item.label }}
               @if (item.badge === 'approvals' && approvalCount()) { <span class="nav-count">{{ approvalCount() }}</span> }
             </span>
@@ -44,20 +48,18 @@
 
   <mat-sidenav-content class="content">
     <mat-toolbar class="topbar">
-      <button mat-icon-button (click)="toggleSidebar()" aria-label="Toggle navigation">
+      <button mat-icon-button (click)="toggleSidebar()" aria-label="Toggle navigation" [attr.aria-expanded]="mobile() ? mobileOpen() : !collapsed()">
         <mat-icon>menu</mat-icon>
       </button>
 
-      <div class="global-search">
-        <mat-icon>search</mat-icon>
-        <input type="text" placeholder="Search employees, pages, actions… (Ctrl+K)" aria-label="Global search" />
-      </div>
+      <hg-workspace-search [pages]="searchPages" (selected)="closeNavigation()" />
 
       <span class="spacer"></span>
 
-      <button mat-icon-button [matTooltip]="theme.theme() === 'dark' ? 'Light mode' : 'Dark mode'"
-              (click)="theme.toggle()" aria-label="Toggle theme">
+      <button mat-stroked-button class="theme-switch" [matTooltip]="theme.theme() === 'dark' ? 'Light mode' : 'Dark mode'"
+              (click)="theme.toggle()" [attr.aria-label]="theme.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'">
         <mat-icon>{{ theme.theme() === 'dark' ? 'light_mode' : 'dark_mode' }}</mat-icon>
+        <span>{{ theme.theme() === 'dark' ? 'Light mode' : 'Dark mode' }}</span>
       </button>
 
       <button mat-icon-button routerLink="/approvals" matTooltip="Approvals awaiting you" aria-label="Approvals">
@@ -69,7 +71,7 @@
         <span class="avatar">{{ initials }}</span>
         <span class="user-meta">
           <span class="user-name">{{ user()?.fullName || user()?.email }}</span>
-          <span class="user-role">{{ primaryRole }}</span>
+          <span class="user-role">{{ primaryRole.replaceAll('_', ' ') | titlecase }}</span>
         </span>
         <mat-icon>arrow_drop_down</mat-icon>
       </button>
@@ -80,7 +82,7 @@
       </mat-menu>
     </mat-toolbar>
 
-    <main class="page-outlet">
+    <main class="page-outlet" id="main-content" tabindex="-1">
       <router-outlet />
     </main>
   </mat-sidenav-content>
