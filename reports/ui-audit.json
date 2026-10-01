@@ -1,0 +1,185 @@
+{
+  "results": [
+    {
+      "route": "dashboard",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "route": "employees",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "route": "attendance",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "route": "leave",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "route": "approvals",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "route": "recruitment",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "route": "onboarding",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "route": "payroll",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "route": "payslips",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "route": "performance",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "route": "analytics",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "route": "helpdesk",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "route": "policies",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "route": "interviews",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "route": "assets",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "route": "org-chart",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "route": "org/setup",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "route": "documents/expiring",
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "route": "dashboard",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "route": "employees",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "route": "attendance",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "route": "leave",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "route": "approvals",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "route": "recruitment",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "route": "onboarding",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "route": "payroll",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "route": "payslips",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "route": "performance",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "route": "analytics",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "route": "helpdesk",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "route": "policies",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "route": "interviews",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "route": "assets",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "route": "org-chart",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "route": "org/setup",
+      "theme": "dark",
+      "violations": []
+    },
+    {
+      "route": "documents/expiring",
+      "theme": "dark",
+      "violations": []
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,1209 @@
+<title>HRGenius SRS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+:root {
+  --ground: #f2f4f1;
+  --surface: #ffffff;
+  --sunk: #e8ece8;
+  --ink: #15201e;
+  --muted: #586661;
+  --line: #d3dbd7;
+  --accent: #0e6b63;
+  --accent-ink: #ffffff;
+  --accent-soft: #dbeee9;
+  --stamp: #b06f12;
+  --stamp-soft: #f7ead4;
+  --ok: #2c7a39;
+  --ok-soft: #e0f0e2;
+  --bad: #b23a3a;
+  --bad-soft: #f6e1e1;
+  --shadow: 0 1px 2px rgba(21, 32, 30, .06), 0 6px 24px rgba(21, 32, 30, .06);
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --ground: #0d1413; --surface: #151f1d; --sunk: #1b2725; --ink: #e2ebe7; --muted: #94a49e;
+    --line: #2a3734; --accent: #5cc5b8; --accent-ink: #0b1716; --accent-soft: #173431;
+    --stamp: #e3a646; --stamp-soft: #33281a; --ok: #74c681; --ok-soft: #1a3020; --bad: #e57a7a; --bad-soft: #3a1f1f;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 24px rgba(0, 0, 0, .25);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ground: #0d1413; --surface: #151f1d; --sunk: #1b2725; --ink: #e2ebe7; --muted: #94a49e;
+  --line: #2a3734; --accent: #5cc5b8; --accent-ink: #0b1716; --accent-soft: #173431;
+  --stamp: #e3a646; --stamp-soft: #33281a; --ok: #74c681; --ok-soft: #1a3020; --bad: #e57a7a; --bad-soft: #3a1f1f;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 24px rgba(0, 0, 0, .25);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+body { background: var(--ground); color: var(--ink); font: 400 17px/1.62 var(--body); }
+h1, h2, h3, h4 { font-family: var(--display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.1rem); font-weight: 800; letter-spacing: -.01em; }
+h3 { font-size: 1.22rem; font-weight: 600; margin-top: 2rem; }
+p { margin: .6rem 0; max-width: 68ch; }
+a { color: var(--accent); }
+code, .mono { font-family: var(--mono); font-size: .86em; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.label { font: 600 .72rem/1 var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.muted { color: var(--muted); }
+.small { font-size: .88rem; }
+.shall { font-family: var(--display); font-weight: 800; font-size: .82em; letter-spacing: .06em; color: var(--accent); }
+
+/* top bar */
+.topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--ground) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.topbar-in { max-width: 1240px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; gap: 14px; }
+.brand { font: 800 1.05rem/1 var(--display); letter-spacing: -.01em; white-space: nowrap; }
+.brand span { color: var(--accent); }
+.docid { font: 400 .78rem var(--mono); color: var(--muted); white-space: nowrap; }
+.spacer { flex: 1; }
+.status-pill { display: inline-flex; align-items: center; gap: 8px; font: 600 .8rem/1 var(--display); padding: 7px 12px; border-radius: 999px; background: var(--stamp-soft); color: var(--stamp); white-space: nowrap; text-decoration: none; }
+.status-pill.ok { background: var(--ok-soft); color: var(--ok); }
+.status-pill.bad { background: var(--bad-soft); color: var(--bad); }
+.status-pill .dots { display: inline-flex; gap: 3px; }
+.status-pill .dots i { width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid currentColor; display: block; }
+.status-pill .dots i.on { background: currentColor; }
+@media (max-width: 560px) { .docid { display: none; } }
+
+/* layout */
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: 16px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 48px; }
+.toc { position: sticky; top: 76px; align-self: start; padding-block: 32px; max-height: calc(100vh - 80px); overflow-y: auto; }
+.toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.toc a { display: grid; grid-template-columns: 2.2em 1fr; padding: 6px 8px; border-radius: 6px; color: var(--muted); text-decoration: none; font: 400 .9rem/1.3 var(--display); }
+.toc a b { font: 600 .78rem/1.6 var(--mono); color: var(--muted); }
+.toc a:hover { background: var(--sunk); color: var(--ink); }
+.toc a.active { background: var(--accent-soft); color: var(--ink); }
+.toc a.active b { color: var(--accent); }
+main { padding-block: 32px 96px; min-width: 0; }
+section.sec { padding-top: 56px; }
+section.sec:first-of-type { padding-top: 0; }
+.sec-head { display: flex; align-items: baseline; gap: 14px; border-bottom: 2px solid var(--ink); padding-bottom: 10px; margin-bottom: 18px; }
+.sec-num { font: 600 1rem var(--mono); color: var(--accent); }
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .toc { position: static; max-height: none; padding-block: 16px 0; overflow-x: auto; }
+  .toc ol { display: flex; gap: 6px; }
+  .toc a { display: flex; gap: 6px; white-space: nowrap; border: 1px solid var(--line); }
+}
+
+/* title page */
+.titlepage { text-align: center; padding: 22px 16px 24px; margin-bottom: 32px; border-top: 3px double var(--ink); border-bottom: 3px double var(--ink); }
+.tp-inst { font: 800 clamp(1.4rem, 1rem + 1.6vw, 2rem)/1.1 var(--display); letter-spacing: .02em; text-transform: uppercase; }
+.tp-course { font: italic 400 1.05rem/1.4 var(--body); color: var(--muted); margin-top: 6px; }
+.tp-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 20px; }
+.tp-grid b { display: block; font: 600 1.1rem/1.3 var(--display); margin-top: 6px; }
+@media (max-width: 620px) { .tp-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* cover */
+.cover { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 32px; align-items: end; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+.cover h1 { font-size: clamp(2.4rem, 1.6rem + 3.6vw, 4.2rem); font-weight: 800; letter-spacing: -.03em; line-height: .98; }
+.cover h1 em { font-style: normal; color: var(--accent); }
+.cover .sub { font: 400 1.15rem/1.4 var(--body); font-style: italic; color: var(--muted); margin-top: 14px; }
+.ctrl { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 4px 16px; box-shadow: var(--shadow); }
+.ctrl dl { margin: 0; display: grid; grid-template-columns: auto 1fr; }
+.ctrl dt, .ctrl dd { padding: 8px 0; border-bottom: 1px dashed var(--line); margin: 0; font-size: .9rem; }
+.ctrl dt { font: 600 .7rem/2.1 var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding-right: 16px; }
+.ctrl dd { font-family: var(--mono); font-size: .84rem; }
+.ctrl dl > :nth-last-child(-n+2) { border-bottom: 0; }
+.placeholder { color: var(--stamp); }
+@media (max-width: 760px) { .cover { grid-template-columns: minmax(0, 1fr); } }
+.figures { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-top: 24px; }
+.figures div { background: var(--surface); padding: 14px 16px; }
+.figures b { display: block; font: 800 1.9rem/1 var(--display); font-variant-numeric: tabular-nums; }
+.figures span { font-size: .84rem; color: var(--muted); }
+@media (max-width: 620px) { .figures { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* generic */
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 760px) { .grid2, .grid3 { grid-template-columns: minmax(0, 1fr); } }
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 600 .72rem/1.3 var(--display); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: var(--sunk); }
+tr:last-child td { border-bottom: 0; }
+dl.gloss { display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; margin: 0; }
+dl.gloss dt { font: 600 .84rem/1.7 var(--mono); color: var(--accent); }
+dl.gloss dd { margin: 0; font-size: .95rem; }
+.chip { display: inline-flex; align-items: center; gap: 6px; font: 600 .76rem/1 var(--display); padding: 6px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.chip:hover { border-color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--ground); }
+.chip .n { font-family: var(--mono); font-weight: 400; opacity: .7; }
+.tag { display: inline-block; font: 600 .7rem/1 var(--display); letter-spacing: .04em; padding: 4px 7px; border-radius: 4px; background: var(--sunk); color: var(--muted); white-space: nowrap; }
+.tag.must { background: var(--accent-soft); color: var(--accent); }
+.tag.should { background: var(--stamp-soft); color: var(--stamp); }
+.tag.test { background: var(--ok-soft); color: var(--ok); }
+.mermaid-box { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; overflow-x: auto; }
+.mermaid-box pre.mermaid { margin: 0; font-family: var(--mono); font-size: .8rem; color: var(--muted); white-space: pre; }
+
+/* module grid */
+.modules { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; margin-top: 14px; }
+.mod { text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; cursor: pointer; color: var(--ink); font: inherit; display: grid; gap: 4px; transition: border-color .15s, transform .15s; }
+.mod:hover { border-color: var(--accent); transform: translateY(-1px); }
+.mod b { font: 600 .98rem/1.2 var(--display); }
+.mod .code { font: 600 .72rem var(--mono); color: var(--accent); }
+.mod span { font-size: .84rem; color: var(--muted); line-height: 1.4; }
+
+/* roles */
+.role-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+.role-panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 20px; }
+@media (max-width: 760px) { .role-panel { grid-template-columns: minmax(0, 1fr); } }
+.perm-list { display: flex; flex-wrap: wrap; gap: 5px; }
+.perm { font: 400 .72rem/1 var(--mono); padding: 5px 7px; border-radius: 4px; border: 1px solid var(--line); color: var(--muted); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--muted) 50%, transparent); }
+.perm.has { text-decoration: none; background: var(--accent-soft); border-color: transparent; color: var(--accent); font-weight: 600; }
+
+/* explorer */
+.explorer-bar { display: grid; gap: 10px; padding: 14px; background: var(--sunk); border-radius: 10px; margin-top: 12px; }
+.explorer-bar .row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.search { flex: 1 1 260px; min-width: 0; font: 400 .95rem var(--display); padding: 9px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.count-line { font: 400 .85rem var(--display); color: var(--muted); margin: 12px 2px 6px; }
+.reqs { display: grid; gap: 6px; }
+details.req { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+details.req[open] { border-color: var(--accent); box-shadow: var(--shadow); }
+details.req summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 7.4em minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 10px 14px; }
+details.req summary::-webkit-details-marker { display: none; }
+details.req summary .id { font: 600 .8rem var(--mono); color: var(--accent); }
+details.req summary .t { font: 600 .95rem/1.3 var(--display); }
+details.req summary .tags { display: flex; gap: 4px; }
+.req-body { padding: 0 14px 14px calc(7.4em + 26px); display: grid; gap: 8px; font-size: .95rem; }
+.req-body p { margin: 0; }
+.req-body .k { font: 600 .7rem/1.6 var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); display: block; }
+@media (max-width: 620px) {
+  details.req summary { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .req-body { padding-left: 14px; }
+}
+mark { background: var(--stamp-soft); color: inherit; border-radius: 2px; }
+
+/* matrix */
+.matrix td.cell, .matrix th.rc { text-align: center; }
+.matrix th.rc { cursor: pointer; }
+.matrix .col-on { background: var(--accent-soft); }
+.yes, .no { display: inline-flex; align-items: center; gap: 5px; font: 600 .76rem var(--display); }
+.yes { color: var(--ok); }
+.no { color: var(--bad); }
+.yes::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: currentColor; }
+.no::before { content: ""; width: 9px; height: 9px; border-radius: 2px; border: 2px solid currentColor; }
+.matrix td.probe { font-weight: 600; font-family: var(--display); white-space: nowrap; }
+.matrix td.probe small { display: block; font: 400 .72rem var(--mono); color: var(--muted); }
+.matrix tr.grp td { background: var(--sunk); font: 600 .72rem var(--display); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+/* lifecycle */
+.lc-rail { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0; margin-top: 16px; }
+.lc-step { display: flex; align-items: center; }
+.lc-node { background: var(--surface); border: 1.5px solid var(--accent); border-radius: 8px; padding: 10px 12px; min-width: 9.5em; }
+.lc-node b { display: block; font: 600 .8rem var(--mono); color: var(--accent); }
+.lc-node span { font-size: .8rem; color: var(--muted); line-height: 1.35; display: block; margin-top: 3px; }
+.lc-arrow { width: 26px; height: 2px; background: var(--accent); position: relative; margin: 0 4px; }
+.lc-arrow::after { content: ""; position: absolute; right: -1px; top: -4px; border: 5px solid transparent; border-left-color: var(--accent); border-right: 0; }
+.lc-branches { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.lc-branch { border: 1.5px dashed var(--line); border-radius: 8px; padding: 8px 12px; font-size: .84rem; }
+.lc-branch b { font: 600 .78rem var(--mono); color: var(--bad); margin-right: 6px; }
+@media (max-width: 620px) { .lc-step { width: 100%; flex-direction: column; align-items: flex-start; } .lc-arrow { width: 2px; height: 18px; margin: 4px 0 4px 20px; } .lc-arrow::after { right: -4px; top: auto; bottom: -1px; border: 5px solid transparent; border-top-color: var(--accent); border-bottom: 0; } .lc-node { width: 100%; } }
+
+/* bars */
+.bars { display: grid; gap: 10px; }
+.bar-row { display: grid; grid-template-columns: 9em minmax(0, 1fr) 2.6em; gap: 10px; align-items: center; font-size: .88rem; }
+.bar-row .track { height: 12px; background: var(--sunk); border-radius: 6px; overflow: hidden; }
+.bar-row .fill { height: 100%; background: var(--accent); border-radius: 6px; }
+.bar-row .fill.alt { background: var(--stamp); }
+.bar-row .fill.alt2 { background: var(--muted); }
+.bar-row b { font: 600 .9rem var(--mono); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* timeline */
+.timeline { list-style: none; margin: 14px 0 0; padding: 0; position: relative; }
+.timeline::before { content: ""; position: absolute; left: 7.6em; top: 6px; bottom: 6px; width: 2px; background: var(--line); }
+.timeline li { display: grid; grid-template-columns: 7em 1fr; gap: 28px; padding: 6px 0; position: relative; }
+.timeline li::before { content: ""; position: absolute; left: calc(7.6em - 5px); top: 13px; width: 12px; height: 12px; border-radius: 50%; background: var(--surface); border: 2px solid var(--accent); }
+.timeline li.major::before { background: var(--accent); }
+.timeline .when { font: 400 .78rem/1.9 var(--mono); color: var(--muted); text-align: right; }
+.timeline .what { font-size: .93rem; }
+.timeline .what code { color: var(--accent); }
+
+.status-ok { color: var(--ok); font: 600 .8rem var(--display); white-space: nowrap; }
+.status-part { color: var(--stamp); font: 600 .8rem var(--display); white-space: nowrap; }
+ul.tight { margin: .4rem 0; padding-left: 1.2em; }
+ul.tight li { margin: .3rem 0; max-width: 68ch; }
+
+/* sign-off */
+.so-banner { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; padding: 18px 20px; border-radius: 10px; border: 1.5px solid var(--stamp); background: var(--stamp-soft); }
+.so-banner.ok { border-color: var(--ok); background: var(--ok-soft); }
+.so-banner.bad { border-color: var(--bad); background: var(--bad-soft); }
+.so-banner h3 { margin: 0; font-size: 1.3rem; }
+.so-banner .avg { font: 800 2rem/1 var(--display); font-variant-numeric: tabular-nums; }
+.slots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
+@media (max-width: 760px) { .slots { grid-template-columns: minmax(0, 1fr); } }
+.slot { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px 18px; min-height: 190px; overflow: hidden; display: flex; flex-direction: column; gap: 8px; }
+.slot .role { font: 600 .72rem var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.slot .sigline { margin-top: auto; border-top: 1.5px solid var(--ink); padding-top: 6px; display: flex; justify-content: space-between; gap: 8px; font-size: .78rem; color: var(--muted); }
+.slot .sig { font: italic 400 1.7rem/1.1 var(--body); color: var(--ink); overflow-wrap: anywhere; }
+.slot .awaiting { font: 400 .95rem var(--display); color: var(--muted); }
+.slot .remark { font-size: .9rem; border-left: 3px solid var(--line); padding-left: 10px; color: var(--ink); overflow-wrap: anywhere; }
+.slot .who { display: flex; align-items: center; gap: 8px; font-size: .8rem; color: var(--muted); }
+.slot .who img { width: 20px; height: 20px; border-radius: 50%; }
+.stamp { position: absolute; right: 14px; top: 14px; transform: rotate(-11deg); border: 3px double var(--ok); color: var(--ok); border-radius: 8px; padding: 6px 10px; font: 800 .78rem/1.1 var(--display); letter-spacing: .1em; text-transform: uppercase; text-align: center; opacity: .85; animation: thunk .35s ease-out; }
+.stamp small { display: block; font: 400 .62rem var(--mono); letter-spacing: 0; text-transform: none; }
+.stamp.changes { border-color: var(--stamp); color: var(--stamp); }
+.stamp.revise { border-color: var(--bad); color: var(--bad); }
+.stamp.declared { border-color: var(--accent); color: var(--accent); }
+@keyframes thunk { from { transform: rotate(-11deg) scale(1.6); opacity: 0; } to { transform: rotate(-11deg) scale(1); opacity: .85; } }
+
+form.so-form { display: grid; gap: 16px; margin-top: 18px; }
+.field { display: grid; gap: 6px; }
+.field label, .field legend { font: 600 .82rem var(--display); }
+.field input[type="text"], .field select, .field textarea { font: 400 .95rem var(--display); padding: 9px 11px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); width: 100%; }
+.field textarea { min-height: 84px; resize: vertical; font-family: var(--body); }
+fieldset { border: 0; padding: 0; margin: 0; }
+.seg { display: inline-flex; flex-wrap: wrap; gap: 4px; }
+.seg input { position: absolute; opacity: 0; pointer-events: none; }
+.seg label { font: 600 .82rem var(--display); padding: 7px 11px; border: 1px solid var(--line); border-radius: 6px; cursor: pointer; background: var(--surface); }
+.seg input:checked + label { background: var(--ink); color: var(--ground); border-color: var(--ink); }
+.seg input:focus-visible + label { outline: 2px solid var(--accent); outline-offset: 2px; }
+.rubric-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 8px 0; border-bottom: 1px dashed var(--line); }
+.rubric-row:last-child { border-bottom: 0; }
+.rubric-row .crit { font-size: .92rem; }
+.rubric-row .crit small { display: block; color: var(--muted); font-size: .8rem; }
+@media (max-width: 620px) { .rubric-row { grid-template-columns: minmax(0, 1fr); } }
+.btn { font: 600 .9rem var(--display); padding: 10px 18px; border-radius: 8px; border: 1px solid var(--ink); background: var(--ink); color: var(--ground); cursor: pointer; }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.danger { background: var(--bad); border-color: var(--bad); color: #fff; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.note { font-size: .88rem; padding: 10px 12px; border-radius: 8px; background: var(--sunk); }
+.note.err { background: var(--bad-soft); color: var(--bad); }
+.note.okay { background: var(--ok-soft); color: var(--ok); }
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: .92rem; }
+.check input { margin-top: 5px; accent-color: var(--accent); }
+</style>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand">HR<span>Genius</span> · SRS</div>
+    <div class="docid">HRG-SRS-001 · v1.0 · baseline 79f36fb</div>
+    <div class="spacer"></div>
+    <a class="status-pill" id="top-status" href="#signoff"><span class="dots" id="top-dots"></span><span id="top-status-text">Awaiting sign-off</span></a>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="Contents">
+    <ol id="toc">
+      <li><a href="#cover"><b>0</b>Document control</a></li>
+      <li><a href="#intro"><b>1</b>Introduction</a></li>
+      <li><a href="#overall"><b>2</b>Overall description</a></li>
+      <li><a href="#functional"><b>3</b>Functional requirements</a></li>
+      <li><a href="#access"><b>4</b>Access control</a></li>
+      <li><a href="#interfaces"><b>5</b>Interfaces &amp; data</a></li>
+      <li><a href="#nfr"><b>6</b>Non-functional</a></li>
+      <li><a href="#trace"><b>7</b>Verification</a></li>
+      <li><a href="#review"><b>8</b>Academic review</a></li>
+      <li><a href="#signoff"><b>9</b>Sign-off</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <!-- 0 COVER -->
+    <section class="sec" id="cover">
+      <div class="titlepage">
+        <div class="tp-inst">ABES Engineering College</div>
+        <div class="tp-course">Bachelor of Technology (B.Tech) · Academic Year 2026–2027</div>
+        <div class="tp-grid">
+          <div><div class="label">Submitted by</div><b>Aman Arora</b><span class="mono muted">Roll No. 2400320100152</span></div>
+          <div><div class="label">Under the guidance of</div><b>Dr Radhika Singhal</b></div>
+          <div><div class="label">Date of submission</div><b>1 October 2026</b></div>
+        </div>
+      </div>
+      <div class="cover">
+        <div>
+          <div class="label">Software Requirements Specification · IEEE/ISO 29148 structure</div>
+          <h1 style="margin-top:14px">HRGenius<br><em>Human Resource</em><br>Management System</h1>
+          <p class="sub">What the system shall do, who may do it, and the evidence that it does, specified against the delivered source.</p>
+        </div>
+        <div class="ctrl">
+          <dl>
+            <dt>Document</dt><dd>HRG-SRS-001</dd>
+            <dt>Version</dt><dd>1.0 (issued for review)</dd>
+            <dt>Submitted by</dt><dd>Aman Arora</dd>
+            <dt>Roll no.</dt><dd>2400320100152</dd>
+            <dt>Course</dt><dd>B.Tech</dd>
+            <dt>Institution</dt><dd>ABES Engineering College</dd>
+            <dt>Academic year</dt><dd>2026–2027</dd>
+            <dt>Guide</dt><dd>Dr Radhika Singhal</dd>
+            <dt>Submitted on</dt><dd>01 Oct 2026</dd>
+            <dt>Baseline</dt><dd>git 79f36fb · master</dd>
+            <dt>Status</dt><dd id="ctrl-status">Awaiting sign-off</dd>
+          </dl>
+        </div>
+      </div>
+      <div class="figures">
+        <div><b id="fig-fr">—</b><span>functional requirements</span></div>
+        <div><b>16</b><span>modules specified</span></div>
+        <div><b>64/64</b><span>automated tests passing</span></div>
+        <div><b>90/90</b><span>role checks behaved as specified</span></div>
+      </div>
+      <h3>Revision history</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Version</th><th>Date</th><th>Change</th><th>Baseline</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">0.1</td><td>30 Sep 2026</td><td>Foundation requirements: authentication, RBAC, deployment</td><td class="mono">0f6cec7</td></tr>
+            <tr><td class="mono">0.5</td><td>01 Oct 2026</td><td>Leave, attendance, approvals, recruitment, payroll, performance, services modules added</td><td class="mono">5654506</td></tr>
+            <tr><td class="mono">1.0</td><td>01 Oct 2026</td><td>Self-service added; requirements traced to tests and a live role-access probe; issued for academic review</td><td class="mono">79f36fb</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 1 INTRO -->
+    <section class="sec" id="intro">
+      <div class="sec-head"><span class="sec-num">1</span><h2>Introduction</h2></div>
+      <h3 style="margin-top:0">1.1 Purpose</h3>
+      <p>This document specifies the functional and non-functional requirements of HRGenius, a web-based HR management system covering the employee lifecycle from requisition to payslip. It is written for three readers: the <b>evaluating faculty</b>, who judge whether the system meets its stated objectives; the <b>developer</b>, who treats each <span class="shall">SHALL</span> statement as a commitment; and any <b>future maintainer</b>, who needs to know where each requirement is verified.</p>
+      <h3>1.2 Scope</h3>
+      <p>HRGenius centralises employee records, organisation structure, leave and attendance, a reusable approval workflow, recruitment and onboarding, payroll with Indian statutory deductions, performance reviews, helpdesk, policy compliance, analytics and employee self-service. Access is role-based and enforced on the server.</p>
+      <p><b>Out of scope</b> for this release: single sign-on and multi-factor authentication, biometric attendance devices, bank file integration for salary disbursement, statutory return filing, and a native mobile app.</p>
+      <h3>1.3 Definitions and acronyms</h3>
+      <div class="panel">
+        <dl class="gloss">
+          <dt>RBAC</dt><dd>Role-based access control: users hold roles, roles grant named permissions.</dd>
+          <dt>JWT</dt><dd>JSON Web Token: the signed, short-lived access credential sent with each API request.</dd>
+          <dt>CTC</dt><dd>Cost to company: annual compensation including employer statutory contributions.</dd>
+          <dt>PF / ESI</dt><dd>Provident Fund and Employees' State Insurance: Indian statutory contributions.</dd>
+          <dt>TDS</dt><dd>Tax deducted at source on salary under the old or new income-tax regime.</dd>
+          <dt>LWP / LOP</dt><dd>Leave without pay, deducted from salary as loss of pay.</dd>
+          <dt>ATS</dt><dd>Applicant tracking system: the recruitment pipeline from requisition to hire.</dd>
+          <dt>Requisition</dt><dd>An approved request to open a position for hiring.</dd>
+          <dt>Regularization</dt><dd>A request to correct a missed or wrong attendance punch.</dd>
+          <dt>SHALL</dt><dd>Marks a binding requirement. "Should" marks a desirable one.</dd>
+        </dl>
+      </div>
+      <h3>1.4 References</h3>
+      <ul class="tight">
+        <li>ISO/IEC/IEEE 29148:2018, <i>Systems and software engineering: Life cycle processes, Requirements engineering</i> (successor to IEEE 830-1998).</li>
+        <li>HRGenius Detailed Project Report, <code>reports/HRGenius_Project_Report.pdf</code>.</li>
+        <li>HRGenius source repository, baseline commit <code>79f36fb</code>; OpenAPI description served at <code>/swagger-ui.html</code>.</li>
+      </ul>
+      <h3>1.5 How to read this document</h3>
+      <p>Sections 2 to 6 follow the standard SRS outline. Requirements carry stable identifiers such as <code>FR-PAY-02</code> and name their verification method: <b>Test</b> (an automated test), <b>Inspection</b> (review of source or configuration) or <b>Demonstration</b> (shown in the running application). Section 8 is the academic review, and section 9 records formal sign-off.</p>
+    </section>
+
+    <!-- 2 OVERALL -->
+    <section class="sec" id="overall">
+      <div class="sec-head"><span class="sec-num">2</span><h2>Overall description</h2></div>
+      <h3 style="margin-top:0">2.1 Product perspective</h3>
+      <p>HRGenius is a standalone, three-tier web application: an Angular single-page client, a Spring Boot REST API, and an Oracle database. The context diagram shows the actors and external systems it exchanges data with.</p>
+      <div class="mermaid-box">
+<pre class="mermaid">
+flowchart LR
+  EMP([Employee]) -->|leave, attendance, tickets, reviews| HRG
+  MGR([Manager]) -->|approvals, team reviews| HRG
+  HR([HR Admin]) -->|employees, masters, policies| HRG
+  PAY([Payroll Admin]) -->|payroll runs| HRG
+  REC([Recruiter]) -->|requisitions, candidates, offers| HRG
+  APP([Job applicant]) -->|public applications| HRG
+  HRG{{HRGenius}} -->|payslips, offer letters, to-dos| EMP
+  HRG -->|notifications over SMTP| MAIL[(Mail server)]
+  HRG ---|JDBC, Flyway migrations| DB[(Oracle database)]
+</pre>
+      </div>
+      <h3>2.2 Product functions</h3>
+      <p class="muted small">Select a module to open its requirements in section 3.</p>
+      <div class="modules" id="modules"></div>
+      <h3>2.3 User classes and characteristics</h3>
+      <p>Seven roles are seeded; a user may hold more than one. Choosing a role here also highlights its column in the access table in section 4.</p>
+      <div class="role-tabs" id="role-tabs" role="tablist"></div>
+      <div class="panel role-panel" id="role-panel"></div>
+      <h3>2.4 Operating environment</h3>
+      <div class="tbl-wrap">
+        <table>
+          <tbody>
+            <tr><th>Server</th><td>Java 21 runtime, Spring Boot 3.3, Spring Security 6; packaged as a container image</td></tr>
+            <tr><th>Database</th><td>Oracle Database (Oracle Free container) with Flyway migrations V1 to V14; H2 in Oracle mode for the offline demo and tests</td></tr>
+            <tr><th>Client</th><td>Angular 18 standalone components with Angular Material 3; current Chrome, Edge, Firefox and Safari, on desktop and phone screens</td></tr>
+            <tr><th>Deployment</th><td>Docker Compose: oracle, backend, frontend (nginx) and a MailHog SMTP catcher for development</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>2.5 Design and implementation constraints</h3>
+      <ul class="tight">
+        <li>The database schema is owned by versioned migrations; the ORM validates against it and never alters it.</li>
+        <li>Every list endpoint is paginated, with a hard maximum of 100 rows per page.</li>
+        <li>Statutory identifiers (PAN, Aadhaar, bank account) must be stored encrypted and shown masked by default.</li>
+        <li>Payroll follows Indian statutory rules (PF, ESI, professional tax, TDS) and the Indian rupee format.</li>
+        <li>Uploads are limited to 10&nbsp;MB per file and 12&nbsp;MB per request.</li>
+      </ul>
+      <h3>2.6 Assumptions and dependencies</h3>
+      <ul class="tight">
+        <li>Each login is linked to at most one employee record; self-service features need that link.</li>
+        <li>An SMTP server is reachable for notifications; in development MailHog captures all mail.</li>
+        <li>Tax rules implemented are the standard deduction under both regimes, plus employee PF under section 80C in the old regime; other exemptions are assumed to be handled outside the system.</li>
+      </ul>
+    </section>
+
+    <!-- 3 FUNCTIONAL -->
+    <section class="sec" id="functional">
+      <div class="sec-head"><span class="sec-num">3</span><h2>Functional requirements</h2></div>
+      <p>Each requirement is a single verifiable statement. Open one to see its acceptance criterion and the evidence that verifies it.</p>
+      <div class="explorer-bar">
+        <div class="row">
+          <input class="search" id="req-search" type="search" placeholder="Search requirements, e.g. payslip, lock, approval" aria-label="Search requirements">
+          <div class="seg" role="group" aria-label="Priority">
+            <input type="radio" name="prio" id="prio-all" value="" checked><label for="prio-all">All</label>
+            <input type="radio" name="prio" id="prio-must" value="Must"><label for="prio-must">Must</label>
+            <input type="radio" name="prio" id="prio-should" value="Should"><label for="prio-should">Should</label>
+          </div>
+          <div class="seg" role="group" aria-label="Verification method">
+            <input type="radio" name="meth" id="meth-all" value="" checked><label for="meth-all">Any method</label>
+            <input type="radio" name="meth" id="meth-test" value="Test"><label for="meth-test">Test</label>
+            <input type="radio" name="meth" id="meth-insp" value="Inspection"><label for="meth-insp">Inspection</label>
+            <input type="radio" name="meth" id="meth-demo" value="Demonstration"><label for="meth-demo">Demo</label>
+          </div>
+        </div>
+        <div class="row" id="mod-chips"></div>
+      </div>
+      <div class="count-line" id="req-count"></div>
+      <div class="reqs" id="reqs"></div>
+
+      <h3>3.1 Record lifecycles</h3>
+      <p>Several requirements describe a record moving through statuses. Pick a record to see its states, in order, and who moves it between them. Status names are the ones stored in the database.</p>
+      <div class="role-tabs" id="lc-tabs"></div>
+      <div class="panel">
+        <p id="lc-desc" class="small muted" style="margin-top:0"></p>
+        <div class="lc-rail" id="lc-rail"></div>
+        <div class="lc-branches" id="lc-branches"></div>
+      </div>
+    </section>
+
+    <!-- 4 ACCESS -->
+    <section class="sec" id="access">
+      <div class="sec-head"><span class="sec-num">4</span><h2>Access control requirements</h2></div>
+      <p><b>FR-AUTH-05</b> requires the server, not the user interface, to decide who sees what. The table below is the specification and its evidence in one: each cell is the outcome of a real request made by that role's demo login against the running system on 01 Oct 2026. Every one of the 90 outcomes matched the intended rule.</p>
+      <p class="small muted">The private-record rows use Emma Lopez (Employee), who reports to Manuel Garcia (Manager), and Hana Reddy (HR Admin), who does not. Click a column heading to highlight that role.</p>
+      <div class="tbl-wrap">
+        <table class="matrix" id="matrix"></table>
+      </div>
+      <h3>4.1 Rules the table demonstrates</h3>
+      <ul class="tight">
+        <li><b>Own data:</b> every employee <span class="shall">SHALL</span> be able to read their own payslips, reviews, tickets, documents and statutory details.</li>
+        <li><b>Team scope:</b> a manager <span class="shall">SHALL</span> see their direct reports' documents, contacts and reviews, and nobody else's.</li>
+        <li><b>Separation of duties:</b> the payroll administrator runs payroll and the HR administrator approves it; neither role <span class="shall">SHALL</span> hold both.</li>
+        <li><b>Least privilege:</b> the recruiter <span class="shall">SHALL</span> reach recruitment and the shared directory only.</li>
+        <li><b>Open design decision:</b> the payroll role currently reads every employee's documents and emergency contacts through the sensitive-data permission. This is recorded for the reviewers' judgement in section 8.5.</li>
+      </ul>
+    </section>
+
+    <!-- 5 INTERFACES -->
+    <section class="sec" id="interfaces">
+      <div class="sec-head"><span class="sec-num">5</span><h2>External interfaces and data</h2></div>
+      <div class="grid2">
+        <div class="panel">
+          <div class="label">5.1 User interface</div>
+          <p class="small">A responsive Material 3 interface with light and dark themes. A role-aware navigation shell shows only the modules the signed-in user may use. A to-do bell gathers pending actions from every module. Public careers pages are served outside the authenticated shell.</p>
+        </div>
+        <div class="panel">
+          <div class="label">5.2 Software interface</div>
+          <p class="small">A versioned REST API under <code>/api/v1</code> exchanging JSON, documented with OpenAPI. Requests authenticate with a <code>Bearer</code> access token; errors return a consistent problem body with an HTTP status of 400, 401, 403, 404 or 409.</p>
+        </div>
+        <div class="panel">
+          <div class="label">5.3 Document interfaces</div>
+          <p class="small">Generated PDFs for payslips and offer letters; Excel workbooks for employee import and export, payroll registers and headcount analytics.</p>
+        </div>
+        <div class="panel">
+          <div class="label">5.4 Communication interface</div>
+          <p class="small">HTTPS between browser and server in deployment; SMTP for outbound notifications; JDBC between the API and the database.</p>
+        </div>
+      </div>
+      <h3>5.5 Logical data model</h3>
+      <p>The core entities and their relationships, simplified from the 14 migrations. Audit columns, lookup tables and join tables are omitted.</p>
+      <div class="mermaid-box">
+<pre class="mermaid">
+erDiagram
+  USER }o--o{ ROLE : holds
+  ROLE }o--o{ PERMISSION : grants
+  USER |o--o| EMPLOYEE : "signs in as"
+  DEPARTMENT ||--o{ EMPLOYEE : employs
+  EMPLOYEE |o--o{ EMPLOYEE : manages
+  EMPLOYEE ||--o| STATUTORY : "has (encrypted)"
+  EMPLOYEE ||--o{ EMERGENCY_CONTACT : lists
+  EMPLOYEE ||--o{ DOCUMENT : owns
+  EMPLOYEE |o--o{ ASSET : "is assigned"
+  EMPLOYEE ||--o{ LEAVE_BALANCE : accrues
+  LEAVE_TYPE ||--o{ LEAVE_BALANCE : "is tracked in"
+  EMPLOYEE ||--o{ LEAVE_REQUEST : raises
+  EMPLOYEE ||--o{ ATTENDANCE_DAY : punches
+  APPROVAL_REQUEST ||--|{ APPROVAL_STEP : "is decided in"
+  REQUISITION ||--o{ APPLICATION : receives
+  CANDIDATE ||--o{ APPLICATION : submits
+  APPLICATION ||--o| OFFER : "may yield"
+  PAYROLL_RUN ||--|{ PAYSLIP : produces
+  EMPLOYEE ||--o{ PAYSLIP : receives
+  REVIEW_CYCLE ||--o{ REVIEW : contains
+  REVIEW ||--o{ GOAL : weighs
+  EMPLOYEE ||--o{ TICKET : raises
+  POLICY ||--o{ POLICY_ACK : "is acknowledged in"
+</pre>
+      </div>
+    </section>
+
+    <!-- 6 NFR -->
+    <section class="sec" id="nfr">
+      <div class="sec-head"><span class="sec-num">6</span><h2>Non-functional requirements</h2></div>
+      <p>Each quality requirement is stated with a measurable target, so it can be checked rather than argued.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>ID</th><th>Requirement</th><th>Target</th><th>Verified by</th></tr></thead>
+          <tbody id="nfr-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 7 TRACE -->
+    <section class="sec" id="trace">
+      <div class="sec-head"><span class="sec-num">7</span><h2>Verification and traceability</h2></div>
+      <p>Every functional requirement names how it is verified. The bars count the requirements in section 3 by method and priority, computed from the same list the explorer shows.</p>
+      <div class="grid2">
+        <div class="panel"><div class="label">By verification method</div><div class="bars" id="bars-method" style="margin-top:12px"></div></div>
+        <div class="panel"><div class="label">By priority</div><div class="bars" id="bars-prio" style="margin-top:12px"></div></div>
+      </div>
+      <h3>7.1 Automated test suite</h3>
+      <p>The suite ran in full on 01 Oct 2026: <b>64 tests in 14 classes, 0 failures, 0 errors</b>. Integration tests boot the full application against an in-memory database built by the real migrations, then call the API as each seeded role.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Test class</th><th>What it proves</th><th>Requirements</th></tr></thead>
+          <tbody id="tests-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 8 REVIEW -->
+    <section class="sec" id="review">
+      <div class="sec-head"><span class="sec-num">8</span><h2>Academic review</h2></div>
+      <p>A critical assessment of the project against its own objectives. It is written for the reviewers who sign in section 9 and is meant to be argued with, not just accepted.</p>
+
+      <h3 style="margin-top:0">8.1 Objectives against outcomes</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Objective</th><th>Outcome</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Centralise employee records with a full profile and change history</td><td>Directory, tabbed profile, timeline of job changes, Excel import and export</td><td><span class="status-ok">Met</span></td></tr>
+            <tr><td>Protect personal and financial data</td><td>Statutory identifiers encrypted at rest with AES-GCM, masked by default, reveals audited; object-level checks verified by live probe</td><td><span class="status-ok">Met</span></td></tr>
+            <tr><td>Automate leave, attendance and approvals</td><td>Configurable leave types with accrual, punch attendance, one approval engine reused by five workflows</td><td><span class="status-ok">Met</span></td></tr>
+            <tr><td>Cover hiring through onboarding</td><td>Requisitions, pipeline, panel interviews, approved offers with PDF letters, hire-to-employee conversion, onboarding plans</td><td><span class="status-ok">Met</span></td></tr>
+            <tr><td>Compute payroll with Indian statutory rules</td><td>Run lifecycle with approval, PF, ESI and TDS under both regimes, PDF payslips</td><td><span class="status-part">Partially met</span><br><span class="small muted">Tax exemptions beyond the standard deduction and 80C PF are not modelled</span></td></tr>
+            <tr><td>Support performance management</td><td>Cycles, weighted goals, self and manager review, acknowledgement, feedback wall</td><td><span class="status-ok">Met</span></td></tr>
+            <tr><td>Give employees self-service</td><td>Personal dashboard with cross-module to-dos; password change</td><td><span class="status-part">Partially met</span><br><span class="small muted">Password change exists in the API but has no screen yet</span></td></tr>
+            <tr><td>Demonstrate quality through testing</td><td>64 automated tests passing; 90-check live access probe; production build passing</td><td><span class="status-ok">Met</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>8.2 Methodology</h3>
+      <p>The system was built in eight incremental phases. Each phase delivered a usable vertical slice (schema, API, tests and screens) and was committed only after its build and tests passed. Shared mechanisms were built once and reused: the approval engine introduced in phase 3 now carries leave, regularization, requisitions, offers and payroll runs. That reuse is the main architectural decision of the project.</p>
+      <ol class="timeline" id="timeline"></ol>
+
+      <h3>8.3 Evaluation</h3>
+      <div class="grid3">
+        <div class="panel"><div class="label">Automated tests</div><p style="font:800 2rem/1.1 var(--display);margin:.4rem 0">64 / 64</p><p class="small muted">Unit tests for pay and tax calculation, and integration tests through the real API for every module.</p></div>
+        <div class="panel"><div class="label">Access probe</div><p style="font:800 2rem/1.1 var(--display);margin:.4rem 0">90 / 90</p><p class="small muted">6 roles × 15 checks against the running system, covering module access and other people's private records.</p></div>
+        <div class="panel"><div class="label">Build</div><p style="font:800 2rem/1.1 var(--display);margin:.4rem 0">Pass</p><p class="small muted">Backend compile and production front-end bundle with no errors.</p></div>
+      </div>
+
+      <h3>8.4 Strengths</h3>
+      <ul class="tight">
+        <li><b>Security designed in, then measured:</b> encryption, masking, lockout and object-level checks, each backed by a test or the live probe rather than by assertion.</li>
+        <li><b>One engine, many workflows:</b> a generic approval model avoided five separate implementations and keeps the approver inbox uniform.</li>
+        <li><b>Database discipline:</b> schema changes only through migrations, validated at start-up, with a smoke test that builds the whole schema from scratch.</li>
+        <li><b>Realistic domain:</b> payroll follows Indian statutory structure, and seed data produces a believable organisation to evaluate against.</li>
+      </ul>
+
+      <h3>8.5 Limitations and threats to validity</h3>
+      <ul class="tight">
+        <li><b>Test environment:</b> automated tests and the demo run on H2 in Oracle compatibility mode. The production Oracle container is defined but was not exercised on the development machine, so database-specific behaviour is verified by inspection only.</li>
+        <li><b>No automated UI tests:</b> screens were checked by hand. Payroll and self-service screens have had the least manual coverage.</li>
+        <li><b>Simplified tax:</b> only the standard deduction and 80C PF are modelled, so payslips understate deductions for employees with other exemptions.</li>
+        <li><b>Analytics scale:</b> analytics are computed in memory from repositories, which is adequate for a few hundred employees but not for a large enterprise.</li>
+        <li><b>Payroll visibility:</b> as noted in section 4.1, the payroll role can read all employees' documents and emergency contacts. This is wider than payroll strictly needs.</li>
+        <li><b>Authentication:</b> there is no single sign-on and no multi-factor authentication.</li>
+      </ul>
+
+      <h3>8.6 Future scope</h3>
+      <ul class="tight">
+        <li>A password-change screen, and an end-to-end UI test suite (for example Playwright) in the build.</li>
+        <li>Continuous integration that runs the suite against a real Oracle container.</li>
+        <li>Full tax-declaration workflow (HRA, 80D and similar) and bank disbursement files.</li>
+        <li>Single sign-on with multi-factor authentication.</li>
+        <li>Narrow the payroll role to pay-related data only.</li>
+      </ul>
+
+      <h3>8.7 Evaluation rubric</h3>
+      <p>Reviewers score each criterion from 1 (inadequate) to 5 (excellent) when they sign in section 9. The averages below update as scores come in.</p>
+      <div class="panel" id="rubric-summary"></div>
+    </section>
+
+    <!-- 9 SIGNOFF -->
+    <section class="sec" id="signoff">
+      <div class="sec-head"><span class="sec-num">9</span><h2>Review and sign-off</h2></div>
+      <p>The specification is approved when the student has signed the declaration and the project guide, head of department and external examiner have each recorded a verdict. Signatures are saved with this document and every viewer sees the same record.</p>
+      <div class="so-banner" id="so-banner">
+        <div><div class="label" id="so-banner-label">Status</div><h3 id="so-banner-title">Awaiting signatures</h3><p class="small" id="so-banner-sub" style="margin:.3rem 0 0"></p></div>
+        <div style="text-align:right"><div class="label">Average rubric score</div><div class="avg" id="so-avg">–</div></div>
+      </div>
+      <div class="slots" id="slots"></div>
+
+      <div class="panel" style="margin-top:24px" id="so-panel">
+        <div class="label">Record your sign-off</div>
+        <div id="so-mode" class="note" style="margin-top:12px">Loading sign-off…</div>
+        <form class="so-form" id="so-form" hidden novalidate>
+          <div class="grid2">
+            <div class="field">
+              <label for="so-role">Signing as</label>
+              <select id="so-role">
+                <option value="student">Student (declaration)</option>
+                <option value="guide">Project Guide</option>
+                <option value="hod">Head of Department</option>
+                <option value="examiner">External Examiner</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="so-desig">Designation and department</label>
+              <input type="text" id="so-desig" maxlength="80" placeholder="e.g. Assistant Professor, CSE">
+            </div>
+          </div>
+          <div class="field">
+            <label for="so-sign">Signature: type your full name</label>
+            <input type="text" id="so-sign" maxlength="60" autocomplete="name" style="font:italic 400 1.4rem var(--body)">
+          </div>
+          <div id="so-declaration" class="note">I declare that this specification accurately describes the HRGenius system submitted for evaluation, that the verification evidence it cites reflects the delivered source at the stated baseline, and that all sources and tools used have been acknowledged as my institution requires.</div>
+          <fieldset class="field" id="so-verdict-wrap">
+            <legend>Verdict</legend>
+            <div class="seg">
+              <input type="radio" name="verdict" id="v-approve" value="approved"><label for="v-approve">Approved</label>
+              <input type="radio" name="verdict" id="v-changes" value="changes"><label for="v-changes">Approved with minor changes</label>
+              <input type="radio" name="verdict" id="v-revise" value="revise"><label for="v-revise">Revisions required</label>
+            </div>
+          </fieldset>
+          <fieldset class="field" id="so-rubric-wrap">
+            <legend>Rubric scores</legend>
+            <div id="so-rubric"></div>
+          </fieldset>
+          <div class="field">
+            <label for="so-remarks">Remarks</label>
+            <textarea id="so-remarks" maxlength="1200" placeholder="Comments for the student, conditions of approval, or required revisions"></textarea>
+          </div>
+          <label class="check" for="so-confirm"><input type="checkbox" id="so-confirm"><span id="so-confirm-text">I have reviewed this specification and the evidence it cites.</span></label>
+          <div id="so-msg" class="note" hidden></div>
+          <div class="actions">
+            <button class="btn" type="submit" id="so-submit">Sign document</button>
+            <button class="btn ghost" type="button" id="so-withdraw" hidden>Withdraw my signature</button>
+            <button class="btn danger" type="button" id="so-withdraw-yes" hidden>Yes, withdraw</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  const $ = (s, r = document) => r.querySelector(s);
+  const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+
+  /* ---------- data ---------- */
+  const MODULES = [
+    ["AUTH", "Authentication & access", "Sign-in, lockout, sessions, passwords, RBAC"],
+    ["ORG", "Organisation setup", "Departments, designations, grades, locations, org chart"],
+    ["EMP", "Employee records", "Directory, profiles, timeline, statutory, import"],
+    ["DOC", "Documents & assets", "Uploads, verification, expiry alerts, asset register"],
+    ["LV", "Leave", "Leave types, accrual, balances, requests, holidays"],
+    ["ATT", "Attendance", "Check-in and out, calendar, regularization"],
+    ["APR", "Approvals", "One multi-step engine for every workflow"],
+    ["REC", "Recruitment", "Requisitions, pipeline, interviews, offers, careers site"],
+    ["ONB", "Onboarding", "Templates, plans and tasks for new hires"],
+    ["PAY", "Payroll", "Runs, statutory deductions, tax, payslips"],
+    ["PRF", "Performance", "Cycles, goals, reviews, feedback"],
+    ["HD", "Helpdesk", "Tickets, agents, internal notes, satisfaction"],
+    ["POL", "Policy compliance", "Versioned policies and acknowledgements"],
+    ["ANA", "Analytics", "Workforce dashboard and exports"],
+    ["AUD", "Audit", "Who changed what, with sensitive values masked"],
+    ["SS", "Self-service", "Personal dashboard and cross-module to-dos"]
+  ];
+  const MOD_NAME = Object.fromEntries(MODULES.map(m => [m[0], m[1]]));
+
+  // [id, module, title, statement, priority, method, evidence, acceptance]
+  const FR = [
+    ["FR-AUTH-01","AUTH","Sign in with email and password","The system shall authenticate a user by work email and password and issue an access token valid for 15 minutes and a refresh token valid for 7 days.","Must","Test","AuthServiceTest · login_succeeds_withValidCredentials_andResetsFailedAttempts","Valid credentials return both tokens and a user summary; wrong credentials are refused without saying which field was wrong."],
+    ["FR-AUTH-02","AUTH","Lock account after repeated failures","The system shall lock an account for 15 minutes after 5 consecutive failed sign-in attempts and reset the counter after a successful sign-in.","Must","Test","AuthServiceTest · login_locksAccount_afterFifthFailure, login_rejectsLockedAccount","A sixth attempt inside the lock window is refused even with the correct password."],
+    ["FR-AUTH-03","AUTH","Renew and end sessions","The system shall renew a session from a valid refresh token and shall revoke that token on logout.","Must","Inspection","AuthService.refresh / logout; RefreshTokenRepository","A revoked or expired refresh token cannot obtain a new access token."],
+    ["FR-AUTH-04","AUTH","Change own password","The system shall let a signed-in user change their password after confirming the current one, shall require 8 to 72 characters with upper- and lower-case letters and a digit, shall refuse the current password as the new one, and shall sign out the user's other sessions.","Should","Test","MeApiIntegrationTest · changePasswordRequiresTheCurrentOneAndAStrongNewOne","A wrong current password or a weak new one is refused; success returns a fresh token pair and old refresh tokens stop working."],
+    ["FR-AUTH-05","AUTH","Enforce role-based access on the server","The system shall decide every request against the caller's permissions and record ownership, returning 403 when the caller is not entitled.","Must","Test","Live role probe, 90 checks (section 4); EmployeeApiIntegrationTest","Each cell of the section 4 table matches the intended rule."],
+    ["FR-ORG-01","ORG","Maintain organisation masters","The system shall let holders of ORG_MANAGE create, edit and retire departments, designations, grades and locations, and maintain the company profile.","Must","Test","EmployeeApiIntegrationTest · cannotDeleteMasterInUse","Masters appear immediately in every employee form's lookups."],
+    ["FR-ORG-02","ORG","Protect masters in use","The system shall refuse to delete an organisation master that any employee still references.","Must","Test","EmployeeApiIntegrationTest · cannotDeleteMasterInUse","Deleting an in-use department returns a conflict and changes nothing."],
+    ["FR-ORG-03","ORG","Show the organisation chart","The system shall present the reporting hierarchy of current employees with the number of reports under each manager.","Should","Test","EmployeeApiIntegrationTest · orgChartListsCurrentEmployeesWithReportCounts","Exited employees are excluded and counts match the directory."],
+    ["FR-EMP-01","EMP","Create an employee with a login","The system shall let holders of EMPLOYEE_WRITE create an employee through a guided form and optionally create a working login for them.","Must","Test","EmployeeApiIntegrationTest · hrCreatesEmployeeWithLoginThatWorks, regularEmployeeCannotCreateEmployees","The new login signs in; an ordinary employee is refused."],
+    ["FR-EMP-02","EMP","Search the directory","The system shall search employees by name, email or employee code, with filters and pages of at most 100 rows.","Must","Test","EmployeeApiIntegrationTest · directorySearchMatchesNameEmailAndCode; SearchPredicatesTest","Partial, case-insensitive matches are found on each field."],
+    ["FR-EMP-03","EMP","Prevent reporting loops","The system shall reject any manager assignment that would make an employee report, directly or indirectly, to themselves.","Must","Test","EmployeeApiIntegrationTest · reportingLoopIsRejected","Assigning A to report to their own report is refused."],
+    ["FR-EMP-04","EMP","Protect managers with reports","The system shall refuse to delete an employee who still has direct reports.","Must","Test","EmployeeApiIntegrationTest · cannotDeleteEmployeeWithDirectReports","The request is refused until reports are reassigned."],
+    ["FR-EMP-05","EMP","Record job history","The system shall add a timeline event and an audit entry whenever an employee's department, designation, manager, location or status changes.","Must","Test","EmployeeApiIntegrationTest · departmentChangeWritesTimelineAndAudit","A department change appears on the profile timeline and in the audit log."],
+    ["FR-EMP-06","EMP","Encrypt and mask statutory data","The system shall store PAN, Aadhaar and bank account numbers encrypted, shall show them masked by default, and shall reveal them in full only to holders of EMPLOYEE_SENSITIVE_READ or the employee, auditing every reveal.","Must","Test","EmployeeApiIntegrationTest · statutoryIsMaskedAndRevealIsAudited","Default responses are masked; a reveal writes an audit entry."],
+    ["FR-EMP-07","EMP","Guard salary from non-sensitive editors","The system shall not change compensation fields when the editor lacks sensitive-data access, even if the request omits them.","Must","Test","EmployeeApiIntegrationTest · editorWithoutSensitiveAccessDoesNotWipeSalary","Salary is unchanged after such an edit."],
+    ["FR-EMP-08","EMP","Bulk import and export","The system shall import employees from an Excel workbook all-or-nothing, reporting every row error, and shall export the directory to Excel.","Should","Test","EmployeeApiIntegrationTest · importIsAllOrNothingAndSupportsInFileManagers","One bad row rejects the whole file with row-level messages; managers defined in the same file resolve."],
+    ["FR-EMP-09","EMP","Emergency contacts","The system shall keep any number of emergency contacts per employee with exactly one marked primary.","Should","Test","MeApiIntegrationTest · onlyOneEmergencyContactIsPrimary","Marking a new primary clears the previous one."],
+    ["FR-EMP-10","EMP","Team view for managers","The system shall let a manager see their team's profiles without exposing the team's sensitive data.","Must","Test","EmployeeApiIntegrationTest · managerSeesTheirTeamButNotSensitiveData","Team profiles load; statutory data stays masked."],
+    ["FR-DOC-01","DOC","Upload personal documents","The system shall let an employee upload documents of up to 10 MB to their own profile only, and HR to any profile.","Must","Test","EmployeeApiIntegrationTest · employeeUploadsOwnDocumentButNotSomeoneElses; FileStorageServiceTest","Uploading to another employee's profile is refused."],
+    ["FR-DOC-02","DOC","Verify documents and warn of expiry","The system shall let HR mark documents verified and shall flag documents expiring within 30 days in a daily check at 08:00.","Should","Inspection","application.yml document-expiry-days / document-expiry-cron; DocumentController","The expiring-documents list shows items due within 30 days."],
+    ["FR-DOC-03","DOC","Asset register","The system shall let holders of ASSET_MANAGE record assets, assign and return them, and keep each asset's assignment history.","Should","Demonstration","Asset register screen; role probe row 'Asset register'","Only HR and admin reach the register; history lists every assignment."],
+    ["FR-LV-01","LV","Configurable leave types","The system shall let holders of LEAVE_CONFIG define leave types with accrual rules; five are provided: casual, sick, earned, compensatory off and leave without pay.","Must","Test","LeaveAttendanceApiIntegrationTest","Types and balances appear on the leave screen for every active employee."],
+    ["FR-LV-02","LV","Accrue leave exactly once","The system shall credit monthly and annual accruals through a ledger so that re-running an accrual never credits the same period twice.","Must","Inspection","leave_accrual_log idempotency ledger (V7); LeaveConfig run-accrual action","Running the same month's accrual twice leaves balances unchanged the second time."],
+    ["FR-LV-03","LV","Apply for and cancel leave","The system shall let an employee apply for leave against their balance, route the request for approval, and cancel it before it is taken.","Must","Test","LeaveAttendanceApiIntegrationTest","A request overlapping an existing one is refused; approval deducts the balance."],
+    ["FR-LV-04","LV","Holiday calendar","The system shall publish a yearly holiday calendar distinguishing fixed and optional holidays.","Should","Demonstration","HolidayController; dashboard 'Upcoming holidays'","The next three holidays appear on the dashboard."],
+    ["FR-ATT-01","ATT","Daily check-in and out","The system shall record one check-in and check-out per employee per day and derive a status such as present, half-day or on leave.","Must","Test","LeaveAttendanceApiIntegrationTest","A second check-in on the same day is refused."],
+    ["FR-ATT-02","ATT","Regularize attendance","The system shall let an employee request a correction to a past day, approved through the approval engine.","Should","Test","LeaveAttendanceApiIntegrationTest","An approved request updates that day's record."],
+    ["FR-ATT-03","ATT","Monthly attendance calendar","The system shall show each employee a month calendar of their attendance status.","Should","Demonstration","Attendance screen","Every day of the month shows a status."],
+    ["FR-APR-01","APR","One reusable approval engine","The system shall route leave, attendance regularization, requisitions, offers and payroll runs through one multi-step approval engine.","Must","Test","LeaveAttendanceApiIntegrationTest; RecruitmentApiIntegrationTest; PayrollApiIntegrationTest","All five workflows appear in the same approver inbox."],
+    ["FR-APR-02","APR","Approver inbox and requester trail","The system shall give approvers an inbox to approve or reject with a comment, and give requesters a step-by-step trail of their requests.","Must","Test","LeaveAttendanceApiIntegrationTest","A decision moves the request to its next step or final status and is visible to the requester."],
+    ["FR-APR-03","APR","Predictable approver selection","The system shall prefer an approver who is not the super administrator and shall pick deterministically when several qualify.","Should","Inspection","ApproverResolver","The same request always routes to the same approver."],
+    ["FR-REC-01","REC","Approved requisitions","The system shall let recruiters raise requisitions that open for hiring only after approval by the hiring manager and a holder of RECRUITMENT_APPROVE.","Must","Test","RecruitmentApiIntegrationTest","An unapproved requisition is not visible on the careers site."],
+    ["FR-REC-02","REC","Candidate pipeline","The system shall track each application through pipeline stages and keep an activity history of every move.","Must","Test","RecruitmentApiIntegrationTest","Moving a card records who moved it and when."],
+    ["FR-REC-03","REC","Panel interviews","The system shall schedule interviews with a panel and collect a scorecard from each panellist.","Should","Test","RecruitmentApiIntegrationTest; dashboard 'Scorecard owed' to-do","Overdue scorecards appear as to-dos for the panellist."],
+    ["FR-REC-04","REC","Approved offers with letters","The system shall route offers for approval and generate a PDF offer letter for approved offers.","Must","Test","RecruitmentApiIntegrationTest; OfferFormattingTest","The letter shows correctly formatted compensation in rupees."],
+    ["FR-REC-05","REC","Hire to employee","The system shall convert an accepted candidate into an employee record with a login and start an onboarding plan.","Must","Test","RecruitmentApiIntegrationTest","The new hire appears in the directory with an onboarding plan."],
+    ["FR-REC-06","REC","Public careers site","The system shall publish open requisitions on a public careers page and accept applications without an account, limiting submissions per IP address, discarding automated submissions and never overwriting an existing candidate.","Should","Inspection","CareersService (per-IP limit, honeypot field)","Repeated submissions from one address are throttled."],
+    ["FR-ONB-01","ONB","Onboarding plans","The system shall create an onboarding plan from a template, assign tasks to owners with due dates, and complete the plan when every task is done or skipped.","Should","Demonstration","Onboarding screens; dashboard onboarding to-dos","Task owners see their tasks on the dashboard."],
+    ["FR-PAY-01","PAY","Payroll run lifecycle","The system shall move a payroll run through draft, calculated, pending approval, approved and paid, with the run prepared by a PAYROLL_RUN holder and approved by a separate PAYROLL_APPROVE holder.","Must","Test","PayrollApiIntegrationTest; role probe 'Payroll runs'","HR cannot run payroll and payroll cannot approve it."],
+    ["FR-PAY-02","PAY","Compute pay from CTC","The system shall compute monthly earnings and deductions from CTC including employer PF and ESI, and shall treat leave without pay as loss of pay.","Must","Test","PayrollCalculatorTest","Net pay matches the worked examples in the test."],
+    ["FR-PAY-03","PAY","Income tax under both regimes","The system shall compute monthly TDS under the old or new regime as chosen by the employee, applying the standard deduction and, in the old regime, employee PF under section 80C.","Must","Test","PayrollCalculatorTest (TaxCalculator)","Tax differs correctly between regimes for the same CTC."],
+    ["FR-PAY-04","PAY","Payslips","The system shall let an employee view and download their own payslips as PDF, with PAN and bank account masked to the last four characters.","Must","Test","PayrollApiIntegrationTest; role probe 'Emma payslip'","Another employee's payslip is refused."],
+    ["FR-PAY-05","PAY","Payroll register export","The system shall export a run's register to Excel including employer PF and ESI.","Should","Inspection","PayrollExportService","The export columns total to the run's figures."],
+    ["FR-PRF-01","PRF","Review cycles","The system shall let holders of PERFORMANCE_ADMIN create review cycles and open and close them.","Must","Test","PerformanceApiIntegrationTest","Only PERFORMANCE_ADMIN holders can create or change a cycle."],
+    ["FR-PRF-02","PRF","Weighted goals","The system shall let employees and managers set goals with weights and track progress on each.","Must","Test","PerformanceApiIntegrationTest","Goal weights in a review must total 100."],
+    ["FR-PRF-03","PRF","Self, manager, acknowledge","The system shall take each review through self-assessment, manager assessment and employee acknowledgement, in that order.","Must","Test","PerformanceApiIntegrationTest","A manager cannot submit before the self-assessment."],
+    ["FR-PRF-04","PRF","Feedback and kudos","The system shall let anyone give feedback to a colleague and show public kudos on a shared wall.","Should","Test","PerformanceApiIntegrationTest","Kudos appear on the dashboard wall."],
+    ["FR-HD-01","HD","Raise and track tickets","The system shall let any employee raise a ticket with a category and priority and see only their own tickets.","Must","Test","ServicesApiIntegrationTest · ticketLifecycleAndVisibility","Another employee's ticket returns 403 to a non-agent."],
+    ["FR-HD-02","HD","Agents and internal notes","The system shall allow tickets to be assigned only to HELPDESK_AGENT holders, hide internal notes from requesters, and require a resolution note to resolve.","Must","Test","ServicesApiIntegrationTest · ticketLifecycleAndVisibility","Assigning a non-agent and resolving without a note are both refused."],
+    ["FR-HD-03","HD","Reopen, close and rate","The system shall reopen a resolved ticket when the requester replies, let the requester close it with a satisfaction rating, and refuse comments on closed tickets.","Should","Test","ServicesApiIntegrationTest · ticketLifecycleAndVisibility","A comment on a closed ticket returns a conflict."],
+    ["FR-POL-01","POL","Versioned policies","The system shall let holders of POLICY_MANAGE draft, publish and archive policies, and publishing a new version shall require everyone to acknowledge again.","Must","Test","ServicesApiIntegrationTest · policiesAreVersionedAndTracked","After a new version, the acknowledged count returns to zero."],
+    ["FR-POL-02","POL","Acknowledge and track compliance","The system shall let employees acknowledge a policy once, and show HR who has and has not acknowledged.","Must","Test","ServicesApiIntegrationTest · policiesAreVersionedAndTracked","Acknowledging twice is harmless; employees cannot see the compliance report."],
+    ["FR-ANA-01","ANA","Workforce analytics","The system shall show holders of ANALYTICS_VIEW headcount, joiners and leavers over 12 months, attrition rate, tenure bands and department breakdowns, and export headcount to Excel.","Should","Test","ServicesApiIntegrationTest · analyticsOverviewIsConsistentAndRestricted","Employees and managers are refused; totals agree across charts."],
+    ["FR-AUD-01","AUD","Audit trail","The system shall record who changed which field, when, and from what to what, masking sensitive values, and show the log to holders of AUDIT_VIEW.","Must","Test","EmployeeApiIntegrationTest · departmentChangeWritesTimelineAndAudit, statutoryIsMaskedAndRevealIsAudited","A statutory change is logged with masked old and new values."],
+    ["FR-SS-01","SS","Personal to-do list","The system shall gather everything awaiting the signed-in employee across modules (approvals, scorecards, policy acknowledgements, onboarding tasks, reviews and resolved tickets) on the home dashboard and a to-do bell.","Should","Test","MeApiIntegrationTest · summaryCollectsTodosFromEveryModule","Each to-do links to the screen that resolves it."],
+    ["FR-SS-02","SS","Personal highlights","The system shall show the employee their leave balances, latest net pay, upcoming holidays and recent kudos on the dashboard.","Should","Test","MeApiIntegrationTest · summaryCollectsTodosFromEveryModule","Figures match the leave, payroll and holiday screens."]
+  ];
+
+  const NFR = [
+    ["NFR-SEC-01","Passwords are stored only as BCrypt hashes","No plain-text or reversible password in the database","Inspection · V2 seed, AuthService"],
+    ["NFR-SEC-02","Statutory identifiers are encrypted at rest","AES-GCM with a fresh IV per value","Inspection · CryptoConverter"],
+    ["NFR-SEC-03","Sessions are short-lived","Access token 15 min; refresh token 7 days, revocable","Inspection · application.yml"],
+    ["NFR-SEC-04","Authorisation covers records, not just screens","0 of 90 probe checks exposed data to the wrong role","Test · live role probe"],
+    ["NFR-SEC-05","Public endpoints resist abuse","Per-IP limit on applications; bot honeypot","Inspection · CareersService"],
+    ["NFR-PRF-01","Lists stay responsive as data grows","Every list paginated; at most 100 rows per page","Inspection · application.yml"],
+    ["NFR-PRF-02","Lookup data is not re-queried per request","Masters served from an in-memory cache","Inspection · CacheConfig"],
+    ["NFR-REL-01","The schema cannot drift from the code","Migrations V1 to V14 validated at start-up","Test · MigrationSmokeTest"],
+    ["NFR-REL-02","Workflow changes are all-or-nothing","State transitions run in one database transaction","Inspection · service layer"],
+    ["NFR-USE-01","Usable on any screen and in either theme","Responsive down to phone width; light and dark themes","Demonstration"],
+    ["NFR-MNT-01","Code is organised by business feature","Controller → service → repository per module; DTOs at the API edge","Inspection"],
+    ["NFR-MNT-02","Regressions are caught automatically","64 automated tests, all passing at baseline","Test · full suite"],
+    ["NFR-POR-01","Runs on the target and demo databases","Oracle in deployment; H2 Oracle mode for demo and tests","Test · suite on H2; Inspection · Oracle"]
+  ];
+
+  const TESTS = [
+    ["AuthServiceTest","Sign-in, failed-attempt counting and 15-minute lockout","FR-AUTH-01, 02"],
+    ["EmployeeApiIntegrationTest","Directory, team and personal-data visibility, loops, masking, audit, import, org chart","FR-AUTH-05, ORG, EMP, DOC-01, AUD-01"],
+    ["SearchPredicatesTest","Case-insensitive search that behaves the same on Oracle and H2","FR-EMP-02"],
+    ["EmployeeLogicTest","Employee rules independent of the API","FR-EMP"],
+    ["FileStorageServiceTest","Safe storage and retrieval of uploaded files","FR-DOC-01"],
+    ["LeaveAttendanceApiIntegrationTest","Leave, attendance, regularization and the approval engine","FR-LV, ATT, APR"],
+    ["RecruitmentApiIntegrationTest","Requisition to hire, through approvals and onboarding","FR-REC, APR-01"],
+    ["OfferFormattingTest","Rupee and date formatting in offer letters","FR-REC-04"],
+    ["PayrollApiIntegrationTest","Run lifecycle, separation of duties, payslip access","FR-PAY-01, 04"],
+    ["PayrollCalculatorTest","Earnings, PF, ESI, loss of pay and tax under both regimes","FR-PAY-02, 03"],
+    ["PerformanceApiIntegrationTest","Cycles, goals, review order, feedback","FR-PRF"],
+    ["ServicesApiIntegrationTest","Helpdesk lifecycle, policy versions, analytics restriction","FR-HD, POL, ANA"],
+    ["MeApiIntegrationTest","Cross-module to-dos, primary contact, password change","FR-SS, EMP-09, AUTH-04"],
+    ["MigrationSmokeTest","The whole schema builds from migrations","NFR-REL-01"]
+  ];
+
+  const PERMS = ["ADMIN_MANAGE_USERS","ANALYTICS_VIEW","ASSET_MANAGE","ATTENDANCE_MANAGE","AUDIT_VIEW","EMPLOYEE_READ","EMPLOYEE_SENSITIVE_READ","EMPLOYEE_WRITE","HELPDESK_AGENT","LEAVE_APPROVE","LEAVE_CONFIG","ONBOARDING_MANAGE","ORG_MANAGE","PAYROLL_APPROVE","PAYROLL_RUN","PERFORMANCE_ADMIN","PERFORMANCE_MANAGE","POLICY_MANAGE","RECRUITMENT_APPROVE","RECRUITMENT_MANAGE"];
+  const ALL = PERMS;
+  const ROLES = [
+    { k: "admin", name: "Super Admin", code: "SUPER_ADMIN", login: "admin@hrgenius.com", desc: "Owns the platform. Holds every permission, but is deliberately not chosen as a routine approver when someone else qualifies.", perms: ALL },
+    { k: "hr", name: "HR Admin", code: "HR_ADMIN", login: "hr@hrgenius.com", desc: "Runs people operations: employee records, organisation setup, policies, helpdesk and approvals, including approving payroll. Cannot prepare payroll runs.", perms: ALL.filter(p => p !== "PAYROLL_RUN") },
+    { k: "payroll", name: "Payroll Admin", code: "PAYROLL_ADMIN", login: "payroll@hrgenius.com", desc: "Prepares and calculates payroll and answers pay-related tickets. Reads sensitive data needed for pay; cannot approve their own runs.", perms: ["ANALYTICS_VIEW","EMPLOYEE_READ","EMPLOYEE_SENSITIVE_READ","HELPDESK_AGENT","PAYROLL_RUN"] },
+    { k: "recruiter", name: "Recruiter", code: "RECRUITER", login: "recruiter@hrgenius.com", desc: "Manages requisitions, candidates, interviews and offers. Sees the shared directory and nothing else of HR.", perms: ["EMPLOYEE_READ","RECRUITMENT_MANAGE"] },
+    { k: "manager", name: "Manager", code: "MANAGER", login: "manager@hrgenius.com", desc: "Leads a team: approves its leave and regularizations, reviews performance, and sees reports' records but not their sensitive data.", perms: ["EMPLOYEE_READ","LEAVE_APPROVE","PERFORMANCE_MANAGE"] },
+    { k: "employee", name: "Employee", code: "EMPLOYEE", login: "employee@hrgenius.com", desc: "Everyone's baseline. Uses self-service for leave, attendance, payslips, reviews, tickets and policies, and reads the directory.", perms: ["EMPLOYEE_READ"] }
+  ];
+  const HIRING_NOTE = "A seventh role, HR Manager, is seeded for organisations that split HR duties; it has no demo login.";
+
+  // probe results [label, path, admin, hr, payroll, recruiter, manager, employee] (1 = allowed)
+  const PROBES = [
+    ["Module access", null],
+    ["Analytics overview", "/analytics/overview", 1,1,1,0,0,0],
+    ["Audit logs", "/audit-logs", 1,1,0,0,0,0],
+    ["Payroll runs", "/payroll/runs", 1,0,1,0,0,0],
+    ["Recruitment requisitions", "/recruitment/requisitions", 1,1,0,1,0,0],
+    ["Asset register", "/assets", 1,1,0,0,0,0],
+    ["Employee directory", "/employees", 1,1,1,1,1,1],
+    ["Emma's private records (Employee, reports to Manager)", null],
+    ["Statutory: PAN, bank", "/employees/{emma}/statutory", 1,1,1,0,0,1],
+    ["Emergency contacts", "/employees/{emma}/emergency-contacts", 1,1,1,0,1,1],
+    ["Documents", "/employees/{emma}/documents", 1,1,1,0,1,1],
+    ["Payslip", "/payroll/payslips/{id}", 1,0,1,0,0,1],
+    ["Performance review", "/performance/reviews/{id}", 1,1,0,0,1,1],
+    ["Helpdesk ticket", "/helpdesk/tickets/{id}", 1,1,1,0,0,1],
+    ["Hana's private records (HR Admin, outside Manager's team)", null],
+    ["Statutory: PAN, bank", "/employees/{hana}/statutory", 1,1,1,0,0,0],
+    ["Emergency contacts", "/employees/{hana}/emergency-contacts", 1,1,1,0,0,0],
+    ["Documents", "/employees/{hana}/documents", 1,1,1,0,0,0]
+  ];
+
+  const LIFECYCLES = {
+    "Payroll run": { desc: "Prepared by Payroll, approved by HR, then marked paid. Separation of duties is enforced by permissions (FR-PAY-01).",
+      main: [["DRAFT","Payroll admin creates the month's run"],["CALCULATED","Payroll admin calculates every payslip"],["PENDING_APPROVAL","Payroll admin submits for approval"],["APPROVED","HR admin approves in the inbox"],["PAID","Payroll admin marks salaries paid"]], branches: [] },
+    "Leave request": { desc: "Approved by the employee's manager through the approval engine (FR-LV-03, FR-APR-01).",
+      main: [["PENDING","Employee applies against their balance"],["APPROVED","Manager approves; balance is deducted"]], branches: [["REJECTED","Manager rejects with a comment"],["CANCELLED","Employee withdraws before taking it"]] },
+    "Requisition": { desc: "A position opens for hiring only after approval (FR-REC-01).",
+      main: [["DRAFT","Recruiter drafts the position"],["PENDING_APPROVAL","Recruiter submits"],["OPEN","Hiring manager and approver agree; listed on careers site"],["CLOSED","Recruiter closes once filled"]], branches: [["ON_HOLD","Paused while open"],["REJECTED","Approver declines"],["CANCELLED","Withdrawn by the recruiter"]] },
+    "Offer": { desc: "Offers are approved before the letter goes out (FR-REC-04, FR-REC-05).",
+      main: [["DRAFT","Recruiter sets terms"],["PENDING_APPROVAL","Submitted to the approval engine"],["APPROVED","Approver signs off; PDF letter generated"],["SENT","Recruiter sends to the candidate"],["ACCEPTED","Candidate accepts; ready to hire"]], branches: [["DECLINED","Candidate declines"],["REJECTED","Approver declines"],["WITHDRAWN","Company withdraws"]] },
+    "Performance review": { desc: "Strictly ordered: the manager cannot assess before the employee does (FR-PRF-03).",
+      main: [["NOT_STARTED","Created when HR opens the cycle"],["SELF_SUBMITTED","Employee submits self-assessment"],["MANAGER_SUBMITTED","Manager submits assessment"],["ACKNOWLEDGED","Employee acknowledges the outcome"]], branches: [] },
+    "Helpdesk ticket": { desc: "A requester's reply on a resolved ticket reopens it (FR-HD-01 to 03).",
+      main: [["OPEN","Employee raises the ticket"],["IN_PROGRESS","Agent picks it up"],["RESOLVED","Agent resolves with a mandatory note"],["CLOSED","Requester closes and rates satisfaction"]], branches: [["OPEN again","Requester replies to a resolved ticket"]] },
+    "Policy": { desc: "Publishing a new version resets every acknowledgement (FR-POL-01).",
+      main: [["DRAFT","HR drafts the policy"],["PUBLISHED","HR publishes; employees must acknowledge"],["ARCHIVED","Retired from the policy list"]], branches: [] }
+  };
+
+  const TIMELINE = [
+    ["30 Sep","0f6cec7","Phase 1: foundation, Docker, Oracle and Flyway, JWT and RBAC, Angular shell", true],
+    ["30 Sep","adc927b","Phase 2: core HR APIs, profiles, documents, assets, import and export", true],
+    ["30 Sep","a04b469","Phase 2: core HR screens, org chart, light and dark theming", false],
+    ["30 Sep","9664e75","Phase 3: leave, attendance and the generic approval engine", true],
+    ["01 Oct","61b6615","Phase 4: recruitment, onboarding and public careers page", true],
+    ["01 Oct","6dfe37a","Phase 5: payroll runs, payslips and statutory deductions", true],
+    ["01 Oct","90a6fcf","Phase 6: performance reviews, weighted goals and feedback", true],
+    ["01 Oct","5654506","Phase 7: analytics, helpdesk and policy compliance", true],
+    ["01 Oct","321461c","Phase 8: employee self-service and password change", true],
+    ["01 Oct","79f36fb","Project report and diagrams; SRS baseline", false]
+  ];
+
+  const RUBRIC = [
+    ["Requirements and problem understanding", "Clarity, completeness and testability of requirements"],
+    ["System design and architecture", "Layering, data model, reuse of shared mechanisms"],
+    ["Implementation quality", "Correctness, code organisation, completeness of modules"],
+    ["Security and access control", "Data protection and enforcement of role rules"],
+    ["Testing and verification", "Evidence that requirements are met"],
+    ["Documentation and presentation", "This specification, the report and the demonstration"]
+  ];
+
+  /* ---------- section 0 figures ---------- */
+  $("#fig-fr").textContent = FR.length;
+
+  /* ---------- modules (2.2) ---------- */
+  const modBox = $("#modules");
+  MODULES.forEach(([code, name, blurb]) => {
+    const n = FR.filter(r => r[1] === code).length;
+    const b = el("button", "mod", `<span class="code">FR-${code} · ${n} req.</span><b>${name}</b><span>${blurb}</span>`);
+    b.type = "button";
+    b.addEventListener("click", () => { state.mod = code; renderExplorer(); $("#functional").scrollIntoView(); });
+    modBox.appendChild(b);
+  });
+
+  /* ---------- roles (2.3) ---------- */
+  let selectedRole = "employee";
+  function renderRoles() {
+    const tabs = $("#role-tabs"); tabs.innerHTML = "";
+    ROLES.forEach(r => {
+      const c = el("button", "chip", r.name); c.type = "button"; c.setAttribute("role", "tab");
+      c.setAttribute("aria-pressed", String(r.k === selectedRole));
+      c.addEventListener("click", () => { selectedRole = r.k; renderRoles(); renderMatrix(); });
+      tabs.appendChild(c);
+    });
+    const r = ROLES.find(x => x.k === selectedRole);
+    const held = new Set(r.perms);
+    $("#role-panel").innerHTML =
+      `<div><div class="label">${r.code}</div><h3 style="margin:.4rem 0 .5rem">${r.name}</h3><p class="small">${r.desc}</p>
+       <p class="small muted">Demo login <code>${r.login}</code> · ${held.size} of ${PERMS.length} permissions</p>
+       <p class="small muted">${HIRING_NOTE}</p></div>
+       <div><div class="label" style="margin-bottom:8px">Permissions</div><div class="perm-list">${PERMS.map(p => `<span class="perm${held.has(p) ? " has" : ""}">${p}</span>`).join("")}</div></div>`;
+  }
+
+  /* ---------- explorer (3) ---------- */
+  const state = { q: "", prio: "", meth: "", mod: "" };
+  function renderModChips() {
+    const box = $("#mod-chips"); box.innerHTML = "";
+    const mk = (code, label, n) => {
+      const c = el("button", "chip", `${label} <span class="n">${n}</span>`); c.type = "button";
+      c.setAttribute("aria-pressed", String(state.mod === code));
+      c.addEventListener("click", () => { state.mod = state.mod === code ? "" : code; renderExplorer(); });
+      box.appendChild(c);
+    };
+    mk("", "All modules", FR.length);
+    MODULES.forEach(([code, name]) => mk(code, name, FR.filter(r => r[1] === code).length));
+  }
+  const esc = s => s.replace(/[&<>"]/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch]));
+  function hi(text) {
+    let t = esc(text).replace(/\bshall\b/g, '<span class="shall">SHALL</span>');
+    if (state.q) {
+      const q = state.q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      t = t.replace(new RegExp("(" + q + ")(?![^<]*>)", "ig"), "<mark>$1</mark>");
+    }
+    return t;
+  }
+  function renderExplorer() {
+    renderModChips();
+    const q = state.q.toLowerCase();
+    const rows = FR.filter(r => (!state.mod || r[1] === state.mod) && (!state.prio || r[4] === state.prio) && (!state.meth || r[5] === state.meth)
+      && (!q || r.join(" ").toLowerCase().includes(q)));
+    $("#req-count").textContent = `Showing ${rows.length} of ${FR.length} requirements` + (state.mod ? ` in ${MOD_NAME[state.mod]}` : "");
+    const box = $("#reqs"); box.innerHTML = "";
+    if (!rows.length) { box.appendChild(el("div", "note", "No requirement matches these filters. Clear the search or choose another module.")); return; }
+    rows.forEach(([id, mod, title, stmt, prio, meth, ev, acc]) => {
+      const d = el("details", "req");
+      d.innerHTML = `<summary><span class="id">${id}</span><span class="t">${hi(title)}</span><span class="tags"><span class="tag ${prio === "Must" ? "must" : "should"}">${prio}</span><span class="tag ${meth === "Test" ? "test" : ""}">${meth}</span></span></summary>
+        <div class="req-body"><p>${hi(stmt)}</p>
+        <p><span class="k">Acceptance</span>${hi(acc)}</p>
+        <p><span class="k">Evidence</span><code>${hi(ev)}</code></p>
+        <p class="small muted">${MOD_NAME[mod]}</p></div>`;
+      box.appendChild(d);
+    });
+  }
+  $("#req-search").addEventListener("input", e => { state.q = e.target.value.trim(); renderExplorer(); });
+  document.querySelectorAll('input[name="prio"]').forEach(i => i.addEventListener("change", () => { state.prio = i.value; renderExplorer(); }));
+  document.querySelectorAll('input[name="meth"]').forEach(i => i.addEventListener("change", () => { state.meth = i.value; renderExplorer(); }));
+
+  /* ---------- lifecycle (3.1) ---------- */
+  let lcSel = "Payroll run";
+  function renderLifecycle() {
+    const tabs = $("#lc-tabs"); tabs.innerHTML = "";
+    Object.keys(LIFECYCLES).forEach(k => {
+      const c = el("button", "chip", k); c.type = "button"; c.setAttribute("aria-pressed", String(k === lcSel));
+      c.addEventListener("click", () => { lcSel = k; renderLifecycle(); });
+      tabs.appendChild(c);
+    });
+    const lc = LIFECYCLES[lcSel];
+    $("#lc-desc").textContent = lc.desc;
+    const rail = $("#lc-rail"); rail.innerHTML = "";
+    lc.main.forEach(([s, how], i) => {
+      const step = el("div", "lc-step");
+      if (i > 0) step.appendChild(el("div", "lc-arrow"));
+      step.appendChild(el("div", "lc-node", `<b>${s}</b><span>${how}</span>`));
+      rail.appendChild(step);
+    });
+    const br = $("#lc-branches"); br.innerHTML = "";
+    if (lc.branches.length) br.appendChild(el("span", "label", "Other outcomes"));
+    lc.branches.forEach(([s, how]) => br.appendChild(el("div", "lc-branch", `<b>${s}</b>${how}`)));
+  }
+
+  /* ---------- matrix (4) ---------- */
+  function renderMatrix() {
+    const t = $("#matrix");
+    const idx = ROLES.findIndex(r => r.k === selectedRole);
+    let h = `<thead><tr><th>Request</th>${ROLES.map((r, i) => `<th class="rc${i === idx ? " col-on" : ""}" data-k="${r.k}" tabindex="0">${r.name}</th>`).join("")}</tr></thead><tbody>`;
+    PROBES.forEach(p => {
+      if (p[1] === null) { h += `<tr class="grp"><td colspan="7">${p[0]}</td></tr>`; return; }
+      h += `<tr><td class="probe">${p[0]}<small>GET ${p[1]}</small></td>` +
+        p.slice(2).map((v, i) => `<td class="cell${i === idx ? " col-on" : ""}">${v ? '<span class="yes">200 Allowed</span>' : '<span class="no">403 Blocked</span>'}</td>`).join("") + "</tr>";
+    });
+    t.innerHTML = h + "</tbody>";
+    t.querySelectorAll("th.rc").forEach(th => {
+      const go = () => { selectedRole = th.dataset.k; renderRoles(); renderMatrix(); };
+      th.addEventListener("click", go);
+      th.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
+    });
+  }
+
+  /* ---------- NFR, traceability, tests, timeline ---------- */
+  $("#nfr-body").innerHTML = NFR.map(([id, req, target, by]) => `<tr><td class="mono" style="color:var(--accent);white-space:nowrap">${id}</td><td>${req}</td><td>${target}</td><td class="small">${by}</td></tr>`).join("");
+  function bars(boxSel, groups, classes) {
+    const max = Math.max(...groups.map(g => g[1]));
+    $(boxSel).innerHTML = groups.map(([label, n], i) => `<div class="bar-row"><span>${label}</span><div class="track"><div class="fill ${classes[i] || ""}" style="width:${(n / max * 100).toFixed(1)}%"></div></div><b>${n}</b></div>`).join("");
+  }
+  const count = (i, v) => FR.filter(r => r[i] === v).length;
+  bars("#bars-method", [["Test", count(5, "Test")], ["Inspection", count(5, "Inspection")], ["Demonstration", count(5, "Demonstration")]], ["", "alt", "alt2"]);
+  bars("#bars-prio", [["Must", count(4, "Must")], ["Should", count(4, "Should")]], ["", "alt"]);
+  $("#tests-body").innerHTML = TESTS.map(([c, w, r]) => `<tr><td class="mono" style="white-space:nowrap">${c}</td><td>${w}</td><td class="small mono">${r}</td></tr>`).join("");
+  $("#timeline").innerHTML = TIMELINE.map(([d, c, w, major]) => `<li class="${major ? "major" : ""}"><span class="when">${d}</span><span class="what"><code>${c}</code> ${w}</span></li>`).join("");
+
+  /* ---------- TOC highlight ---------- */
+  const tocLinks = [...document.querySelectorAll("#toc a")];
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting) tocLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + en.target.id)); });
+  }, { rootMargin: "-30% 0px -60% 0px" });
+  document.querySelectorAll("section.sec").forEach(s => io.observe(s));
+
+  renderRoles(); renderExplorer(); renderLifecycle(); renderMatrix();
+
+  /* ---------- sign-off (9) ---------- */
+  const SLOTS = [["student", "Student declaration · Aman Arora (2400320100152)"], ["guide", "Project Guide · Dr Radhika Singhal"],["hod", "Head of Department"], ["examiner", "External Examiner"]];
+  const VERDICT = { approved: ["Approved", ""], changes: ["Approved with changes", "changes"], revise: ["Revisions required", "revise"] };
+  let db = null, user = null, myId = null, signoffs = {}, readOnly = false, formDirty = false;
+
+  // rubric inputs
+  $("#so-rubric").innerHTML = RUBRIC.map(([c, s], i) => `<div class="rubric-row"><div class="crit">${c}<small>${s}</small></div><div class="seg" role="group" aria-label="${c}">${[1, 2, 3, 4, 5].map(v => `<input type="radio" name="r${i}" id="r${i}-${v}" value="${v}"><label for="r${i}-${v}">${v}</label>`).join("")}</div></div>`).join("");
+
+  function syncRoleFields() {
+    const student = $("#so-role").value === "student";
+    $("#so-declaration").hidden = !student;
+    $("#so-verdict-wrap").hidden = student;
+    $("#so-rubric-wrap").hidden = student;
+    $("#so-confirm-text").textContent = student ? "I make the declaration above." : "I have reviewed this specification and the evidence it cites.";
+  }
+  $("#so-role").addEventListener("change", syncRoleFields);
+  $("#so-form").addEventListener("input", () => { formDirty = true; });
+  syncRoleFields();
+
+  function msg(text, kind) { const m = $("#so-msg"); m.hidden = !text; m.textContent = text || ""; m.className = "note" + (kind ? " " + kind : ""); }
+  function mode(text, kind) { const m = $("#so-mode"); m.textContent = text; m.className = "note" + (kind ? " " + kind : ""); m.hidden = !text; }
+
+  function overall() {
+    const entries = Object.values(signoffs);
+    const by = k => entries.filter(e => e.role === k);
+    const reviewers = ["guide", "hod", "examiner"];
+    const signedSlots = SLOTS.filter(([k]) => by(k).length > 0).map(([k]) => k);
+    const anyRevise = entries.some(e => e.role !== "student" && e.verdict === "revise");
+    const scores = entries.filter(e => e.role !== "student" && Array.isArray(e.scores)).map(e => e.scores);
+    let avg = null;
+    if (scores.length) { const all = scores.flat().filter(n => typeof n === "number"); if (all.length) avg = all.reduce((a, b) => a + b, 0) / all.length; }
+    let status = "pending", title = "Awaiting signatures";
+    if (anyRevise) { status = "bad"; title = "Revisions required"; }
+    else if (signedSlots.length === 4 && reviewers.every(k => by(k).some(e => e.verdict === "approved" || e.verdict === "changes"))) {
+      status = "ok"; title = by("guide").concat(by("hod"), by("examiner")).some(e => e.verdict === "changes") ? "Approved with changes" : "Approved";
+    }
+    return { signedSlots, status, title, avg, scores };
+  }
+
+  async function renderSignoff() {
+    const o = overall();
+    const missing = SLOTS.filter(([k]) => !o.signedSlots.includes(k)).map(s => s[1]);
+    const banner = $("#so-banner");
+    banner.className = "so-banner" + (o.status === "ok" ? " ok" : o.status === "bad" ? " bad" : "");
+    $("#so-banner-title").textContent = o.title;
+    $("#so-banner-sub").textContent = missing.length ? `${o.signedSlots.length} of 4 signed. Waiting for: ${missing.join(", ")}.` : "All four signatures recorded.";
+    $("#so-avg").textContent = o.avg == null ? "–" : o.avg.toFixed(1) + " / 5";
+    const pill = $("#top-status");
+    pill.className = "status-pill" + (o.status === "ok" ? " ok" : o.status === "bad" ? " bad" : "");
+    $("#top-status-text").textContent = o.status === "pending" ? `Sign-off ${o.signedSlots.length}/4` : o.title;
+    $("#top-dots").innerHTML = SLOTS.map(([k]) => `<i class="${o.signedSlots.includes(k) ? "on" : ""}"></i>`).join("");
+    $("#ctrl-status").textContent = o.status === "pending" ? `Awaiting sign-off (${o.signedSlots.length}/4)` : o.title;
+
+    // rubric summary
+    const rs = $("#rubric-summary");
+    if (!o.scores.length) rs.innerHTML = `<p class="small muted" style="margin:0">No scores yet. Averages appear here once a reviewer signs.</p>` + RUBRIC.map(([c]) => `<div class="bar-row" style="margin-top:8px"><span class="small">${c}</span><div class="track"></div><b>–</b></div>`).join("");
+    else rs.innerHTML = `<div class="bars">` + RUBRIC.map(([c], i) => {
+      const vals = o.scores.map(s => s[i]).filter(n => typeof n === "number");
+      const a = vals.length ? vals.reduce((x, y) => x + y, 0) / vals.length : null;
+      return `<div class="bar-row" style="grid-template-columns:minmax(0,16em) minmax(0,1fr) 3em"><span class="small">${c}</span><div class="track"><div class="fill" style="width:${a == null ? 0 : a / 5 * 100}%"></div></div><b>${a == null ? "–" : a.toFixed(1)}</b></div>`;
+    }).join("") + `</div><p class="small muted" style="margin-bottom:0">From ${o.scores.length} reviewer${o.scores.length === 1 ? "" : "s"}.</p>`;
+
+    // slots
+    const ids = Object.keys(signoffs);
+    const ps = user && ids.length ? await user.profiles(ids) : {};
+    const box = $("#slots"); box.innerHTML = "";
+    SLOTS.forEach(([k, label]) => {
+      const list = Object.entries(signoffs).filter(([, e]) => e.role === k);
+      const s = el("div", "slot");
+      s.appendChild(el("div", "role", label));
+      if (!list.length) {
+        s.appendChild(el("div", "awaiting", "Awaiting signature"));
+        const line = el("div", "sigline"); line.appendChild(el("span", null, "Signature")); line.appendChild(el("span", null, "Date"));
+        s.appendChild(line);
+      }
+      list.forEach(([uid, e]) => {
+        const v = k === "student" ? ["Declared", "declared"] : (VERDICT[e.verdict] || ["Signed", ""]);
+        const st = el("div", "stamp " + v[1]); st.textContent = v[0];
+        const sm = document.createElement("small"); sm.textContent = fmtDate(e.signedAt); st.appendChild(sm);
+        s.appendChild(st);
+        const sig = el("div", "sig"); sig.textContent = e.signature || ""; s.appendChild(sig);
+        if (e.designation) { const d = el("div", "small muted"); d.textContent = e.designation; s.appendChild(d); }
+        if (e.remarks) { const r = el("div", "remark"); r.textContent = e.remarks; s.appendChild(r); }
+        const p = ps[uid];
+        const who = el("div", "who");
+        if (p) { const img = document.createElement("img"); img.src = p.avatarUrl; img.alt = ""; who.appendChild(img); }
+        const wt = document.createElement("span"); wt.textContent = "Signed in as " + ((p && p.name) || "a reviewer") + (uid === myId ? " (you)" : "");
+        who.appendChild(wt); s.appendChild(who);
+        const line = el("div", "sigline"); line.appendChild(el("span", null, "Signature")); const dt = el("span"); dt.textContent = fmtDate(e.signedAt); line.appendChild(dt);
+        s.appendChild(line);
+      });
+      box.appendChild(s);
+    });
+
+    // own entry
+    const mine = myId ? signoffs[myId] : null;
+    $("#so-withdraw").hidden = !mine || readOnly;
+    $("#so-submit").textContent = mine ? "Update my signature" : "Sign document";
+    if (mine && !formDirty) fillForm(mine);
+  }
+
+  function fmtDate(iso) { try { return new Date(iso).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" }); } catch (e) { return ""; } }
+  function fillForm(e) {
+    $("#so-role").value = e.role || "student";
+    $("#so-sign").value = e.signature || "";
+    $("#so-desig").value = e.designation || "";
+    $("#so-remarks").value = e.remarks || "";
+    document.querySelectorAll('input[name="verdict"]').forEach(i => { i.checked = i.value === e.verdict; });
+    (e.scores || []).forEach((v, i) => { const r = document.getElementById(`r${i}-${v}`); if (r) r.checked = true; });
+    syncRoleFields();
+  }
+
+  $("#so-form").addEventListener("submit", async ev => {
+    ev.preventDefault();
+    if (!db || !myId || readOnly) return;
+    const role = $("#so-role").value;
+    const signature = $("#so-sign").value.trim();
+    const verdict = (document.querySelector('input[name="verdict"]:checked') || {}).value || null;
+    const scores = RUBRIC.map((_, i) => { const c = document.querySelector(`input[name="r${i}"]:checked`); return c ? Number(c.value) : null; });
+    if (signature.length < 3) return msg("Type your full name as your signature.", "err");
+    if (role !== "student" && !verdict) return msg("Choose a verdict: approved, approved with changes, or revisions required.", "err");
+    if (role !== "student" && scores.some(s => s == null)) return msg("Score all six rubric criteria from 1 to 5.", "err");
+    if (role !== "student" && verdict === "revise" && !$("#so-remarks").value.trim()) return msg("Describe the revisions you require in the remarks.", "err");
+    if (!$("#so-confirm").checked) return msg("Tick the confirmation box to sign.", "err");
+    const body = { role, signature, designation: $("#so-desig").value.trim(), remarks: $("#so-remarks").value.trim(), signedAt: new Date().toISOString() };
+    if (role !== "student") { body.verdict = verdict; body.scores = scores; }
+    $("#so-submit").disabled = true; msg("Saving your signature…");
+    try {
+      await db.doc("signoffs/" + myId).set(body);
+      formDirty = false; $("#so-confirm").checked = false;
+      msg("Signed. Your signature is now part of this document for every viewer.", "okay");
+    } catch (e) {
+      if (e && e.code === "invalid_argument") { readOnly = true; applyReadOnly(); }
+      else msg("Your signature was not saved. Check your connection and sign again.", "err");
+    } finally { $("#so-submit").disabled = readOnly; }
+  });
+
+  $("#so-withdraw").addEventListener("click", () => { $("#so-withdraw").hidden = true; $("#so-withdraw-yes").hidden = false; msg("Withdraw your signature? It will be removed for every viewer.", ""); });
+  $("#so-withdraw-yes").addEventListener("click", async () => {
+    $("#so-withdraw-yes").hidden = true;
+    try { await db.doc("signoffs/" + myId).delete(); formDirty = false; $("#so-form").reset(); syncRoleFields(); msg("Your signature was withdrawn.", "okay"); }
+    catch (e) { msg("The signature could not be withdrawn. Try again.", "err"); }
+  });
+
+  function applyReadOnly() {
+    $("#so-form").hidden = true;
+    mode("You can view this sign-off record but not sign it. To sign, ask the document owner to give you Contributor access.", "");
+  }
+
+  async function initSignoff() {
+    renderSignoff();
+    if (!window.claude || typeof window.claude.use !== "function") { mode("Sign-off is recorded when this specification is opened on claude.ai. This copy is read-only.", ""); return; }
+    try { [db, user] = await Promise.all([window.claude.use("db"), window.claude.use("user")]); } catch (e) { db = null; }
+    if (!db) { mode("Sign in to claude.ai to view and record signatures.", ""); return; }
+    myId = user ? await user.id() : null;
+    db.collection("signoffs").onSnapshot(snap => {
+      const next = {};
+      snap.docs.forEach(d => { if (d.exists) next[d.id] = d.data(); });
+      signoffs = next; renderSignoff();
+    }, () => { mode("Signatures could not be loaded. Reload the page to try again.", "err"); });
+    if (!myId) { mode("You are viewing the sign-off record. Sign in with your own account to sign.", ""); return; }
+    mode("", ""); $("#so-form").hidden = false;
+  }
+  initSignoff();
+})();
+</script>

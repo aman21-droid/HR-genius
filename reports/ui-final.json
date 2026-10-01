@@ -1,0 +1,17 @@
+{
+  "startsLightEvenWithDarkOS": true,
+  "scans": [
+    {
+      "theme": "light",
+      "violations": []
+    },
+    {
+      "theme": "dark",
+      "violations": []
+    }
+  ],
+  "mobileWidth": 390,
+  "errorFallback": "—",
+  "errorNotice": true,
+  "errors": []
+}

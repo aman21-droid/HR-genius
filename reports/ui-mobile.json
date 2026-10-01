@@ -1,0 +1,125 @@
+[
+  {
+    "route": "dashboard",
+    "width": 390,
+    "overflowing": []
+  },
+  {
+    "route": "employees",
+    "width": 390,
+    "overflowing": []
+  },
+  {
+    "route": "attendance",
+    "width": 390,
+    "overflowing": []
+  },
+  {
+    "route": "leave",
+    "width": 390,
+    "overflowing": []
+  },
+  {
+    "route": "approvals",
+    "width": 390,
+    "overflowing": []
+  },
+  {
+    "route": "recruitment",
+    "width": 390,
+    "overflowing": []
+  },
+  {
+    "route": "onboarding",
+    "width": 390,
+    "overflowing": [
+      {
+        "tag": "DIV",
+        "class": "mat-mdc-tab-list",
+        "width": 363
+      },
+      {
+        "tag": "DIV",
+        "class": "mat-mdc-tab-labels",
+        "width": 363
+      }
+    ]
+  },
+  {
+    "route": "payroll",
+    "width": 390,
+    "overflowing": []
+  },
+  {
+    "route": "payslips",
+    "width": 390,
+    "overflowing": []
+  },
+  {
+    "route": "performance",
+    "width": 390,
+    "overflowing": [
+      {
+        "tag": "DIV",
+        "class": "mat-mdc-tab-list",
+        "width": 427
+      },
+      {
+        "tag": "DIV",
+        "class": "mat-mdc-tab-labels",
+        "width": 427
+      }
+    ]
+  },
+  {
+    "route": "analytics",
+    "width": 390,
+    "overflowing": []
+  },
+  {
+    "route": "helpdesk",
+    "width": 390,
+    "overflowing": []
+  },
+  {
+    "route": "policies",
+    "width": 390,
+    "overflowing": []
+  },
+  {
+    "route": "interviews",
+    "width": 390,
+    "overflowing": []
+  },
+  {
+    "route": "assets",
+    "width": 390,
+    "overflowing": []
+  },
+  {
+    "route": "org-chart",
+    "width": 390,
+    "overflowing": []
+  },
+  {
+    "route": "org/setup",
+    "width": 390,
+    "overflowing": [
+      {
+        "tag": "DIV",
+        "class": "mat-mdc-tab-list",
+        "width": 872
+      },
+      {
+        "tag": "DIV",
+        "class": "mat-mdc-tab-labels",
+        "width": 872
+      }
+    ]
+  },
+  {
+    "route": "documents/expiring",
+    "width": 390,
+    "overflowing": []
+  }
+]

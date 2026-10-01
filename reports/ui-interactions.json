@@ -1,0 +1,99 @@
+{
+  "checks": [
+    {
+      "name": "Dashboard period changes to six data points",
+      "passed": true
+    },
+    {
+      "name": "Dashboard data table has six rows",
+      "passed": true
+    },
+    {
+      "name": "Chart values accessible by keyboard",
+      "passed": true
+    },
+    {
+      "name": "Appreciation carousel advances",
+      "passed": true
+    },
+    {
+      "name": "Appreciation form opens and cancels",
+      "passed": true
+    },
+    {
+      "name": "Keyboard page search navigates",
+      "passed": true
+    },
+    {
+      "name": "Dark theme persists on reload",
+      "passed": true
+    },
+    {
+      "name": "Attendance day opens details",
+      "passed": true
+    },
+    {
+      "name": "Month navigation clears selected day",
+      "passed": true
+    },
+    {
+      "name": "Payroll comparison has keyboard tooltip",
+      "passed": true
+    },
+    {
+      "name": "Analytics period filters movement",
+      "passed": true
+    },
+    {
+      "name": "Analytics table view works",
+      "passed": true
+    },
+    {
+      "name": "Organisation expansion works from keyboard",
+      "passed": true
+    },
+    {
+      "name": "Expand does not navigate to profile",
+      "passed": true
+    },
+    {
+      "name": "Mobile dashboard has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "Mobile navigation closes after selecting page",
+      "passed": true
+    },
+    {
+      "name": "Analytics error offers retry",
+      "passed": true
+    },
+    {
+      "name": "Employee dashboard respects analytics permission",
+      "passed": true
+    },
+    {
+      "name": "Employee cannot see payroll-run navigation",
+      "passed": true
+    }
+  ],
+  "audits": [
+    {
+      "name": "login-light",
+      "violations": []
+    },
+    {
+      "name": "appreciation-dialog-light",
+      "violations": []
+    },
+    {
+      "name": "appreciation-dialog-dark",
+      "violations": []
+    },
+    {
+      "name": "attendance-dialog-dark",
+      "violations": []
+    }
+  ],
+  "errors": []
+}
