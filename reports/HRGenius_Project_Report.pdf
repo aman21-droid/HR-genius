@@ -1,0 +1,1054 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 12 /Kids [6 0 R 8 0 R 10 0 R 12 0 R 14 0 R 16 0 R 18 0 R 20 0 R 22 0 R 24 0 R 26 0 R 28 0 R] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Length 4548 >>
+stream
+BT /F2 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 807.33 Tm (HRGENIUS  |  HUMAN RESOURCE MANAGEMENT SYSTEM) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 797.89 m 539.00 797.89 l S
+BT /F2 18.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 760.13 Tm (HRGenius) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 733.45 Tm (Human Resource Management System) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 713.05 Tm (Detailed Project Report) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 693.88 Tm (Project focus: Secure, centralized management of employee information and core HR operations.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 675.28 Tm (Submitted by: [Student Name]) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 656.68 Tm (Register / Roll Number: [Register Number]) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 638.08 Tm (Department / Programme: [Department and Programme]) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 619.48 Tm (Institution: [Institution Name]) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 600.88 Tm (Project Guide: [Guide Name]) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 582.28 Tm (Academic Year: [Academic Year]) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 562.45 Tm (Abstract) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 543.28 Tm (HRGenius is a web-based Human Resource Management System designed to organize employee) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 530.68 Tm (information and support routine HR administration through a common application. Organizations that) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 518.08 Tm (maintain personnel records in spreadsheets, paper files, email attachments, and disconnected folders) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 505.48 Tm (may encounter inconsistent data, slow information retrieval, limited accountability, and difficulty) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 492.88 Tm (controlling access to confidential information. This project addresses these problems by providing) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 480.28 Tm (structured employee records, organization master data, employee profiles, reporting relationships,) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 467.68 Tm (document management, asset tracking, and an audit trail.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 449.08 Tm (The application uses Angular 18 for its user interface, Java 21 with Spring Boot 3.3.4 for backend) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 436.48 Tm (services, and Oracle Free 23 as the intended database. Authentication uses access and refresh tokens,) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 423.88 Tm (while permissions and employee-level access rules control available operations. Selected sensitive) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 411.28 Tm (identifiers are encrypted in storage and masked in normal responses. Database migrations establish a) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 398.68 Tm (repeatable schema and demonstration dataset.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 380.08 Tm (This report describes the problem, objectives, scope, requirements, feasibility, architecture, database) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 367.48 Tm (design, modules, workflows, security, deployment, testing approach, and future development. It is) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 354.88 Tm (based on the supplied source repository. Foundation and Core HR features are represented in the) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 342.28 Tm (implementation; attendance, leave, recruitment, payroll processing, and performance management) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 329.68 Tm (remain future phases. Benefits are expected outcomes, and no measured productivity or performance) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 317.08 Tm (improvement is claimed.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 298.48 Tm (Keywords: HRMS, employee management, Angular, Spring Boot, Oracle, role-based access control.) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 40.89 m 539.00 40.89 l S
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 23.33 Tm (DETAILED PROJECT REPORT) Tj ET
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 472.00 23.33 Tm (1 / 12) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Length 8434 >>
+stream
+BT /F2 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 807.33 Tm (HRGENIUS  |  HUMAN RESOURCE MANAGEMENT SYSTEM) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 797.89 m 539.00 797.89 l S
+BT /F2 18.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 760.13 Tm (Contents and Introduction) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 733.45 Tm (Report contents) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 56.00 702.89 77.28 20.00 re B
+BT /F2 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 710.18 Tm (Page) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 133.28 702.89 405.72 20.00 re B
+BT /F2 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 139.28 710.18 Tm (Topic) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 682.89 77.28 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 690.18 Tm (1) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 133.28 682.89 405.72 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 139.28 690.18 Tm (Title page and abstract) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 662.89 77.28 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 670.18 Tm (2) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 133.28 662.89 405.72 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 139.28 670.18 Tm (Contents and introduction) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 642.89 77.28 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 650.18 Tm (3) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 133.28 642.89 405.72 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 139.28 650.18 Tm (Problem statement and existing-system analysis) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 622.89 77.28 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 630.18 Tm (4) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 133.28 622.89 405.72 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 139.28 630.18 Tm (Objectives, scope, and feasibility study) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 602.89 77.28 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 610.18 Tm (5) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 133.28 602.89 405.72 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 139.28 610.18 Tm (Functional and non-functional requirements) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 582.89 77.28 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 590.18 Tm (6) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 133.28 582.89 405.72 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 139.28 590.18 Tm (Development approach, architecture, and use case diagram) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 562.89 77.28 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 570.18 Tm (7) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 133.28 562.89 405.72 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 139.28 570.18 Tm (Database design and entity-relationship diagram) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 542.89 77.28 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 550.18 Tm (8) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 133.28 542.89 405.72 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 139.28 550.18 Tm (Functional modules and user responsibilities) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 522.89 77.28 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 530.18 Tm (9) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 133.28 522.89 405.72 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 139.28 530.18 Tm (Context and Level 1 data flow diagrams) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 502.89 77.28 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 510.18 Tm (10) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 133.28 502.89 405.72 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 139.28 510.18 Tm (User interface, security, and deployment) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 482.89 77.28 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 490.18 Tm (11) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 133.28 482.89 405.72 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 139.28 490.18 Tm (Testing strategy and acceptance criteria) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 462.89 77.28 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 470.18 Tm (12) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 133.28 462.89 405.72 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 139.28 470.18 Tm (Benefits, limitations, future scope, and references) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 444.05 Tm (1. Introduction) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 424.88 Tm (Human resource administration depends on reliable information about employees, their positions,) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 412.28 Tm (departments, reporting managers, documents, and assigned equipment. Even basic activities, such as) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 399.68 Tm (locating an employee's current department or identifying the holder of a company laptop, require) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 387.08 Tm (records that are accurate and accessible to the right people. As an organization grows, maintaining) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 374.48 Tm (these relationships across independent files becomes increasingly difficult.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 355.88 Tm (An HR management application provides a shared environment for these activities. HR personnel) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 343.28 Tm (maintain official records, managers access relevant team information, and employees use permitted) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 330.68 Tm (self-service functions. Centralization alone is insufficient: the application must also distinguish public) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 318.08 Tm (workplace information from personal and sensitive information, validate changes, and retain a history of) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 305.48 Tm (significant actions.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 285.65 Tm (1.1 Project overview) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 266.48 Tm (HRGenius implements these ideas through a browser interface connected to a REST API and a) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 253.88 Tm (relational database. The current application includes a dashboard, employee directory, employee) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 241.28 Tm (creation and editing, profile tabs, organization setup, an organization chart, document expiry views,) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 228.68 Tm (assets, spreadsheet exchange, and audit-log access. The code is organized by functional area so that) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 216.08 Tm (additional HR services can be introduced in later development phases.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 196.25 Tm (1.2 Purpose and evidence basis) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 177.08 Tm (The purpose of this report is to explain the engineering and business reasoning behind the project in a) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 164.48 Tm (formal academic format. Statements about implemented functions are drawn from the README, routes,) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 151.88 Tm (controllers, services, migrations, dependency files, and existing test source. This is a source-based) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 139.28 Tm (report, not a record of a completed production rollout or a user survey. The title-page placeholders) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 126.68 Tm (should be replaced with the student's actual submission details.) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 40.89 m 539.00 40.89 l S
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 23.33 Tm (DETAILED PROJECT REPORT) Tj ET
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 472.00 23.33 Tm (2 / 12) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 7 0 R >>
+endobj
+9 0 obj
+<< /Length 8112 >>
+stream
+BT /F2 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 807.33 Tm (HRGENIUS  |  HUMAN RESOURCE MANAGEMENT SYSTEM) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 797.89 m 539.00 797.89 l S
+BT /F2 18.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 760.13 Tm (Problem Statement and Existing System) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 733.45 Tm (2. Problem statement) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 714.28 Tm (The problem addressed by HRGenius is the absence of a single, structured, and access-controlled) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 701.68 Tm (location for maintaining employee and organizational information. When records are distributed across) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 689.08 Tm (spreadsheets, emails, paper files, and individual computers, staff may spend unnecessary time locating) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 676.48 Tm (information, comparing versions, and manually coordinating updates. These methods also make it) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 663.88 Tm (difficult to determine who changed a record and whether a person should be allowed to view it.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 645.28 Tm (For example, an employee transfer can affect the department record, reporting manager, directory) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 632.68 Tm (entry, and internal HR history. If each item is maintained separately, one file may show the new) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 620.08 Tm (department while another continues to show the old manager. Similar inconsistencies can occur when) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 607.48 Tm (equipment is reassigned or an employee submits a replacement document. The system should) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 594.88 Tm (represent these related activities through consistent records and controlled workflows.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 575.05 Tm (2.1 Existing-system analysis) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 555.88 Tm (For this study, the existing system is an assumed manual or partially computerized process. It is used) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 543.28 Tm (as a design baseline rather than as a claim about a particular organization's current operations.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 530.68 Tm (Employee details are entered in spreadsheets, documents are stored in folders, and changes are) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 518.08 Tm (communicated through email or verbal instructions. Access often depends on possession of the file) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 505.48 Tm (instead of a clearly defined application permission.) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 56.00 475.49 207.69 20.00 re B
+BT /F2 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 482.78 Tm (Problem area) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 263.69 475.49 275.31 20.00 re B
+BT /F2 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 482.78 Tm (Limitation of the assumed existing process) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 455.49 207.69 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 462.78 Tm (Data consistency) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 455.49 275.31 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 462.78 Tm (Multiple copies can contain conflicting employee information.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 435.49 207.69 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 442.78 Tm (Information retrieval) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 435.49 275.31 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 442.78 Tm (Staff search several files to assemble a complete profile.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 403.49 207.69 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 422.78 Tm (Confidentiality) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 403.49 275.31 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 422.78 Tm (Shared files may expose more information than a task) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 410.78 Tm (requires.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 383.49 207.69 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 390.78 Tm (Document follow-up) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 383.49 275.31 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 390.78 Tm (Expiry dates depend on manual checking and reminders.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 363.49 207.69 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 370.78 Tm (Asset accountability) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 363.49 275.31 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 370.78 Tm (Ownership and return history may be recorded separately.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 343.49 207.69 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 350.78 Tm (Change tracking) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 343.49 275.31 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 350.78 Tm (The reason, author, and timing of a change may be unclear.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 323.49 207.69 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 330.78 Tm (Reporting structure) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 323.49 275.31 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 330.78 Tm (Transfers may leave reporting relationships out of date.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 304.65 Tm (2.2 Causes and operational impact) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 285.48 Tm (These difficulties arise from duplicate entry, inconsistent naming, weak validation, disconnected) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 272.88 Tm (storage, and limited permission control. Their practical effects include repeated administrative work,) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 260.28 Tm (delayed responses to employee requests, incomplete handovers, and uncertainty about the current) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 247.68 Tm (version of a record. As the number of employees and locations increases, informal coordination) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 235.08 Tm (becomes harder to maintain.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 215.25 Tm (2.3 Need for the project) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 196.08 Tm (A suitable solution should maintain one logical employee record, connect it to validated organizational) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 183.48 Tm (data, restrict sensitive information, and record important changes. HRGenius therefore concentrates) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 170.88 Tm (first on a dependable Core HR foundation. Establishing trustworthy employee data is also a prerequisite) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 158.28 Tm (for future attendance, recruitment, and payroll modules. The project's success should be evaluated) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 145.68 Tm (through data consistency, correct authorization, usable workflows, and verified functional behavior) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 133.08 Tm (rather than unsupported claims about percentage savings.) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 40.89 m 539.00 40.89 l S
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 23.33 Tm (DETAILED PROJECT REPORT) Tj ET
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 472.00 23.33 Tm (3 / 12) Tj ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 9 0 R >>
+endobj
+11 0 obj
+<< /Length 7638 >>
+stream
+BT /F2 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 807.33 Tm (HRGENIUS  |  HUMAN RESOURCE MANAGEMENT SYSTEM) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 797.89 m 539.00 797.89 l S
+BT /F2 18.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 760.13 Tm (Objectives, Proposed System, and Scope) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 733.45 Tm (3. Primary objective) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 714.28 Tm (The primary objective is to develop a centralized, maintainable HR application that enables authorized) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 701.68 Tm (users to manage employee information and related administrative records through a consistent web) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 689.08 Tm (interface.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 669.25 Tm (3.1 Specific objectives) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 650.08 Tm (1. Maintain searchable employee records and structured personal and employment profiles.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 631.48 Tm (2. Standardize organizational data and represent reporting relationships through an organization chart.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 612.88 Tm (3. Enforce authentication, permissions, employee-level access, and sensitive-field protection.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 594.28 Tm (4. Manage documents, verification, expiry alerts, company assets, and allocation history.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 575.68 Tm (5. Support validated spreadsheet import and authorized export of employee data.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 557.08 Tm (6. Record significant changes and provide a modular foundation for later HR services.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 537.25 Tm (3.2 Proposed system) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 518.08 Tm (The proposed system replaces disconnected record handling with an Angular application connected to) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 505.48 Tm (Spring Boot services and Oracle storage. Users sign in once and interact with screens appropriate to) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 492.88 Tm (their responsibilities. Requests are validated and authorized on the server before data is returned or) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 480.28 Tm (changed. Employee records reference organization masters so that department, location, and) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 467.68 Tm (designation values remain consistent across profiles.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 449.08 Tm (HR staff can maintain core records and review documents, managers can access permitted team) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 436.48 Tm (information, and employees can access their own information and selected self-service operations. The) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 423.88 Tm (dashboard summarizes available Core HR data, including people, departments, locations, team size) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 411.28 Tm (where applicable, and documents needing attention.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 391.45 Tm (3.3 Scope boundary) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 56.00 360.89 207.69 20.00 re B
+BT /F2 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 368.18 Tm (Included in the current source) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 263.69 360.89 275.31 20.00 re B
+BT /F2 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 368.18 Tm (Planned for later phases) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 340.89 207.69 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 348.18 Tm (Login, token refresh, roles, and permissions) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 340.89 275.31 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 348.18 Tm (Attendance and leave administration) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 320.89 207.69 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 328.18 Tm (Employee records and organization masters) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 320.89 275.31 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 328.18 Tm (Recruitment and onboarding workflows) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 300.89 207.69 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 308.18 Tm (Profiles, directory, and organization chart) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 300.89 275.31 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 308.18 Tm (Payroll calculations and payslip generation) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 280.89 207.69 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 288.18 Tm (Documents, expiry digest, and assets) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 280.89 275.31 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 288.18 Tm (Performance reviews and goal management) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 260.89 207.69 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 268.18 Tm (Spreadsheet exchange, timeline, and audit log) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 260.89 275.31 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 268.18 Tm (Advanced analytics and report builder) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 243.28 Tm (The presence of payroll-related roles, compensation fields, statutory information, or a PDF library does) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 230.68 Tm (not establish an implemented payroll-processing module. Similarly, recording an employment status is) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 218.08 Tm (distinct from implementing a complete onboarding or offboarding workflow.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 198.25 Tm (3.4 Success criteria) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 179.08 Tm (Success requires consistent data, correct authorization, valid relationships, reliable workflows, and) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 166.48 Tm (traceable changes. Proposed acceptance checks appear on page 11; operational benefits require) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 153.88 Tm (separate measurement.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 134.05 Tm (3.5 Feasibility analysis) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 114.88 Tm (Technical: Application layers, migrations, and tests provide a demonstrable foundation; Oracle) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 102.28 Tm (verification remains necessary. Operational: Adoption needs training, clean master data, and defined) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 89.68 Tm (HR ownership. Economic and schedule: Incremental delivery limits initial scope, while hosting,) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 77.08 Tm (migration, support, and later modules require separate cost and effort estimates.) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 40.89 m 539.00 40.89 l S
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 23.33 Tm (DETAILED PROJECT REPORT) Tj ET
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 472.00 23.33 Tm (4 / 12) Tj ET
+endstream
+endobj
+12 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 11 0 R >>
+endobj
+13 0 obj
+<< /Length 9418 >>
+stream
+BT /F2 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 807.33 Tm (HRGENIUS  |  HUMAN RESOURCE MANAGEMENT SYSTEM) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 797.89 m 539.00 797.89 l S
+BT /F2 18.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 760.13 Tm (Functional and Non-functional Requirements) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 733.45 Tm (4. Functional requirements) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 714.28 Tm (The system shall authenticate users; maintain searchable employee records and organizational) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 701.68 Tm (masters; enforce role and employee-level access; manage documents and expiry; track asset) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 689.08 Tm (allocations; import and export spreadsheets; and display hierarchy, timeline, and audit records. These) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 676.48 Tm (correspond to FR-01 through FR-08, respectively, with acceptance checks on page 11.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 656.65 Tm (4.1 Non-functional requirements) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 637.48 Tm (The following requirements define system quality. Numeric values are proposed acceptance targets for) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 624.88 Tm (evaluation, not measured results or established service commitments.) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 56.00 594.89 120.75 20.00 re B
+BT /F2 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 602.18 Tm (Quality requirement) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 176.75 594.89 362.25 20.00 re B
+BT /F2 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 602.18 Tm (Requirement and verification criterion) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 550.89 120.75 44.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 582.18 Tm (NFR-01: Performance) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 176.75 550.89 362.25 44.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 582.18 Tm (Proposed target: 95% of directory searches complete within 2 seconds with 10,000) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 570.18 Tm (employees and 50 concurrent users. Verify by load testing in a documented) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 558.18 Tm (environment.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 506.89 120.75 44.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 538.18 Tm (NFR-02: Security and) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 526.18 Tm (privacy) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 176.75 506.89 362.25 44.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 538.18 Tm (Enforce server-side permissions, protect selected sensitive identifiers, and restrict) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 526.18 Tm (uploaded-file access. Verify that direct unauthorized requests fail and responses) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 514.18 Tm (exclude restricted personal data.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 462.89 120.75 44.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 494.18 Tm (NFR-03: Reliability and) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 482.18 Tm (integrity) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 176.75 462.89 362.25 44.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 494.18 Tm (Preserve valid records after rejected operations; prevent duplicate identities,) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 482.18 Tm (reporting cycles, and partial imports. Verify rollback, constraint, and failure) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 470.18 Tm (scenarios through integration tests.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 418.89 120.75 44.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 450.18 Tm (NFR-04: Availability) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 176.75 418.89 362.25 44.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 450.18 Tm (Proposed target: 99.5% monthly availability, excluding agreed maintenance. Monitor) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 438.18 Tm (successful login and employee API checks; hosting and recovery arrangements) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 426.18 Tm (must support this target.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 374.89 120.75 44.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 406.18 Tm (NFR-05: Usability and) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 394.18 Tm (accessibility) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 176.75 374.89 362.25 44.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 406.18 Tm (Provide clear labels, actionable errors, keyboard-operable controls, and visible) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 394.18 Tm (focus. Verify login, employee search, and document upload through browser and) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 382.18 Tm (representative-user checks.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 330.89 120.75 44.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 362.18 Tm (NFR-06: Maintainability) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 176.75 330.89 362.25 44.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 362.18 Tm (Keep UI, business rules, and persistence separate; version database changes and) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 350.18 Tm (document APIs. Verify changes through code review, automated tests, and) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 338.18 Tm (repeatable builds.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 286.89 120.75 44.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 318.18 Tm (NFR-07: Scalability) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 176.75 286.89 362.25 44.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 318.18 Tm (Preserve correct behavior as employee volume and concurrency increase. Test) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 306.18 Tm (progressively larger workloads; review pagination, indexes, memory, and) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 294.18 Tm (bottlenecks before expanding deployment capacity.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 242.89 120.75 44.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 274.18 Tm (NFR-08: Compatibility) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 262.18 Tm (and portability) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 176.75 242.89 362.25 44.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 274.18 Tm (Support the agreed browser matrix and reproducible setup. Verify key workflows in) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 262.18 Tm (Chrome, Edge, and Firefox, plus target Oracle deployment and documented) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 250.18 Tm (development configurations.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 198.89 120.75 44.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 230.18 Tm (NFR-09: Backup and) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 218.18 Tm (recovery) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 176.75 198.89 362.25 44.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 230.18 Tm (Back up database records and uploaded files consistently. Proposed recovery point:) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 218.18 Tm (24 hours; recovery time: 4 hours. Verify through a timed restoration exercise and) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 206.18 Tm (document checks.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 154.89 120.75 44.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 186.18 Tm (NFR-10: Auditability) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 176.75 154.89 362.25 44.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 186.18 Tm (Record actor, action or change, affected record, and time for significant operations.) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 174.18 Tm (Verify history after changes and sensitive reveals; restrict audit access to authorized) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.75 162.18 Tm (users.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 136.05 Tm (4.2 Software and environment requirements) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 116.88 Tm (The project targets Java 21, Spring Boot 3.3.4, Angular 18, Node.js 20+, and Oracle Free 23. Maven) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 104.28 Tm (Wrapper and Docker Compose support setup; H2 supports development and tests. Hardware capacity) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 91.68 Tm (must be validated under the proposed workload. No hardware minimum has been measured.) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 40.89 m 539.00 40.89 l S
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 23.33 Tm (DETAILED PROJECT REPORT) Tj ET
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 472.00 23.33 Tm (5 / 12) Tj ET
+endstream
+endobj
+14 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 13 0 R >>
+endobj
+15 0 obj
+<< /Length 10662 >>
+stream
+BT /F2 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 807.33 Tm (HRGENIUS  |  HUMAN RESOURCE MANAGEMENT SYSTEM) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 797.89 m 539.00 797.89 l S
+BT /F2 18.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 760.13 Tm (Development Approach and Architecture) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 733.45 Tm (5. Development approach) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 714.28 Tm (The roadmap follows incremental delivery: establish authentication and application infrastructure,) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 701.68 Tm (implement Core HR, and then extend the shared employee foundation. A suitable iteration defines a) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 689.08 Tm (use case, designs its data and permissions, implements the service and screen, and verifies its) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 676.48 Tm (behavior. The repository does not establish a particular team's sprint history.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 656.65 Tm (5.1 Use case diagram) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 189.33 371.89 244.02 270.18 re B
+BT /F2 10.06 Tf 0.090 0.196 0.302 rg 1 0 0 1 244.89 629.79 Tm (HRGenius - Core HR system) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 116.38 628.98 m 116.38 632.32 113.67 635.02 110.34 635.02 c 107.00 635.02 104.30 632.32 104.30 628.98 c 104.30 625.65 107.00 622.95 110.34 622.95 c 113.67 622.95 116.38 625.65 116.38 628.98 c B
+0.090 0.196 0.302 RG 0.65 w 110.34 622.95 m 110.34 604.33 l S
+0.090 0.196 0.302 RG 0.65 w 98.26 616.41 m 122.41 616.41 l S
+0.090 0.196 0.302 RG 0.65 w 110.34 604.33 m 99.27 592.26 l S
+0.090 0.196 0.302 RG 0.65 w 110.34 604.33 m 121.41 592.26 l S
+BT /F2 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 73.79 582.22 Tm (Authenticated user) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 116.38 532.89 m 116.38 536.22 113.67 538.92 110.34 538.92 c 107.00 538.92 104.30 536.22 104.30 532.89 c 104.30 529.55 107.00 526.85 110.34 526.85 c 113.67 526.85 116.38 529.55 116.38 532.89 c B
+0.090 0.196 0.302 RG 0.65 w 110.34 526.85 m 110.34 508.23 l S
+0.090 0.196 0.302 RG 0.65 w 98.26 520.31 m 122.41 520.31 l S
+0.090 0.196 0.302 RG 0.65 w 110.34 508.23 m 99.27 496.16 l S
+0.090 0.196 0.302 RG 0.65 w 110.34 508.23 m 121.41 496.16 l S
+BT /F2 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 77.46 486.13 Tm (HR administrator) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 116.38 453.39 m 116.38 456.73 113.67 459.43 110.34 459.43 c 107.00 459.43 104.30 456.73 104.30 453.39 c 104.30 450.06 107.00 447.36 110.34 447.36 c 113.67 447.36 116.38 450.06 116.38 453.39 c B
+0.090 0.196 0.302 RG 0.65 w 110.34 447.36 m 110.34 428.74 l S
+0.090 0.196 0.302 RG 0.65 w 98.26 440.81 m 122.41 440.81 l S
+0.090 0.196 0.302 RG 0.65 w 110.34 428.74 m 99.27 416.66 l S
+0.090 0.196 0.302 RG 0.65 w 110.34 428.74 m 121.41 416.66 l S
+BT /F2 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 93.04 406.63 Tm (Manager) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 497.24 533.39 m 497.24 536.72 494.54 539.43 491.20 539.43 c 487.87 539.43 485.17 536.72 485.17 533.39 c 485.17 530.06 487.87 527.35 491.20 527.35 c 494.54 527.35 497.24 530.06 497.24 533.39 c B
+0.090 0.196 0.302 RG 0.65 w 491.20 527.35 m 491.20 508.74 l S
+0.090 0.196 0.302 RG 0.65 w 479.13 520.81 m 503.28 520.81 l S
+0.090 0.196 0.302 RG 0.65 w 491.20 508.74 m 480.13 496.66 l S
+0.090 0.196 0.302 RG 0.65 w 491.20 508.74 m 502.27 496.66 l S
+BT /F2 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 471.71 486.63 Tm (Employee) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 455.48 374.40 72.95 31.19 re B
+BT /F1 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 469.39 388.02 Tm (Mail service) Tj ET
+0.090 0.196 0.302 RG 0.65 w 110.34 538.92 m 68.08 553.01 l S
+0.090 0.196 0.302 RG 0.65 w 68.08 553.01 m 110.34 580.68 l S
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 110.34 580.68 m 103.91 579.48 l 106.66 575.27 l h B
+0.090 0.196 0.302 RG 0.65 w 110.34 459.43 m 60.02 473.52 l S
+0.090 0.196 0.302 RG 0.65 w 60.02 473.52 m 60.02 568.11 l S
+0.090 0.196 0.302 RG 0.65 w 60.02 568.11 m 110.34 580.68 l S
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 110.34 580.68 m 103.87 581.66 l 105.09 576.78 l h B
+0.090 0.196 0.302 RG 0.65 w 491.20 539.43 m 532.46 554.52 l S
+0.090 0.196 0.302 RG 0.65 w 532.46 554.52 m 532.46 645.59 l S
+0.090 0.196 0.302 RG 0.65 w 532.46 645.59 m 110.34 645.59 l S
+0.090 0.196 0.302 RG 0.65 w 110.34 645.59 m 110.34 635.02 l S
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 110.34 635.02 m 112.85 641.06 l 107.82 641.06 l h B
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 413.22 609.11 m 413.22 615.64 367.04 620.93 310.08 620.93 c 253.12 620.93 206.94 615.64 206.94 609.11 c 206.94 602.58 253.12 597.29 310.08 597.29 c 367.04 597.29 413.22 602.58 413.22 609.11 c B
+BT /F1 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 261.59 607.13 Tm (Sign in / maintain session) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 413.22 578.92 m 413.22 585.45 367.04 590.75 310.08 590.75 c 253.12 590.75 206.94 585.45 206.94 578.92 c 206.94 572.39 253.12 567.10 310.08 567.10 c 367.04 567.10 413.22 572.39 413.22 578.92 c B
+BT /F1 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 239.72 576.94 Tm (View directory and organization chart) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 413.22 547.23 m 413.22 553.76 367.04 559.05 310.08 559.05 c 253.12 559.05 206.94 553.76 206.94 547.23 c 206.94 540.70 253.12 535.40 310.08 535.40 c 367.04 535.40 413.22 540.70 413.22 547.23 c B
+BT /F1 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 245.90 545.24 Tm (Manage employees / organization) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 413.22 516.03 m 413.22 522.56 367.04 527.86 310.08 527.86 c 253.12 527.86 206.94 522.56 206.94 516.03 c 206.94 509.50 253.12 504.21 310.08 504.21 c 367.04 504.21 413.22 509.50 413.22 516.03 c B
+BT /F1 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 244.24 514.05 Tm (Manage assets / import and export) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 413.22 484.84 m 413.22 491.37 367.04 496.66 310.08 496.66 c 253.12 496.66 206.94 491.37 206.94 484.84 c 206.94 478.31 253.12 473.02 310.08 473.02 c 367.04 473.02 413.22 478.31 413.22 484.84 c B
+BT /F1 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 239.72 482.86 Tm (Review documents and audit records) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 413.22 453.64 m 413.22 460.17 367.04 465.47 310.08 465.47 c 253.12 465.47 206.94 460.17 206.94 453.64 c 206.94 447.11 253.12 441.82 310.08 441.82 c 367.04 441.82 413.22 447.11 413.22 453.64 c B
+BT /F1 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 246.86 451.66 Tm (View permitted team / own profile) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 413.22 421.44 m 413.22 427.97 367.04 433.27 310.08 433.27 c 253.12 433.27 206.94 427.97 206.94 421.44 c 206.94 414.91 253.12 409.62 310.08 409.62 c 367.04 409.62 413.22 414.91 413.22 421.44 c B
+BT /F1 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 243.29 419.46 Tm (Maintain own contacts / documents) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 413.22 390.25 m 413.22 396.78 367.04 402.07 310.08 402.07 c 253.12 402.07 206.94 396.78 206.94 390.25 c 206.94 383.72 253.12 378.43 310.08 378.43 c 367.04 378.43 413.22 383.72 413.22 390.25 c B
+BT /F1 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 254.93 388.27 Tm (Send document expiry digest) Tj ET
+0.090 0.196 0.302 RG 0.65 w 122.92 616.41 m 206.94 608.86 l S
+0.090 0.196 0.302 RG 0.65 w 122.92 607.35 m 206.94 579.68 l S
+0.090 0.196 0.302 RG 0.65 w 122.41 519.30 m 206.94 547.48 l S
+0.090 0.196 0.302 RG 0.65 w 122.41 519.30 m 206.94 515.78 l S
+0.090 0.196 0.302 RG 0.65 w 122.41 519.30 m 206.94 485.09 l S
+0.090 0.196 0.302 RG 0.65 w 122.41 439.81 m 206.94 453.90 l S
+0.090 0.196 0.302 RG 0.65 w 479.13 519.81 m 413.22 453.90 l S
+0.090 0.196 0.302 RG 0.65 w 479.13 510.75 m 413.22 421.70 l S
+0.090 0.196 0.302 RG 0.65 w 413.22 390.50 m 455.48 390.50 l S
+0.090 0.196 0.302 RG 0.65 w 122.41 508.74 m 170.21 390.50 l S
+0.090 0.196 0.302 RG 0.65 w 170.21 390.50 m 206.94 390.50 l S
+BT /F1 9.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 355.99 Tm (Figure 1. Use case diagram for the implemented Core HR system.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 336.95 Tm (The general authenticated-user actor covers common functions. Specialized actors inherit those) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 324.35 Tm (functions through the UML generalization arrows. HR administration represents users with the relevant) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 311.75 Tm (permissions; manager and employee access remains subject to server-side checks. The external mail) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 299.15 Tm (service supports expiry-digest delivery.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 279.32 Tm (5.2 Layer responsibilities) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 260.15 Tm (Presentation layer: Angular standalone components provide forms, profile tabs, lists, and navigation.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 247.55 Tm (Services call the API, and guards control navigation. Feature routes are lazy loaded.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 228.95 Tm (Application layer: Spring Boot controllers expose /api/v1 endpoints. Services enforce business rules,) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 216.35 Tm (authorization, transactions, and history recording. Data transfer objects define requests and responses.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 197.75 Tm (Persistence layer: JPA repositories access Oracle records. Constraints protect relationships and) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 185.15 Tm (uniqueness, while Flyway migrations provide reproducible schema changes.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 165.32 Tm (5.3 Request flow) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 146.15 Tm (Browser requests pass through security and controllers to business services and repositories. Services) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 133.55 Tm (validate changes, apply employee-level access rules, and write history where appropriate. File storage) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 120.95 Tm (and mail support the main application. Figure 3 on page 9 shows the system boundary; Figure 4) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 108.35 Tm (decomposes its data processing.) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 40.89 m 539.00 40.89 l S
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 23.33 Tm (DETAILED PROJECT REPORT) Tj ET
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 472.00 23.33 Tm (6 / 12) Tj ET
+endstream
+endobj
+16 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 15 0 R >>
+endobj
+17 0 obj
+<< /Length 10942 >>
+stream
+BT /F2 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 807.33 Tm (HRGENIUS  |  HUMAN RESOURCE MANAGEMENT SYSTEM) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 797.89 m 539.00 797.89 l S
+BT /F2 18.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 760.13 Tm (Database Design and Relationships) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 733.45 Tm (6. Database design principles) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 714.28 Tm (Relational tables represent employees, organization masters, permissions, documents, and assets.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 701.68 Tm (Primary and foreign keys establish identity and relationships. Unique constraints protect employee) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 689.08 Tm (codes, work email, and asset tags. Oracle sequences generate identifiers. Business validation) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 676.48 Tm (complements these database rules.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 656.65 Tm (6.1 Entity-relationship diagram) Tj ET
+0.090 0.196 0.302 RG 0.65 w 180.27 613.39 m 196.88 613.39 l S
+0.090 0.196 0.302 RG 0.65 w 196.88 613.39 m 196.88 545.46 l S
+0.090 0.196 0.302 RG 0.65 w 196.88 545.46 m 232.09 545.46 l S
+0.090 0.196 0.302 RG 0.65 w 284.92 597.29 m 284.92 553.01 l S
+0.090 0.196 0.302 RG 0.65 w 390.58 529.37 m 418.25 529.37 l S
+0.090 0.196 0.302 RG 0.65 w 390.58 504.21 m 418.25 456.41 l S
+0.090 0.196 0.302 RG 0.65 w 232.09 522.32 m 177.76 522.32 l S
+0.090 0.196 0.302 RG 0.65 w 232.09 494.15 m 177.76 444.84 l S
+0.090 0.196 0.302 RG 0.65 w 287.44 467.98 m 287.44 423.21 l S
+0.090 0.196 0.302 RG 0.65 w 413.22 398.05 m 349.32 398.05 l S
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 182.79 618.36 Tm (0..1) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 207.94 550.44 Tm (0..*) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 289.45 574.08 Tm (0..1 manager) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 289.45 556.98 Tm (0..* reports) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 395.11 533.83 Tm (1) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 395.11 521.25 Tm (0..1) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 393.09 493.08 Tm (1) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 398.13 467.42 Tm (0..*) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 207.44 528.30 Tm (1) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 183.29 513.71 Tm (0..*) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 203.92 485.03 Tm (1) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 183.29 454.84 Tm (0..*) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 291.46 454.84 Tm (1) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 291.46 430.69 Tm (0..*) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 396.62 404.53 Tm (1) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 357.88 404.03 Tm (0..*) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 63.55 585.72 116.73 52.83 re B
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 63.55 622.95 116.73 15.60 re B
+BT /F2 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 68.58 628.51 Tm (DEPARTMENTS) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 68.58 612.82 Tm (PK id) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 68.58 601.25 Tm (UQ code) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 68.58 589.68 Tm (name) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 232.09 597.29 119.74 41.26 re B
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 232.09 622.95 119.74 15.60 re B
+BT /F2 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 237.13 628.51 Tm (EMPLOYEES \(manager\)) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 237.13 612.82 Tm (PK id) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 237.13 601.25 Tm (name) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 232.09 465.47 158.48 87.54 re B
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 232.09 537.41 158.48 15.60 re B
+BT /F2 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 237.13 542.98 Tm (EMPLOYEES) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 237.13 527.29 Tm (PK id; UQ employee_code) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 237.13 515.72 Tm (UQ work_email) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 237.13 504.15 Tm (FK department_id \(nullable\)) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 237.13 492.58 Tm (FK manager_id \(nullable\)) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 237.13 481.00 Tm (first_name; last_name) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 237.13 469.43 Tm (status) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 418.25 505.72 113.20 52.83 re B
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 418.25 542.95 113.20 15.60 re B
+BT /F2 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 423.28 548.51 Tm (EMPLOYEE_STATUTORY) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 423.28 532.83 Tm (PK, FK employee_id) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 423.28 521.25 Tm (pan_enc; aadhaar_enc) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 423.28 509.68 Tm (bank_account_enc) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 63.55 494.15 114.21 52.83 re B
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 63.55 531.38 114.21 15.60 re B
+BT /F2 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 68.58 536.94 Tm (EMPLOYEE_DOCUMENTS) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 68.58 521.25 Tm (PK id; FK employee_id) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 68.58 509.68 Tm (storage_key; title) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 68.58 498.11 Tm (expiry_date; verified) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 63.55 413.65 114.21 52.83 re B
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 63.55 450.88 114.21 15.60 re B
+BT /F2 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 68.58 456.44 Tm (EMERGENCY_CONTACTS) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 68.58 440.75 Tm (PK id; FK employee_id) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 68.58 429.18 Tm (name; relationship) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 68.58 417.61 Tm (phone) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 418.25 427.73 113.20 52.83 re B
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 418.25 464.96 113.20 15.60 re B
+BT /F2 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 423.28 470.53 Tm (EMPLOYEE_TIMELINE) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 423.28 454.84 Tm (PK id; FK employee_id) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 423.28 443.27 Tm (event_type; event_date) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 423.28 431.70 Tm (title) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 232.09 370.38 117.23 52.83 re B
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 232.09 407.61 117.23 15.60 re B
+BT /F2 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 237.13 413.17 Tm (ASSET_ASSIGNMENTS) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 237.13 397.49 Tm (PK id; FK employee_id) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 237.13 385.91 Tm (FK asset_id) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 237.13 374.34 Tm (assigned_on; returned_on) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 413.22 360.82 118.23 52.83 re B
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 413.22 398.05 118.23 15.60 re B
+BT /F2 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 418.25 403.61 Tm (ASSETS) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 418.25 387.93 Tm (PK id; UQ asset_tag) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 418.25 376.35 Tm (FK current_employee_id) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 418.25 364.78 Tm (name; status) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 64.55 386.42 Tm (Manager box repeats EMPLOYEES) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 64.55 375.35 Tm (to show its self-reference.) Tj ET
+BT /F2 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 64.55 360.85 Tm (Selected Core HR entities) Tj ET
+BT /F1 9.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 334.85 Tm (Figure 2. Core HR entity-relationship diagram with selected attributes.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 315.82 Tm (PK denotes a primary key, FK a foreign key, and UQ a unique value. Relationship labels show the) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 303.22 Tm (number of records at each end: 0..1 means optional one, and 0..* means zero or more. The diagram) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 290.62 Tm (shows selected core tables, not the complete schema. Designation, grade, location, business unit, and) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 278.02 Tm (cost center also link to employees through master-data foreign keys. The database permits a nullable) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 265.42 Tm (department reference; the employee creation workflow can impose stricter required-field validation.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 245.59 Tm (6.2 Authentication and additional relationships) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 226.42 Tm (Users and roles have a many-to-many relationship through user_roles. Roles and permissions similarly) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 213.82 Tm (use role_permissions. Refresh tokens belong to users. An optional users.employee_id connects an) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 201.22 Tm (account to an employee; the reviewed schema does not declare this foreign key unique. Audit records) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 188.62 Tm (identify affected entities using entity type and identifier fields, rather than a direct employee foreign key.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 168.79 Tm (6.3 Integrity, history, and storage) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 149.62 Tm (The manager field is a self-reference; application checks reject reporting cycles. Master data in use) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 137.02 Tm (cannot be removed in ways that break employee references. Asset assignment history preserves) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 124.42 Tm (previous allocations separately from the current holder. Document rows store metadata and keys, while) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 111.82 Tm (files are stored separately. Selected statutory identifiers use encrypted columns. Creation and) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 99.22 Tm (modification fields, soft deletion, timeline events, and audit records support traceability. Timelines and) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 86.62 Tm (audit logs have different audiences and must respect confidentiality rules.) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 40.89 m 539.00 40.89 l S
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 23.33 Tm (DETAILED PROJECT REPORT) Tj ET
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 472.00 23.33 Tm (7 / 12) Tj ET
+endstream
+endobj
+18 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 17 0 R >>
+endobj
+19 0 obj
+<< /Length 8355 >>
+stream
+BT /F2 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 807.33 Tm (HRGENIUS  |  HUMAN RESOURCE MANAGEMENT SYSTEM) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 797.89 m 539.00 797.89 l S
+BT /F2 18.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 760.13 Tm (Functional Modules and User Responsibilities) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 733.45 Tm (7. Authentication and organization setup) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 714.28 Tm (The authentication module supports login, token refresh, logout-related refresh-token revocation, and) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 701.68 Tm (account lockout after repeated failed attempts. Roles and permission codes provide the foundation for) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 689.08 Tm (operation-level access. Organization setup maintains reusable HR masters, allowing an employee's) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 676.48 Tm (department, designation, grade, location, business unit, and cost center to reference consistent records.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 656.65 Tm (7.1 Employee directory and profiles) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 637.48 Tm (The directory provides searchable employee information and navigation to profiles. The creation and) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 624.88 Tm (editing interface captures employee details through a structured workflow. Profile views organize related) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 612.28 Tm (information into sections for core details, statutory information, emergency contacts, documents, assets,) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 599.68 Tm (and timeline events. The server determines which information the caller may receive. An employee can) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 587.08 Tm (appear in the workplace directory without making all personal fields visible to every authenticated user.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 568.48 Tm (Employee records capture employment status and meaningful changes. The organization chart) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 555.88 Tm (visualizes reporting relationships; it is not a complete workforce-planning module.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 536.05 Tm (7.2 Documents, assets, and spreadsheet exchange) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 516.88 Tm (Document management: Authorized users upload employee documents with metadata. The service) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 504.28 Tm (supports retrieval and document-related actions according to access rules. Expiry dates feed a) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 491.68 Tm (dedicated review screen and a scheduled HR email digest. Verification status helps distinguish) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 479.08 Tm (reviewed records from newly submitted material.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 460.48 Tm (Asset management: Asset records identify company equipment and its current status or holder.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 447.88 Tm (Assignment history links an asset to employees over time and stores return information. This supports) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 435.28 Tm (accountability during transfers and exits, although a full offboarding checklist remains a future) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 422.68 Tm (extension.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 404.08 Tm (Spreadsheet exchange: Import templates standardize employee data entry. Import validation checks) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 391.48 Tm (the entire submitted dataset before creation. Exports use the employee filtering and access rules, with) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 378.88 Tm (sensitive columns included only where permitted. This is a practical bridge from spreadsheet-based) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 366.28 Tm (administration to the centralized application.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 346.45 Tm (7.3 User responsibilities and visibility) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 56.00 315.89 207.69 20.00 re B
+BT /F2 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 323.18 Tm (User category) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 263.69 315.89 275.31 20.00 re B
+BT /F2 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 323.18 Tm (Role in the current application) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 295.89 207.69 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 303.18 Tm (Super administrator / HR administrator) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 295.89 275.31 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 303.18 Tm (Broad administration subject to endpoint permissions.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 263.89 207.69 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 283.18 Tm (HR manager) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 263.89 275.31 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 283.18 Tm (Full-profile access recognized by the access service;) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 271.18 Tm (operations depend on granted permissions.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 231.89 207.69 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 251.18 Tm (Payroll administrator) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 231.89 275.31 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 251.18 Tm (Recognized for profile access and sensitive-data permission;) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 239.18 Tm (payroll processing is not implemented.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 199.89 207.69 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 219.18 Tm (Manager) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 199.89 275.31 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 219.18 Tm (Full profiles within the permitted reporting tree; sensitive) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 207.18 Tm (access is evaluated separately.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 179.89 207.69 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 187.18 Tm (Employee) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 179.89 275.31 20.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 187.18 Tm (Directory access, own profile, and allowed self-service actions.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 147.89 207.69 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 167.18 Tm (Recruiter) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 147.89 275.31 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 167.18 Tm (Role exists, but it does not confer broad full-profile access in) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 155.18 Tm (the employee access service.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 129.05 Tm (7.4 Dashboard and auditing) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 109.88 Tm (Dashboard cards display actual Core HR counts obtained from application services. Manager and) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 97.28 Tm (HR-specific cards provide team and expiry information where applicable. Audit-log access is separately) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 84.68 Tm (permission-controlled. These views support awareness and accountability while preserving the) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 72.08 Tm (distinction between general workplace data and protected employee information.) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 40.89 m 539.00 40.89 l S
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 23.33 Tm (DETAILED PROJECT REPORT) Tj ET
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 472.00 23.33 Tm (8 / 12) Tj ET
+endstream
+endobj
+20 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 19 0 R >>
+endobj
+21 0 obj
+<< /Length 11458 >>
+stream
+BT /F2 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 807.33 Tm (HRGENIUS  |  HUMAN RESOURCE MANAGEMENT SYSTEM) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 797.89 m 539.00 797.89 l S
+BT /F2 18.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 760.13 Tm (Data Flow Diagrams and Processing Logic) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 733.45 Tm (8. Context diagram \(Level 0\)) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 60.02 646.41 123.27 50.31 re B
+BT /F1 10.06 Tf 0.090 0.196 0.302 rg 1 0 0 1 76.92 673.89 Tm (HR staff / Managers) Tj ET
+BT /F1 10.06 Tf 0.090 0.196 0.302 rg 1 0 0 1 96.77 662.82 Tm (Employees) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 366.43 671.32 m 366.43 690.08 337.71 705.28 302.28 705.28 c 266.85 705.28 238.13 690.08 238.13 671.32 c 238.13 652.56 266.85 637.36 302.28 637.36 c 337.71 637.36 366.43 652.56 366.43 671.32 c B
+BT /F1 10.57 Tf 0.090 0.196 0.302 rg 1 0 0 1 299.34 678.76 Tm (0) Tj ET
+BT /F1 10.57 Tf 0.090 0.196 0.302 rg 1 0 0 1 277.92 667.69 Tm (HRGenius) Tj ET
+BT /F1 10.57 Tf 0.090 0.196 0.302 rg 1 0 0 1 263.54 656.62 Tm (Core HR system) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 443.91 653.96 91.07 35.22 re B
+BT /F1 10.06 Tf 0.090 0.196 0.302 rg 1 0 0 1 462.89 668.35 Tm (Mail service) Tj ET
+0.090 0.196 0.302 RG 0.65 w 183.29 682.64 m 238.13 682.64 l S
+0.090 0.196 0.302 rg 0.090 0.196 0.302 RG 238.13 682.64 m 232.09 685.16 l 232.09 680.12 l h B
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 187.87 697.17 Tm (Credentials /) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 188.09 687.61 Tm (HR requests) Tj ET
+0.090 0.196 0.302 RG 0.65 w 238.13 653.96 m 183.29 653.96 l S
+0.090 0.196 0.302 rg 0.090 0.196 0.302 RG 183.29 653.96 m 189.33 651.45 l 189.33 656.48 l h B
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 193.01 641.32 Tm (Tokens /) Tj ET
+BT /F1 8.05 Tf 0.090 0.196 0.302 rg 1 0 0 1 178.70 631.26 Tm (permitted results) Tj ET
+0.090 0.196 0.302 RG 0.65 w 366.43 671.07 m 443.91 671.07 l S
+0.090 0.196 0.302 rg 0.090 0.196 0.302 RG 443.91 671.07 m 437.87 673.58 l 437.87 668.55 l h B
+BT /F1 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 380.69 685.69 Tm (Expiry digest) Tj ET
+BT /F1 9.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 603.85 Tm (Figure 3. Context DFD: HRGenius and its external participants.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 584.82 Tm (The single process represents the complete Core HR system. HR staff, managers, and employees) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 572.22 Tm (exchange requests and permitted responses through an aggregated user entity. The mail service) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 559.62 Tm (receives expiry digests. Internal databases and file storage are intentionally hidden at this level.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 539.79 Tm (8.1 Level 1 data flow diagram) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 61.03 505.58 135.84 21.63 re B
+BT /F1 7.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 73.59 515.24 Tm (HR staff / Managers / Employees) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 228.57 505.58 135.84 21.63 re B
+BT /F1 7.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 241.13 515.24 Tm (HR staff / Managers / Employees) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 396.11 505.58 135.84 21.63 re B
+BT /F1 7.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 408.67 515.24 Tm (HR staff / Managers / Employees) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 196.88 446.71 m 196.88 457.83 166.47 466.84 128.95 466.84 c 91.44 466.84 61.03 457.83 61.03 446.71 c 61.03 435.60 91.44 426.59 128.95 426.59 c 166.47 426.59 196.88 435.60 196.88 446.71 c B
+BT /F1 9.06 Tf 0.090 0.196 0.302 rg 1 0 0 1 122.66 449.85 Tm (1.0) Tj ET
+BT /F1 9.06 Tf 0.090 0.196 0.302 rg 1 0 0 1 93.72 438.79 Tm (Authenticate user) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 364.42 446.71 m 364.42 457.83 334.01 466.84 296.49 466.84 c 258.98 466.84 228.57 457.83 228.57 446.71 c 228.57 435.60 258.98 426.59 296.49 426.59 c 334.01 426.59 364.42 435.60 364.42 446.71 c B
+BT /F1 9.06 Tf 0.090 0.196 0.302 rg 1 0 0 1 290.20 449.85 Tm (2.0) Tj ET
+BT /F1 9.06 Tf 0.090 0.196 0.302 rg 1 0 0 1 260.51 438.79 Tm (Maintain Core HR) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 531.96 446.71 m 531.96 457.83 501.55 466.84 464.03 466.84 c 426.52 466.84 396.11 457.83 396.11 446.71 c 396.11 435.60 426.52 426.59 464.03 426.59 c 501.55 426.59 531.96 435.60 531.96 446.71 c B
+BT /F1 9.06 Tf 0.090 0.196 0.302 rg 1 0 0 1 457.74 449.85 Tm (3.0) Tj ET
+BT /F1 9.06 Tf 0.090 0.196 0.302 rg 1 0 0 1 408.42 438.79 Tm (Manage documents / expiry) Tj ET
+0.090 0.196 0.302 RG 0.65 w 71.09 505.58 m 71.09 456.78 l S
+0.090 0.196 0.302 rg 0.090 0.196 0.302 RG 71.09 456.78 m 73.61 462.81 l 68.58 462.81 l h B
+0.090 0.196 0.302 RG 0.65 w 186.81 456.78 m 186.81 505.58 l S
+0.090 0.196 0.302 rg 0.090 0.196 0.302 RG 186.81 505.58 m 184.30 499.54 l 189.33 499.54 l h B
+BT /F1 7.04 Tf 0.090 0.196 0.302 rg 1 0 0 1 111.14 492.76 Tm (Credentials) Tj ET
+BT /F1 7.04 Tf 0.090 0.196 0.302 rg 1 0 0 1 105.07 476.16 Tm (Tokens / status) Tj ET
+0.090 0.196 0.302 RG 0.65 w 238.63 505.58 m 238.63 456.78 l S
+0.090 0.196 0.302 rg 0.090 0.196 0.302 RG 238.63 456.78 m 241.15 462.81 l 236.12 462.81 l h B
+0.090 0.196 0.302 RG 0.65 w 354.35 456.78 m 354.35 505.58 l S
+0.090 0.196 0.302 rg 0.090 0.196 0.302 RG 354.35 505.58 m 351.84 499.54 l 356.87 499.54 l h B
+BT /F1 7.04 Tf 0.090 0.196 0.302 rg 1 0 0 1 276.92 492.76 Tm (HR requests) Tj ET
+BT /F1 7.04 Tf 0.090 0.196 0.302 rg 1 0 0 1 270.07 476.16 Tm (Permitted results) Tj ET
+0.090 0.196 0.302 RG 0.65 w 406.18 505.58 m 406.18 456.78 l S
+0.090 0.196 0.302 rg 0.090 0.196 0.302 RG 406.18 456.78 m 408.69 462.81 l 403.66 462.81 l h B
+0.090 0.196 0.302 RG 0.65 w 521.89 456.78 m 521.89 505.58 l S
+0.090 0.196 0.302 rg 0.090 0.196 0.302 RG 521.89 505.58 m 519.38 499.54 l 524.41 499.54 l h B
+BT /F1 7.04 Tf 0.090 0.196 0.302 rg 1 0 0 1 440.16 492.76 Tm (Files / requests) Tj ET
+BT /F1 7.04 Tf 0.090 0.196 0.302 rg 1 0 0 1 443.29 476.16 Tm (Files / results) Tj ET
+0.090 0.196 0.302 RG 0.65 w 61.03 390.87 m 196.88 390.87 l S
+0.090 0.196 0.302 RG 0.65 w 61.03 372.76 m 196.88 372.76 l S
+BT /F2 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 80.96 380.33 Tm (D1 Users / roles / tokens) Tj ET
+0.090 0.196 0.302 RG 0.65 w 228.57 390.87 m 364.42 390.87 l S
+0.090 0.196 0.302 RG 0.65 w 228.57 372.76 m 364.42 372.76 l S
+BT /F2 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 243.87 380.33 Tm (D2 Employee / org / assets) Tj ET
+0.090 0.196 0.302 RG 0.65 w 396.11 390.87 m 531.96 390.87 l S
+0.090 0.196 0.302 RG 0.65 w 396.11 372.76 m 531.96 372.76 l S
+BT /F2 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 406.30 380.33 Tm (D3 Document metadata / files) Tj ET
+0.090 0.196 0.302 RG 0.65 w 81.16 432.12 m 81.16 390.87 l S
+0.090 0.196 0.302 rg 0.090 0.196 0.302 RG 81.16 390.87 m 83.67 396.91 l 78.64 396.91 l h B
+0.090 0.196 0.302 rg 0.090 0.196 0.302 RG 81.16 432.12 m 78.64 426.09 l 83.67 426.09 l h B
+BT /F1 7.04 Tf 0.090 0.196 0.302 rg 1 0 0 1 89.71 406.73 Tm (Identity / session data) Tj ET
+0.090 0.196 0.302 RG 0.65 w 248.70 432.12 m 248.70 390.87 l S
+0.090 0.196 0.302 rg 0.090 0.196 0.302 RG 248.70 390.87 m 251.21 396.91 l 246.18 396.91 l h B
+0.090 0.196 0.302 rg 0.090 0.196 0.302 RG 248.70 432.12 m 246.18 426.09 l 251.21 426.09 l h B
+BT /F1 7.04 Tf 0.090 0.196 0.302 rg 1 0 0 1 257.25 406.73 Tm (Core HR records) Tj ET
+0.090 0.196 0.302 RG 0.65 w 416.24 432.12 m 416.24 390.87 l S
+0.090 0.196 0.302 rg 0.090 0.196 0.302 RG 416.24 390.87 m 418.75 396.91 l 413.72 396.91 l h B
+0.090 0.196 0.302 rg 0.090 0.196 0.302 RG 416.24 432.12 m 413.72 426.09 l 418.75 426.09 l h B
+BT /F1 7.04 Tf 0.090 0.196 0.302 rg 1 0 0 1 424.79 406.73 Tm (Metadata / files) Tj ET
+0.090 0.196 0.302 RG 0.65 w 228.57 353.13 m 364.42 353.13 l S
+0.090 0.196 0.302 RG 0.65 w 228.57 335.02 m 364.42 335.02 l S
+BT /F2 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 260.93 342.60 Tm (D4 Audit / timeline) Tj ET
+0.090 0.196 0.302 RG 0.65 w 238.13 433.13 m 214.99 421.56 l S
+0.090 0.196 0.302 RG 0.65 w 214.99 421.56 m 214.99 344.08 l S
+0.090 0.196 0.302 RG 0.65 w 214.99 344.08 m 228.57 344.08 l S
+0.090 0.196 0.302 rg 0.090 0.196 0.302 RG 228.57 344.08 m 222.53 346.59 l 222.53 341.56 l h B
+BT /F1 7.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 161.66 360.53 Tm (Change events) Tj ET
+0.090 0.196 0.302 RG 0.65 w 410.20 430.11 m 379.01 418.54 l S
+0.090 0.196 0.302 RG 0.65 w 379.01 418.54 m 379.01 344.08 l S
+0.090 0.196 0.302 RG 0.65 w 379.01 344.08 m 364.42 344.08 l S
+0.090 0.196 0.302 rg 0.090 0.196 0.302 RG 364.42 344.08 m 370.45 341.56 l 370.45 346.59 l h B
+BT /F1 7.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 382.03 360.03 Tm (Document events) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 407.18 335.52 120.75 20.12 re B
+BT /F1 8.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 444.98 343.60 Tm (Mail service) Tj ET
+0.090 0.196 0.302 RG 0.65 w 531.96 446.71 m 536.48 446.71 l S
+0.090 0.196 0.302 RG 0.65 w 536.48 446.71 m 536.48 345.59 l S
+0.090 0.196 0.302 RG 0.65 w 536.48 345.59 m 527.93 345.59 l S
+0.090 0.196 0.302 rg 0.090 0.196 0.302 RG 527.93 345.59 m 533.97 343.07 l 533.97 348.10 l h B
+BT /F1 7.55 Tf 0.090 0.196 0.302 rg 1 0 0 1 481.64 364.05 Tm (Expiry digest) Tj ET
+BT /F1 9.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 320.63 Tm (Figure 4. Level 1 DFD: principal processes, data stores, and flows.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 301.60 Tm (Rectangles denote external entities, rounded processes denote transformations, and paired horizontal) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 289.00 Tm (lines denote data stores. Labelled arrows show data movement. Opposing arrowheads represent the) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 276.40 Tm (two directions named in the label. The user entity is repeated for readability; it represents the same) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 263.80 Tm (participants in both diagrams. Authentication is a shared prerequisite for processes 2.0 and 3.0. Internal) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 251.20 Tm (flows decompose the context without adding a new external participant.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 231.37 Tm (8.2 Processing and validation) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 212.20 Tm (Employee changes validate required fields, duplicate email, organizational references, and manager) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 199.60 Tm (relationships before saving. Reporting-tree traversal uses a queue and a visited set; manager changes) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 187.00 Tm (reject reporting cycles. Spreadsheet imports validate the whole dataset before employee creation, with) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 174.40 Tm (a limit of 1,000 import rows and 10,000 export rows. Document processing validates content, stores file) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 161.80 Tm (bytes separately from metadata, and selects expiry records for the HR digest. Asset updates preserve) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 149.20 Tm (allocation and return history. Relevant actions also produce timeline or audit entries.) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 40.89 m 539.00 40.89 l S
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 23.33 Tm (DETAILED PROJECT REPORT) Tj ET
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 472.00 23.33 Tm (9 / 12) Tj ET
+endstream
+endobj
+22 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 21 0 R >>
+endobj
+23 0 obj
+<< /Length 6579 >>
+stream
+BT /F2 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 807.33 Tm (HRGENIUS  |  HUMAN RESOURCE MANAGEMENT SYSTEM) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 797.89 m 539.00 797.89 l S
+BT /F2 18.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 760.13 Tm (User Interface, Security, and Deployment) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 733.45 Tm (9. User interface design) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 714.28 Tm (The Angular interface uses a common application shell with navigation and reusable components for) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 701.68 Tm (page headings, status chips, tables, empty states, and confirmation dialogs. Separate feature screens) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 689.08 Tm (support the employee directory, employee forms, profile tabs, organization chart, organization setup,) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 676.48 Tm (assets, document expiry, and audit log. Consistent controls reduce the effort required to learn each) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 663.88 Tm (workflow. Forms should identify required fields and present validation failures close to the relevant) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 651.28 Tm (action.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 632.68 Tm (Route guards and role-driven navigation help users discover permitted features. These controls are a) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 620.08 Tm (usability layer; the backend independently enforces authorization. Hiding a menu item is not sufficient) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 607.48 Tm (protection for an API endpoint.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 587.65 Tm (9.1 Authentication and data protection) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 568.48 Tm (Passwords are handled using BCrypt, and API authentication uses JWT access tokens. The) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 555.88 Tm (authentication service rotates refresh tokens and revokes the previous token when issuing a) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 543.28 Tm (replacement. Its lockout logic applies after five failed login attempts, with a 15-minute lock duration) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 530.68 Tm (defined in the service. Logout revokes the supplied refresh token; this should not be described as) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 518.08 Tm (immediate revocation of every previously issued access token.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 499.48 Tm (Role and permission checks control operations, while the employee access service distinguishes) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 486.88 Tm (directory visibility, full-profile access, and sensitive-field access. Selected identifiers, including PAN,) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 474.28 Tm (Aadhaar, and bank account values, use an AES-GCM attribute converter. Masking supports ordinary) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 461.68 Tm (viewing, and sensitive reveal actions have audit coverage. These mechanisms apply to selected fields) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 449.08 Tm (rather than proving encryption of every database column or uploaded file.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 430.48 Tm (Uploaded files use generated UUID storage keys, a content-type allow-list, signature checks, and) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 417.88 Tm (validated storage paths. These are implemented validation measures; they do not constitute malware) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 405.28 Tm (scanning or a comprehensive security certification. Audit records and employee timelines also require) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 392.68 Tm (access controls because their content can reveal personnel changes.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 372.85 Tm (9.2 Deployment design) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 353.68 Tm (Docker Compose defines Oracle, Spring Boot, an nginx-served frontend, and MailHog for development) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 341.08 Tm (email capture. The configured local access points are frontend port 4200, backend port 8080, Oracle) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 328.48 Tm (port 1521, and MailHog web port 8025. The backend waits for the Oracle health check before startup.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 315.88 Tm (Flyway applies schema migrations and seed data.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 297.28 Tm (The H2 demonstration uses in-memory storage and resets its database after restart. It is useful for) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 284.68 Tm (demonstrations and tests, but its behavior and persistence characteristics differ from the intended) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 272.08 Tm (Oracle environment.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 252.25 Tm (9.3 Operational readiness) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 233.08 Tm (A real deployment needs environment-specific secrets, HTTPS configuration, controlled administrator) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 220.48 Tm (provisioning, database backups, and persistent uploaded-file storage. The Compose file explicitly) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 207.88 Tm (provides an Oracle data volume; file-storage persistence should also be configured and restore-tested) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 195.28 Tm (before operational use. MailHog should be replaced by an appropriate mail service where actual) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 182.68 Tm (delivery is required. Recovery validation must confirm that restored document metadata still points to) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 170.08 Tm (restored files. No deployment, load-test, or backup-restoration result is asserted in this report.) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 40.89 m 539.00 40.89 l S
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 23.33 Tm (DETAILED PROJECT REPORT) Tj ET
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 472.00 23.33 Tm (10 / 12) Tj ET
+endstream
+endobj
+24 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 23 0 R >>
+endobj
+25 0 obj
+<< /Length 8498 >>
+stream
+BT /F2 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 807.33 Tm (HRGENIUS  |  HUMAN RESOURCE MANAGEMENT SYSTEM) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 797.89 m 539.00 797.89 l S
+BT /F2 18.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 760.13 Tm (Testing Strategy and Acceptance Criteria) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 733.45 Tm (10. Verification approach) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 714.28 Tm (Testing should combine isolated business-rule tests, API integration tests, database migration checks,) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 701.68 Tm (browser workflow checks, and environment-specific verification. The repository contains automated) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 689.08 Tm (backend test source using JUnit, Mockito, Spring test support, MockMvc, and H2 in Oracle compatibility) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 676.48 Tm (mode. Existing API integration tests exercise the application against seeded H2 data. Oracle) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 663.88 Tm (Testcontainers dependencies are present, but their presence alone does not prove an Oracle) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 651.28 Tm (integration suite was executed.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 632.68 Tm (The following table identifies coverage visible in existing test source. These are test definitions reviewed) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 620.08 Tm (for this report, not newly executed passing results.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 600.25 Tm (10.1 Existing automated test coverage) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 56.00 569.69 207.69 20.00 re B
+BT /F2 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 576.98 Tm (Test area) Tj ET
+0.929 0.957 0.976 rg 0.090 0.196 0.302 RG 0.6 w 263.69 569.69 275.31 20.00 re B
+BT /F2 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 576.98 Tm (Scenarios visible in source) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 537.69 207.69 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 556.98 Tm (Authentication) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 537.69 275.31 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 556.98 Tm (Valid login, incorrect password, fifth-failure lockout,) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 544.98 Tm (locked-account rejection.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 505.69 207.69 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 524.98 Tm (Employee visibility) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 505.69 275.31 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 524.98 Tm (Directory access without others' personal data; manager team) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 512.98 Tm (access without automatic sensitive access.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 473.69 207.69 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 492.98 Tm (Employee changes) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 473.69 275.31 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 492.98 Tm (HR creation and working login; unauthorized creation;) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 480.98 Tm (department-change timeline and audit.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 441.69 207.69 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 460.98 Tm (Relationships and integrity) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 441.69 275.31 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 460.98 Tm (Reporting-loop rejection; deletion blocked for direct reports or) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 448.98 Tm (masters in use.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 409.69 207.69 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 428.98 Tm (Sensitive fields) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 409.69 275.31 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 428.98 Tm (Masking, audited reveal, encrypted database values,) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 416.98 Tm (preservation of restricted salary fields.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 377.69 207.69 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 396.98 Tm (Documents and file storage) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 377.69 275.31 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 396.98 Tm (Own-document permissions, valid PDF handling, disguised) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 384.98 Tm (content, unsupported types, path traversal.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 345.69 207.69 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 364.98 Tm (Spreadsheet import) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 345.69 275.31 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 364.98 Tm (All-or-nothing behavior and manager references within the) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 352.98 Tm (same file.) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 56.00 313.69 207.69 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 62.00 332.98 Tm (Helpers and migrations) Tj ET
+1.000 1.000 1.000 rg 0.090 0.196 0.302 RG 0.6 w 263.69 313.69 275.31 32.00 re B
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 332.98 Tm (Search escaping, reporting-tree traversal, seed records, and) Tj ET
+BT /F1 9.40 Tf 0.090 0.196 0.302 rg 1 0 0 1 269.69 320.98 Tm (sequential employee codes.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 294.85 Tm (10.2 Proposed acceptance checks) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 275.68 Tm (AC-01 - Access boundary: Sign in as HR, manager, and employee. Confirm that each can perform) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 263.08 Tm (permitted actions and that direct unauthorized API requests are rejected. Map this to FR-01 and FR-04.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 244.48 Tm (AC-02 - Employee integrity: Create and edit an employee, attempt a duplicate email, select invalid) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 231.88 Tm (master references, and attempt a reporting cycle. Confirm clear errors and unchanged valid records.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 219.28 Tm (Map this to FR-02, FR-03, and FR-08.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 200.68 Tm (AC-03 - Administrative workflows: Upload and retrieve a permitted document, review an expiry record,) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 188.08 Tm (assign and return an asset, and inspect the resulting history. Map this to FR-05, FR-06, and FR-08.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 169.48 Tm (AC-04 - Bulk operations: Import a valid spreadsheet and a spreadsheet containing an invalid row.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 156.88 Tm (Confirm complete valid processing or a validation report without partial employee creation. Check that) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 144.28 Tm (exports respect sensitive-field access. Map this to FR-07.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 124.45 Tm (10.3 Execution and result reporting) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 105.28 Tm (Run mvnw.cmd test from the backend directory on Windows. The frontend production build uses npm) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 92.68 Tm (run build from frontend after dependencies are installed. This reporting task did not execute either suite.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 80.08 Tm (Record actual results before submission. Additional checks should cover browser usability, Oracle) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 67.48 Tm (behavior, concurrent asset operations, load, and recovery.) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 40.89 m 539.00 40.89 l S
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 23.33 Tm (DETAILED PROJECT REPORT) Tj ET
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 472.00 23.33 Tm (11 / 12) Tj ET
+endstream
+endobj
+26 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 25 0 R >>
+endobj
+27 0 obj
+<< /Length 6621 >>
+stream
+BT /F2 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 807.33 Tm (HRGENIUS  |  HUMAN RESOURCE MANAGEMENT SYSTEM) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 797.89 m 539.00 797.89 l S
+BT /F2 18.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 760.13 Tm (Benefits, Limitations, and Future Scope) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 733.45 Tm (11. Expected benefits and current limitations) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 714.28 Tm (HRGenius is expected to make employee information easier to locate, reduce duplicate entry,) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 701.68 Tm (standardize organizational records, improve asset accountability, and support document follow-up.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 689.08 Tm (Role-aware access and traceable changes can strengthen administrative control. These are reasoned) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 676.48 Tm (benefits of the design, not measured outcomes from a deployed organization.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 657.88 Tm (The current scope is Foundation and Core HR. Attendance, leave, recruitment, payroll processing, and) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 645.28 Tm (performance reviews remain future modules. Production-scale performance, comprehensive browser) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 632.68 Tm (testing, and recovery readiness are unverified. Larger deployments require evaluation of spreadsheet) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 620.08 Tm (limits, file storage, data quality, and operational ownership.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 600.25 Tm (11.1 Future enhancements) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 581.08 Tm (1. Add attendance capture, shift rules, leave balances, and approval workflows linked to existing) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 568.48 Tm (employee records.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 549.88 Tm (2. Add recruitment pipelines and onboarding/offboarding checklists, reusing documents, employee) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 537.28 Tm (identities, and asset history.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 518.68 Tm (3. Implement payroll structures, calculation runs, payslips, and expense workflows with separately) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 506.08 Tm (validated business rules.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 487.48 Tm (4. Introduce performance goals, reviews, feedback, and manager evaluation workflows with appropriate) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 474.88 Tm (confidentiality controls.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 456.28 Tm (5. Extend dashboards with defined business metrics, configurable reports, and export permissions.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 437.68 Tm (6. Improve operational maturity through automated delivery checks, persistent document storage,) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 425.08 Tm (monitoring, load tests, and restoration exercises.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 405.25 Tm (11.2 Conclusion) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 386.08 Tm (HRGenius provides a structured technical foundation for centralized employee administration. Its) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 373.48 Tm (Angular interface, Spring Boot service layer, and relational database connect employee profiles,) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 360.88 Tm (organizational data, documents, assets, and change history within one application. The implementation) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 348.28 Tm (emphasizes validation and differentiated access, which are essential when workplace information and) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 335.68 Tm (confidential personal details coexist. The next stage should verify the current workflows in the target) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 323.08 Tm (environment and then introduce additional HR modules incrementally. The project demonstrates how) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 310.48 Tm (established software-engineering practices can be applied to a practical organizational information) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 297.88 Tm (problem.) Tj ET
+BT /F2 12.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 278.05 Tm (12. References and source evidence) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 258.88 Tm (The report uses the supplied repository as its primary source; no external survey or benchmark is cited.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 240.28 Tm (- Project overview and roadmap: README.md.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 221.68 Tm (- Technology and deployment: backend/pom.xml, frontend/package.json, and docker-compose.yml.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 203.08 Tm (- UI and implemented routes: frontend/src/app/app.routes.ts and frontend/src/app/features/.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 184.48 Tm (- Schema: backend/src/main/resources/db/migration/, particularly V1, V3, and V4; Java seed migration) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 171.88 Tm (under employee/seed/.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 153.28 Tm (- Business rules and access: backend/src/main/java/com/hrgenius/employee/service/ and) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 140.68 Tm (auth/service/AuthService.java.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 122.08 Tm (- Security and uploads: backend common/security/, common/config/SecurityConfig.java, and) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 109.48 Tm (common/storage/FileStorageService.java.) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 90.88 Tm (- Test evidence: backend/src/test/java/com/hrgenius/, including authentication, employee API,) Tj ET
+BT /F1 10.50 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 78.28 Tm (migration, employee logic, search, and file-storage tests.) Tj ET
+0.137 0.361 0.522 RG 0.65 w 56.00 40.89 m 539.00 40.89 l S
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 56.00 23.33 Tm (DETAILED PROJECT REPORT) Tj ET
+BT /F1 8.00 Tf 0.090 0.196 0.302 rg 1 0 0 1 472.00 23.33 Tm (12 / 12) Tj ET
+endstream
+endobj
+28 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 27 0 R >>
+endobj
+xref
+0 29
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000198 00000 n 
+0000000295 00000 n 
+0000000397 00000 n 
+0000004997 00000 n 
+0000005139 00000 n 
+0000013625 00000 n 
+0000013767 00000 n 
+0000021931 00000 n 
+0000022074 00000 n 
+0000029765 00000 n 
+0000029909 00000 n 
+0000039380 00000 n 
+0000039524 00000 n 
+0000050240 00000 n 
+0000050384 00000 n 
+0000061380 00000 n 
+0000061524 00000 n 
+0000069932 00000 n 
+0000070076 00000 n 
+0000081588 00000 n 
+0000081732 00000 n 
+0000088364 00000 n 
+0000088508 00000 n 
+0000097059 00000 n 
+0000097203 00000 n 
+0000103877 00000 n 
+trailer
+<< /Size 29 /Root 1 0 R >>
+startxref
+104021
+%%EOF
