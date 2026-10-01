@@ -1,11 +1,11 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { BehaviorSubject, catchError, filter, switchMap, take, throwError } from 'rxjs';
+import { Observable, catchError, finalize, map, shareReplay, switchMap, throwError } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
-// Shared refresh state so concurrent 401s trigger a single refresh call.
-let refreshing = false;
-const refreshed$ = new BehaviorSubject<string | null>(null);
+// One refresh shared by every request that hits a 401 while it is in flight. If it fails, all of
+// them fail with it (instead of waiting forever) and the user is signed out exactly once.
+let refresh$: Observable<string> | null = null;
 
 /**
  * Attaches the Bearer access token and, on a 401, transparently refreshes it once
@@ -27,29 +27,22 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       if (error.status !== 401 || isAuthCall || !auth.refreshToken) {
         return throwError(() => error);
       }
-
-      if (refreshing) {
-        // Queue behind the in-flight refresh, then replay.
-        return refreshed$.pipe(
-          filter((t) => t !== null),
-          take(1),
-          switchMap((t) => next(req.clone({ setHeaders: { Authorization: `Bearer ${t}` } })))
+      if (!refresh$) {
+        refresh$ = auth.refresh().pipe(
+          map((res) => res.accessToken),
+          catchError((err) => {
+            auth.logout();
+            return throwError(() => err);
+          }),
+          finalize(() => (refresh$ = null)),
+          shareReplay(1)
         );
       }
-
-      refreshing = true;
-      refreshed$.next(null);
-      return auth.refresh().pipe(
-        switchMap((res) => {
-          refreshing = false;
-          refreshed$.next(res.accessToken);
-          return next(req.clone({ setHeaders: { Authorization: `Bearer ${res.accessToken}` } }));
-        }),
-        catchError((err) => {
-          refreshing = false;
-          auth.logout();
-          return throwError(() => err);
-        })
+      return refresh$.pipe(
+        switchMap((t) => next(req.clone({ setHeaders: { Authorization: `Bearer ${t}` } }))),
+        // A failed refresh means the session is over: surface it as the original 401 so the
+        // error interceptor stays quiet while the user is taken back to the login page.
+        catchError((err) => throwError(() => (err instanceof HttpErrorResponse && err.url?.includes('/auth/refresh') ? error : err)))
       );
     })
   );

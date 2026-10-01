@@ -1,9 +1,13 @@
 package com.hrgenius.common.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hrgenius.common.error.ApiError;
 import com.hrgenius.common.security.JwtAuthFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -17,6 +21,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import java.time.Instant;
 import java.util.List;
 
 /**
@@ -28,9 +33,11 @@ import java.util.List;
 public class SecurityConfig {
 
     private final JwtAuthFilter jwtAuthFilter;
+    private final ObjectMapper objectMapper;
 
-    public SecurityConfig(JwtAuthFilter jwtAuthFilter) {
+    public SecurityConfig(JwtAuthFilter jwtAuthFilter, ObjectMapper objectMapper) {
         this.jwtAuthFilter = jwtAuthFilter;
+        this.objectMapper = objectMapper;
     }
 
     @Bean
@@ -53,6 +60,15 @@ public class SecurityConfig {
                                 "/actuator/health").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .anyRequest().authenticated())
+                // A missing, expired or tampered token is 401 (not Spring's default 403) so the SPA
+                // knows to refresh the session; 403 stays reserved for "signed in but not allowed".
+                .exceptionHandling(ex -> ex.authenticationEntryPoint((req, res, e) -> {
+                    res.setStatus(HttpStatus.UNAUTHORIZED.value());
+                    res.setContentType(MediaType.APPLICATION_JSON_VALUE);
+                    objectMapper.writeValue(res.getOutputStream(), new ApiError(Instant.now(),
+                            HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase(),
+                            "Your session has expired. Please sign in again.", req.getRequestURI(), List.of()));
+                }))
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
