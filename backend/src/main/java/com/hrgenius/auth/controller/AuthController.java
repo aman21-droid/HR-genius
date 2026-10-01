@@ -42,6 +42,13 @@ public class AuthController {
         return ResponseEntity.ok(authService.currentUser(email));
     }
 
+    @Operation(summary = "Change the signed-in user's password (signs out other devices)")
+    @PostMapping("/change-password")
+    public ResponseEntity<TokenResponse> changePassword(@AuthenticationPrincipal String email,
+                                                        @Valid @RequestBody ChangePasswordRequest request) {
+        return ResponseEntity.ok(authService.changePassword(email, request));
+    }
+
     @Operation(summary = "Revoke a refresh token (logout)")
     @PostMapping("/logout")
     public ResponseEntity<Void> logout(@Valid @RequestBody LogoutRequest request) {

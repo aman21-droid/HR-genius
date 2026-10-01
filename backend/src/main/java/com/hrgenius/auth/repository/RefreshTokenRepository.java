@@ -12,7 +12,15 @@ public interface RefreshTokenRepository extends JpaRepository<RefreshToken, Long
 
     Optional<RefreshToken> findByToken(String token);
 
+    /**
+     * Bound as parameters rather than true/false literals: the column is NUMBER(1), and literal
+     * booleans are not comparable with it on Oracle or H2.
+     */
     @Modifying
-    @Query("update RefreshToken r set r.revoked = true where r.userId = :userId and r.revoked = false")
-    void revokeAllForUser(@Param("userId") Long userId);
+    @Query("update RefreshToken r set r.revoked = :yes where r.userId = :userId and r.revoked = :no")
+    void revokeAll(@Param("userId") Long userId, @Param("yes") boolean yes, @Param("no") boolean no);
+
+    default void revokeAllForUser(Long userId) {
+        revokeAll(userId, true, false);
+    }
 }

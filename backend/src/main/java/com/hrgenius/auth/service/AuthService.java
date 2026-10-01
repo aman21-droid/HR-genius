@@ -6,6 +6,7 @@ import com.hrgenius.auth.entity.Role;
 import com.hrgenius.auth.entity.User;
 import com.hrgenius.auth.repository.RefreshTokenRepository;
 import com.hrgenius.auth.repository.UserRepository;
+import com.hrgenius.common.error.BadRequestException;
 import com.hrgenius.common.error.BusinessException;
 import com.hrgenius.common.security.JwtService;
 import lombok.extern.slf4j.Slf4j;
@@ -112,6 +113,27 @@ public class AuthService {
             rt.setRevoked(true);
             refreshTokenRepository.save(rt);
         });
+    }
+
+    /**
+     * Changes the signed-in user's password. Every existing refresh token is revoked (signing out
+     * other devices) and a fresh token pair is returned so the current session carries on.
+     */
+    @Transactional
+    public TokenResponse changePassword(String email, ChangePasswordRequest request) {
+        User user = userRepository.findByEmailIgnoreCase(email)
+                .orElseThrow(() -> new BusinessException("User no longer exists"));
+        if (!passwordEncoder.matches(request.currentPassword(), user.getPasswordHash())) {
+            throw new BadRequestException("Your current password is incorrect");
+        }
+        if (passwordEncoder.matches(request.newPassword(), user.getPasswordHash())) {
+            throw new BadRequestException("Choose a password different from your current one");
+        }
+        user.setPasswordHash(passwordEncoder.encode(request.newPassword()));
+        userRepository.save(user);
+        refreshTokenRepository.revokeAllForUser(user.getId());
+        log.info("Password changed for user {}", user.getId());
+        return issueTokens(user);
     }
 
     private void registerFailedAttempt(User user) {
